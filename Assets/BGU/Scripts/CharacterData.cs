@@ -2,15 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// 힙 영역에 메모리 할당
 [CreateAssetMenu(menuName = "New Data/ CharacterDataData")]
 public class CharacterData : ScriptableObject
 {
     // 플레이어 데이터 관리
     [Header("Character Stats")]
-    public float damage;
-    public float criDamage;
-    public int coinPoint;
-    public int levelPoint;
-    public float autoAtk;
-    public float coinGet;
+    public float damage;    // 플레이어 데미지
+    public float criDamage;   // 플레이어 크리데미지
+    public int coinPoint;   // 플레이어 보유 골드
+    public int levelPoint;  // 플레이어 보유 경험치
+    public float autoNum;   // 자동 공격 시간
+    public float coinGet;   // 골드 획득량
 }
