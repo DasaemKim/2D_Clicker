@@ -8,6 +8,8 @@ public class GameManager : MonoBehaviour
     public static GameManager Instance;
 
     public PlayerData playerData;
+    public Stat stat;
+    public GoldManager goldManager;
 
 
     private void Awake()
