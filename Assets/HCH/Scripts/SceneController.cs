@@ -1,5 +1,4 @@
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,6 +8,8 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
+    [SerializeField] private GameObject startupUI;
+    [SerializeField] private GameObject mainUI;
 
     private void Awake()
     {
@@ -21,7 +22,19 @@ public class SceneController : MonoBehaviour
         StartCoroutine(FadeAlpha(1f, 0f)); // ¼­¼­È÷ ¹à¾ÆÁü
     }
 
-    public void FadeToMainUI(GameObject startupUI, GameObject mainUI)
+    public void StartNewGame()
+    {
+        GameManager.Instance.NewGame();
+        FadeToMainUI();
+    }
+
+    public void LoadSavedGame()
+    {
+        GameManager.Instance.LoadGame();
+        FadeToMainUI();
+    }
+
+    private void FadeToMainUI()
     {
         StartCoroutine(FadeAlpha(0f, 1f, () => {
             startupUI.SetActive(false);
@@ -49,4 +62,3 @@ public class SceneController : MonoBehaviour
         onComplete?.Invoke();
     }
 }
-
