@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8a602bbf5422b064db7b4eb07e90b126, type: 3}
   m_Name: PlayerData
   m_EditorClassIdentifier: 
-  damage: 5
-  criDamage: 1
+  damage: 0
+  criDamage: 0
   coinPoint: 1000
   levelPoint: 1000
   autoAtk: 0
