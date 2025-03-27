@@ -14,5 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 5
   criDamage: 1
-  coinPoint: 0
-  levelPoint: 0
+  coinPoint: 1000
+  levelPoint: 1000
+  autoAtk: 0
+  coinGet: 0

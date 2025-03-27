@@ -11,4 +11,6 @@ public class CharacterData : ScriptableObject
     public float criDamage;
     public int coinPoint;
     public int levelPoint;
+    public float autoAtk;
+    public float coinGet;
 }
