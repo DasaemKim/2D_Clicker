@@ -10,8 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 5436096997833288712}
   - component: {fileID: 5828428524003755374}
+  - component: {fileID: -2839914190058793285}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: Circle
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -84,3 +85,16 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!114 &-2839914190058793285
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2059999867289050475}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9941a7c1fc674a408d522d9bdca79d5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  EnemyData: {fileID: 11400000, guid: 792415b1725d6d14b8f2e0c6aba04e5a, type: 2}
