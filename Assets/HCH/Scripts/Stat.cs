@@ -8,6 +8,6 @@ public class Stat
 {
     public int attack;
     public int criticalRate;
-    public int criticaDamage;
+    public int criticalDamage;
     public int goldBonus;
 }

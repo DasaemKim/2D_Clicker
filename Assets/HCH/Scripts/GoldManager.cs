@@ -6,5 +6,5 @@ public class GoldManager : MonoBehaviour
 {
     public int plusGold;
     public int useGold;
-    public int currenGold;
+    public int currentGold;
 }

@@ -16,4 +16,13 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
     }
+
+    public void NewGame()
+    {
+
+    }
+    public void LoadGame()
+    {
+
+    }
 }
