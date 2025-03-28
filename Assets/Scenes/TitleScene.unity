@@ -259,6 +259,9 @@ MonoBehaviour:
   playerData:
     stage: 0
     gold: 0
+    criticalDamageLevel: 0
+    autoAttackLevel: 0
+    goldBonusLevel: 0
   stat:
     attack: 0
     criticalRate: 0
@@ -1037,8 +1040,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   fadeImage: {fileID: 379078449}
   fadeDuration: 1
-  startupUI: {fileID: 1588997842}
-  mainUI: {fileID: 0}
 --- !u!1 &1849556706
 GameObject:
   m_ObjectHideFlags: 0

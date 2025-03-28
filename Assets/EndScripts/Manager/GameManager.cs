@@ -53,9 +53,6 @@ public class GameManager : MonoBehaviour
         string json = JsonUtility.ToJson(playerData,true);
         File.WriteAllText(savePath, json);
     }
-
-    
-
     public Enemy Enemy
     {
         get { return enemy; }
