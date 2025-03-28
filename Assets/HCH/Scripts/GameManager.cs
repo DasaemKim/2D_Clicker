@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
     public PlayerData playerData;
     public Stat stat;
     public GoldManager goldManager;
+    public CharacterData characterData;
 
     private string savePath;
 
