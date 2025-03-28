@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897507c8150da8b4692c3f22842477b0, type: 3}
   m_Name: Square
   m_EditorClassIdentifier: 
-  Name: "\uB124\uBAA8 \uAD34\uBB3C0"
-  BaseHealth: 200
-  HealthGrowth: 20
+  Name: "\uB124\uBAA8 \uAD34\uBB3C"
+  Health: 300
+  HealthGrowth: 40

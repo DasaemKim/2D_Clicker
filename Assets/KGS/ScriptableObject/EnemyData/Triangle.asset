@@ -12,12 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 897507c8150da8b4692c3f22842477b0, type: 3}
   m_Name: Triangle
   m_EditorClassIdentifier: 
-  Name: "\uC138\uBAA8 \uAD34\uBB3C0"
-  BaseHealth: 0
-  HealthGrowth: 0
-  healthCurve:
-    serializedVersion: 2
-    m_Curve: []
-    m_PreInfinity: 2
-    m_PostInfinity: 2
-    m_RotationOrder: 4
+  Name: "\uC138\uBAA8 \uAD34\uBB3C"
+  Health: 200
+  HealthGrowth: 30

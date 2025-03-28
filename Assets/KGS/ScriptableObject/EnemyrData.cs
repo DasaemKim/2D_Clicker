@@ -14,11 +14,11 @@ public class EnemyData : ScriptableObject
 {
     [Header("MonsterInfo")]
     public string Name;
-    public float BaseHealth;
+    public float Health;
     public float HealthGrowth;
 
     public float GetHealth(int stage)
     {
-        return BaseHealth + stage * HealthGrowth;
+        return Health + stage * HealthGrowth;
     }
 }
