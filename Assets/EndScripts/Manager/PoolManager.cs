@@ -6,15 +6,15 @@ using UnityEngine;
 
 public interface IPoolable
 {
-    void Initialize(Action<GameObject> action);
+    void Initialize(Action<GameObject> action); // ReturnObject함수로 초기화
     void OnSpawn();
     void OnDespawn();
 }
 
 public class PoolManager : MonoBehaviour
 {
-    public GameObject[] Prefabs;
-    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>();
+    public GameObject[] Prefabs;  // Enemy 프리팹
+    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>(); // 풀 리스트
 
     public static PoolManager Instance { get; private set; }
 
@@ -28,7 +28,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject GetObject(int prefabIndex, Vector3 position, Quaternion rotation)
+    public GameObject GetObject(int prefabIndex, Vector3 position, Quaternion rotation) // 오브젝트 생성 또는 활성화
     {
         if (!pools.ContainsKey(prefabIndex))
         {
@@ -39,7 +39,7 @@ public class PoolManager : MonoBehaviour
         GameObject obj;
         if (pools[prefabIndex].Count > 0)
         {
-            obj = pools[prefabIndex].Dequeue();
+            obj = pools[prefabIndex].Dequeue();  // 풀에서 오브젝트 빼오기
         }
         else
         {
@@ -53,15 +53,15 @@ public class PoolManager : MonoBehaviour
         return obj;
     }
 
-    public void ReturnObject(int prefabIndex, GameObject obj)
+    public void ReturnObject(int prefabIndex, GameObject obj)  // 오브젝트 비활성화
     {
-        if (!pools.ContainsKey(prefabIndex))
+        if (!pools.ContainsKey(prefabIndex))  // 풀에서 오브젝트 제거
         {
             Destroy(obj);
             return;
         }
 
         obj.SetActive(false);
-        pools[prefabIndex].Enqueue(obj);
+        pools[prefabIndex].Enqueue(obj); // 오브젝트 풀로 옮기기
     }
 }

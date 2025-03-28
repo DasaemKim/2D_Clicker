@@ -15,9 +15,6 @@ public class GameManager : MonoBehaviour
     public CharacterData characterData;
 
     private Enemy enemy;
-    private EnemyStat enemyStat;
-
-    public event Action OnUpdateEnemy;
 
     private string savePath;
 
@@ -25,6 +22,7 @@ public class GameManager : MonoBehaviour
     {
         Instance = this;
         savePath = Path.Combine(Application.persistentDataPath,"save.json");
+        Debug.Log(savePath);
     }
 
     public void NewGame()
