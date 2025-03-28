@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using UnityEngine.UI;
 
 public class Weapon : MonoBehaviour
 {
@@ -30,6 +31,7 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI Critical_Damage;
     public TextMeshProUGUI Upgrade_Cost;
     public TextMeshProUGUI Balance_;
+    public Button UpgradeButton;
 
     private void Start()
     {
@@ -37,6 +39,35 @@ public class Weapon : MonoBehaviour
         {
             EquipWeapon(weaponLists[0]);
         }
+
+        UpgradeButton.onClick.AddListener(UpgradeWeapon);
+    }
+
+    private void UpgradeWeapon()
+    {
+        if (equippedWeapon == null) return;
+
+        if (equippedWeapon.UpgradeLevel >= equippedWeapon.UpgradeAttack.Count)
+        {
+            Debug.Log("최대 레벨에 도달하셔서 올리실 수 없습니다.");
+            return;
+        }
+
+        if (Balance < UpgradeCost)
+        {
+            Debug.Log("잔액이 부족합니다.");
+            return;
+        }
+
+        Balance -= UpgradeCost;
+
+        equippedWeapon.Attack = equippedWeapon.UpgradeAttack[equippedWeapon.UpgradeLevel];
+        equippedWeapon.Critical = equippedWeapon.UpgradeCritical[equippedWeapon.UpgradeLevel];
+        equippedWeapon.Critical_Damage = equippedWeapon.UpgradeCritical_Damage[equippedWeapon.UpgradeLevel];
+
+        equippedWeapon.UpgradeLevel++;
+
+        UpdateWeaponUI();
     }
 
     private void EquipWeapon(WeaponList weapon)
