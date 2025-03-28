@@ -1,19 +1,24 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class StageUI : MonoBehaviour
 {
+    public static StageUI Instance;
+
     public TextMeshProUGUI NowStage;
     public TextMeshProUGUI MaxStage;
     public TextMeshProUGUI StepEnemyName;
     public TextMeshProUGUI Step;
     public TextMeshProUGUI EnemyName;
     public TextMeshProUGUI EnemyStep;
+
     public Image EnemyHP;
+
+    private void Awake()
+    {
+        Instance = this;
+    }
 
     private void Start()
     {
@@ -22,9 +27,12 @@ public class StageUI : MonoBehaviour
         EnemyManager.Instance.UpdateStepNum += UpdateStep;
 
         EnemyManager.Instance.UpdateEnemyName += UpdateEnemyName;
-
-        EnemyManager.Instance.UpdateEnemyHealth += UpdateEnemyHP;
     }
+
+    //private void Update()
+    //{
+    //    UpdateEnemyHP();
+    //}
 
     public void UpdateStage()
     {
@@ -45,6 +53,7 @@ public class StageUI : MonoBehaviour
 
     public void UpdateEnemyHP()
     {
-        //EnemyHP.fillAmount = EnemyManager.Instance.Enemy.EnemyStat.CurrentHealth / EnemyManager.Instance.Enemy.EnemyStat.MaxHealth;
+        EnemyHP.fillAmount = GameManager.Instance.Enemy.CurrentHealth / GameManager.Instance.Enemy.MaxHealth;
     }
+
 }

@@ -18,12 +18,6 @@ public class GameManager : MonoBehaviour
         set { enemy = value; }
     }
 
-    public EnemyStat EnemyStat
-    {
-        get { return enemyStat; }
-        set { enemyStat = value; }
-    }
-
     private void Awake()
     {
         Instance = this;

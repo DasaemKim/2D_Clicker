@@ -1,16 +1,16 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
-using TMPro;
-using Unity.VisualScripting;
-using UnityEditor.VersionControl;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IPoolable
 {
     public EnemyObject EnemyObject;
 
+    public EnemyStat EnemyStat;
+
     public Action<GameObject> returnPool;
+
+    public event Action OnHealthChanged;
 
     public float bounceForce = 5f;  // 튕기는 힘
     public float deathGravityScale = 2f;  // 죽을 때 중력 증가
@@ -20,24 +20,43 @@ public class Enemy : MonoBehaviour, IPoolable
 
     private Rigidbody2D rb;
 
+
     private void Start()
     {
+        GameManager.Instance.Enemy = this;
+
         rb = GetComponent<Rigidbody2D>();
 
         rb.gravityScale = 0;
 
         rb.velocity = Vector2.zero;  // 기존 움직임 정지
 
-        MaxHealth = GameManager.Instance.EnemyStat.MaxHealth;
-        CurrentHealth = GameManager.Instance.EnemyStat.CurrentHealth;
-
         EnemyObject = EnemyManager.Instance.EnemyObject[EnemyManager.Instance.EnemyIndex];
         EnemyObject.GetEnemyData();
+
+        EnemyStat = new EnemyStat(EnemyManager.Instance.EnemyData);
+        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth;
+        CurrentHealth = EnemyStat.CurrentHealth;
+
+        OnHealthChanged?.Invoke();
     }
 
     private void OnEnable()
     {
         GameManager.Instance.Enemy = this;
+
+        if (EnemyStat != null)
+        {
+            MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth;
+            CurrentHealth = MaxHealth;
+        }
+
+        OnHealthChanged += StageUI.Instance.UpdateEnemyHP;
+    }
+
+    private void OnDisable()
+    {
+        OnHealthChanged -= StageUI.Instance.UpdateEnemyHP;
     }
 
     void Die()
@@ -47,8 +66,10 @@ public class Enemy : MonoBehaviour, IPoolable
 
         EnemyManager.Instance.Respawn();
 
-        GameManager.Instance.EnemyStat.CurrentHealth = GameManager.Instance.EnemyStat.MaxHealth;
-        CurrentHealth = GameManager.Instance.EnemyStat.CurrentHealth;
+        OnHealthChanged?.Invoke();
+
+        EnemyStat.CurrentHealth = MaxHealth;
+        CurrentHealth = EnemyStat.CurrentHealth;
 
         Invoke(nameof(OnDespawn), 3f);
     }
@@ -72,13 +93,17 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public void TakeDamage(int damage)
     {
-        GameManager.Instance.EnemyStat.CurrentHealth -= damage;
-        CurrentHealth = GameManager.Instance.EnemyStat.CurrentHealth;
+        CurrentHealth -= damage;
 
-        if (GameManager.Instance.EnemyStat.CurrentHealth <= 0)
+        if (CurrentHealth <= 0)
         {
             Die();
+            return;
         }
+
+        OnHealthChanged?.Invoke();
     }
+
+    
 
 }

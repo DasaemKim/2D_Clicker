@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using static UnityEngine.EventSystems.EventTrigger;
 
 public class EnemyManager : MonoBehaviour
 {
@@ -18,10 +19,6 @@ public class EnemyManager : MonoBehaviour
     public event Action UpdateStageNum;
     public event Action UpdateStepNum;
     public event Action UpdateEnemyName;
-    public event Action UpdateEnemyHealth;
-
-    public event Action EnemyStatUpdate;
-    //public Enemy Enemy;
 
     public int Step;
     public int EnemyIndex;
@@ -41,8 +38,6 @@ public class EnemyManager : MonoBehaviour
 
         EnemyData = EnemyObject[EnemyIndex].EnemyData;
 
-        GameManager.Instance.EnemyStat = new EnemyStat(EnemyData);
-
         PoolManager = PoolManager.Instance;
 
         Respawn();
@@ -56,25 +51,17 @@ public class EnemyManager : MonoBehaviour
         }
         else
         {
-            SpawnCount = 1;            
+            SpawnCount = 0;            
             EnemyIndex++;
 
             if (EnemyIndex > 2)
             {
-                EnemyData = EnemyObject[EnemyIndex].EnemyData;
-
-                GameManager.Instance.EnemyStat = new EnemyStat(EnemyData);
-                GameManager.Instance.EnemyStat.MaxHealth += EnemyData.HealthGrowth;
-
-                EnemyStatUpdate?.Invoke();
-                Step++;
                 EnemyIndex = 0;
+                Step++;
                 UpdateStepNum?.Invoke();
             }
 
             EnemyData = EnemyObject[EnemyIndex].EnemyData;
-
-            GameManager.Instance.EnemyStat = new EnemyStat(EnemyData);
 
             PoolManager.GetObject(EnemyIndex, Vector2.zero, Quaternion.identity);
         }
@@ -89,7 +76,6 @@ public class EnemyManager : MonoBehaviour
     public void Onbt()
     {
         GameManager.Instance.Enemy.TakeDamage(100);
-        UpdateEnemyHealth?.Invoke();
     }
     
 }

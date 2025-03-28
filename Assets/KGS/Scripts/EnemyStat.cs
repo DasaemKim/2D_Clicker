@@ -9,8 +9,6 @@ public class EnemyStat
     private float currentHealth;
     private float maxHealth;
 
-    public event Action UpdateEnemyHealth;
-
     public EnemyStat (EnemyData enemyData)
     {
         maxHealth = enemyData.Health;
@@ -25,7 +23,6 @@ public class EnemyStat
             if (currentHealth != value)
             {
                 currentHealth = value;
-                UpdateEnemyHealth?.Invoke();
             }
         }
     }
@@ -38,7 +35,6 @@ public class EnemyStat
             if (maxHealth != value)
             {
                 maxHealth = value;
-                UpdateEnemyHealth?.Invoke();
             }
         }
     }
