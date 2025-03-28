@@ -62,9 +62,9 @@ public class UIButtonController : MonoBehaviour
         autoInfoText.text = player.characterData.autoNum.ToString("N1") + " 초/회";
         coinInfoText.text = player.characterData.coinGet.ToString("N2") + " %";
 
-        criUpgradeText.text = statUpgrade.criUpgradePoint.ToString();
-        autoUpgradeText.text = statUpgrade.autoUpgradePoint.ToString();
-        coinUpgradeText.text = statUpgrade.coinUpgradePoint.ToString();
+        criUpgradeText.text = statUpgrade.criUpgradePoint.ToString("N0");
+        autoUpgradeText.text = statUpgrade.autoUpgradePoint.ToString("N0");
+        coinUpgradeText.text = statUpgrade.coinUpgradePoint.ToString("N0");
     }
 
     // ErrorPanel 패널 생성
@@ -73,7 +73,7 @@ public class UIButtonController : MonoBehaviour
         errorPanel.SetActive(true);
     }
 
-    // TODO
+    // TODO 완료
     // 에러 패널이 3초 뒤에 사라지도록 설정
     // 코루틴을 이용하여 1초뒤 사라지도록 설정
     // ErrorPanel 패널 사라짐

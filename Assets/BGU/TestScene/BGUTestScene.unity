@@ -259,6 +259,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 704e6661f3326e44ea37c8d5414b95c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  criUpgradePoint: 10
+  autoUpgradePoint: 10
+  coinUpgradePoint: 10
 --- !u!1 &65731746
 GameObject:
   m_ObjectHideFlags: 0

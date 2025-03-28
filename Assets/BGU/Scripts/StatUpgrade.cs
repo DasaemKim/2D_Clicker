@@ -9,12 +9,9 @@ public class StatUpgrade : MonoBehaviour
     // CharacterData의 주소값 없음
     CharacterData characterData;
 
-    private float pointTime = 0.2f; // 0.2초마다 실행
-    private float nextTime = 0.0f; // 다음번 실행할 시간
-
-    public int criUpgradePoint;
-    public int autoUpgradePoint;
-    public int coinUpgradePoint;
+    public float criUpgradePoint;
+    public float autoUpgradePoint;
+    public float coinUpgradePoint;
 
     void Start()
     {
@@ -25,18 +22,19 @@ public class StatUpgrade : MonoBehaviour
     //TODO
     // 현재 강화 시 값은 올라가나 프로그램 종료 후 다시 키면 초기 값으로 돌아감.
     // 내일 UI텍스트를 추가하여 RefreshUI 메서드를 통하여 나가더라도 값이 고정되도록 변경
-    // 그리고 마우스 키 다운시 0.2초 간격으로 강화 하는거 만들기
-    // 아마도 input.MounseButtonDown을 이용하여 작성 가능
-    //
+    
+    // TODO
+    // 마우스 키 다운시 0.2초 간격으로 강화 하는거 만들기
+    // 아마도 input.MounseButtonDown을 이용하여 작성
 
     // 크리티컬 데미지 증가
     public void CriDamageUpgrade()
     {
         if (characterData.statPoint >= criUpgradePoint)
         {
-            characterData.statPoint -= criUpgradePoint;
+            characterData.statPoint -= (int)criUpgradePoint;
             characterData.criDamage = 0.1f + characterData.criDamage * 1.5f;
-            criUpgradePoint *= 2;
+            criUpgradePoint *= 1.5f;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI();
         }
@@ -52,9 +50,9 @@ public class StatUpgrade : MonoBehaviour
     {
         if (characterData.statPoint >= autoUpgradePoint)
         {
-            characterData.statPoint -= autoUpgradePoint;
+            characterData.statPoint -= (int)autoUpgradePoint;
             characterData.autoNum = 1 + characterData.autoNum + 0.3f;
-            autoUpgradePoint *= 2;
+            autoUpgradePoint *= 1.5f;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI();
         }
@@ -70,9 +68,9 @@ public class StatUpgrade : MonoBehaviour
     {
         if (characterData.statPoint >= coinUpgradePoint)
         {
-            characterData.statPoint -= coinUpgradePoint;
+            characterData.statPoint -= (int)coinUpgradePoint;
             characterData.coinGet = 0.1f + characterData.coinGet * 2f;
-            coinUpgradePoint *= 2;
+            coinUpgradePoint *= 1.5f;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI();
         }
