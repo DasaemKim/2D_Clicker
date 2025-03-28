@@ -28,7 +28,7 @@ public class UIButtonController : MonoBehaviour
     public Player player;
     public StatUpgrade statUpgrade;
 
-    private void Start()
+    public void Start()
     {
         criBtn.onClick.AddListener(OnClickCriBtn);
         autoNumBtn.onClick.AddListener(OnClickAutoNumBtn);

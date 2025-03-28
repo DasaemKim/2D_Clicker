@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.IO;
+using System;
 using UnityEditor.Experimental.RestService;
 using UnityEngine;
 
@@ -12,6 +13,11 @@ public class GameManager : MonoBehaviour
     public Stat stat;
     public GoldManager goldManager;
     public CharacterData characterData;
+
+    private Enemy enemy;
+    private EnemyStat enemyStat;
+
+    public event Action OnUpdateEnemy;
 
     private string savePath;
 
@@ -46,5 +52,13 @@ public class GameManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(playerData,true);
         File.WriteAllText(savePath, json);
+    }
+
+    
+
+    public Enemy Enemy
+    {
+        get { return enemy; }
+        set { enemy = value; }
     }
 }
