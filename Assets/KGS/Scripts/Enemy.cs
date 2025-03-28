@@ -61,8 +61,12 @@ public class Enemy : MonoBehaviour, IPoolable
 
     void Die()
     {
+        float randomX = (UnityEngine.Random.value < 0.5f) ? -5f : 5f;
+        float randomTorque = (UnityEngine.Random.value < 0.5f) ? -10f : 10f;
+
         rb.gravityScale = 1;
-        rb.AddForce(new Vector2(UnityEngine.Random.Range(-4f, 4f), 7f), ForceMode2D.Impulse);
+        rb.AddForce(new Vector2(randomX, 7f), ForceMode2D.Impulse);
+        rb.AddTorque(randomTorque, ForceMode2D.Impulse); // 회전력 추가
 
         EnemyManager.Instance.Respawn();
 
