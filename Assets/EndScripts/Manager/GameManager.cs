@@ -32,7 +32,13 @@ public class GameManager : MonoBehaviour
         playerData = new PlayerData()
         {
             stage = 1,
-            gold = 0
+            gold = 0,
+            criticalDamageLevel = 0,
+            autoAttackLevel = 0,
+            goldBonusLevel = 0,
+            equippedWeaponLevel = 0,
+            selectedCharacter = "default",
+            equippedWeaponName = "³ª¹«°Ë"
         };
         SaveGame();
     }
@@ -57,5 +63,15 @@ public class GameManager : MonoBehaviour
     {
         get { return enemy; }
         set { enemy = value; }
+    }
+    public void SetEquippedWeapon(string weaponName, int level)
+    {
+        playerData.equippedWeaponName = weaponName;
+        playerData.equippedWeaponLevel = level;
+        SaveGame();
+    }
+    public int GetEquippedWeaponLevel()
+    {
+        return playerData.equippedWeaponLevel;
     }
 }

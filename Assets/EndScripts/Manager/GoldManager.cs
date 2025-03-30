@@ -5,28 +5,39 @@ using UnityEngine;
 
 public class GoldManager : MonoBehaviour
 {
-    
-    [SerializeField] public int plusGold;    //È¹µæ °ñµå
-    [SerializeField] public int useGold;     //»ç¿ë °ñµå
-    [SerializeField] public int currentGold; //ÇöÀç °ñµå
-
     public GameObject errorPopup;
     public float popupDuration = 1.0f;
 
+    public TMPro.TextMeshProUGUI goldText;
 
-    public void AddGold()
+    private void Start()
     {
-        currentGold += plusGold;
+        RefreshGoldUI();
     }
-    public void UseGold()
+    public void AddGold(int amount)
     {
-        if (currentGold >= useGold)
+        GameManager.Instance.playerData.gold += amount;
+        RefreshGoldUI();
+    }
+    public bool UseGold(int amount)
+    {
+        if (GameManager.Instance.playerData.gold >= amount)
         {
-            currentGold -= useGold;
+            GameManager.Instance.playerData.gold -= amount;
+            RefreshGoldUI();
+            return true;
         }
         else
         {
             StartCoroutine(ShowErrorPopup());
+            return false;
+        }
+    }
+    public void RefreshGoldUI()
+    {
+        if (goldText != null)
+        {
+            goldText.text = $"Gold: {GameManager.Instance.playerData.gold}";
         }
     }
     private IEnumerator ShowErrorPopup()
