@@ -1,30 +1,47 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.SceneManagement;
 using UnityEngine;
-using Random = System.Random;
 
 public class Player : MonoBehaviour
 {
     // 캐릭터 데이터 힙 메모리 주소값을 캐싱함
     public CharacterData characterData;
+    public Weapon equipweapon;
 
-    private Random random = new Random();
-    
-    // 플레이어 공격
-    public void PlayerAtk()
+    public PlayerData playerData; 
+
+    public AttackSystem attackSystem;
+
+    public void Start()
     {
-        // 15% 확률로 치명타
-        if (CriProb(15))
+
+    }
+
+    public bool CheckCriticalHit()
+    {
+        return Random.Range(0f, 1f) < playerData.FinalCriticaRate(); // 랜덤값이 criticalChance보다 작으면 치명타 발생
+
+    }
+
+    public float GetDamage(bool isCri)
+    {
+        if(isCri)
         {
-            characterData.damage = (int)(characterData.damage * 1.5);
+            return playerData.FinalCriticalDamage();  //  치명타 데미지 계산
+        }
+        else
+        {
+            return playerData.FinalAttack(); // 일반 데미지 계산
         }
     }
-    
-    // 크리티컬 계산
-    private bool CriProb(int prob)
+
+    public void Init() 
     {
-        int isOccur = random.Next(1, 101);
-        return isOccur <= prob;
+        playerData = new PlayerData(characterData);
+
+        GameManager.Instance.SaveGame();
     }
+    
+    
 }

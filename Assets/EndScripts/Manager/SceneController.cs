@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 public class SceneController : MonoBehaviour
@@ -8,8 +9,6 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
-    [SerializeField] private GameObject startupUI;
-    [SerializeField] private GameObject mainUI;
 
     private void Awake()
     {
@@ -25,22 +24,21 @@ public class SceneController : MonoBehaviour
     public void StartNewGame()
     {
         GameManager.Instance.NewGame();
-        FadeToMainUI();
+        StartCoroutine(TransitionToScene("MainScene"));
     }
 
     public void LoadSavedGame()
     {
         GameManager.Instance.LoadGame();
-        FadeToMainUI();
+        StartCoroutine(TransitionToScene("MainScene"));
     }
 
-    private void FadeToMainUI()
+    private IEnumerator TransitionToScene(string sceneName)
     {
-        StartCoroutine(FadeAlpha(0f, 1f, () => {
-            startupUI.SetActive(false);
-            mainUI.SetActive(true);
-            StartCoroutine(FadeAlpha(1f, 0f));
-        }));
+        Debug.Log("씬 전환 준비");
+        yield return StartCoroutine(FadeAlpha(0f, 1f));
+        Debug.Log("씬 전환 시도: " + sceneName);
+        SceneManager.LoadScene(sceneName);
     }
 
     private IEnumerator FadeAlpha(float from, float to, System.Action onComplete = null)

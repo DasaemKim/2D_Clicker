@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor.U2D.Animation;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -8,56 +9,69 @@ public class AttackSystem : MonoBehaviour
 {
 
     public GameManager gameManager;
+    public Player player;
 
-    //public Button AutoAttackBtn;
-    public bool isAutoAttacking = false;
-    private float attackRate = 0f; // 초기 공격 속도 (0초에 1회)
-    private readonly float maxAttackRate = 10f; // 최대 공격 속도 (초당 10회)
+    public GameObject HitRed;
+    public GameObject HitYello;
+
+    public Coroutine autoAttackCoroutine; // 자동 공격 코루틴
 
     public void Start()
     {
-      //  AutoAttackBtn.onClick.AddListener(OnAutoAttack);
+        player = GameManager.Instance.player;
     }
-
 
     public void Attack()
     {
         Debug.Log("공격 실행!");
 
-        GameManager.Instance.Enemy.TakeDamage(100);
+        bool isCri = player.CheckCriticalHit();
+        GameManager.Instance.Enemy.TakeDamage(player.GetDamage(isCri));
 
-    }
-
-    public void OnAutoAttack()
-    {
-        // 버튼 클릭 시 공격 속도 0.3회/초 증가 (최대 10회/초 제한)
-        attackRate = Mathf.Min(attackRate + 0.3f, maxAttackRate);
-        Debug.Log($"자동공격 실행! 현재 공격 속도: {attackRate:F1}회/초");
-
-        if (!isAutoAttacking)
+        // 치명타일 경우 메시지 출력
+        if (isCri)
         {
-            isAutoAttacking = true;
-            StartCoroutine(AutoAttackCoroutine());
+            Debug.Log("치명타 공격 발생!");
+
+            SpawnParticle(HitRed);
+            return;
         }
+
+        // 파티클 생성
+        SpawnParticle(HitYello);
+
     }
 
-    private IEnumerator AutoAttackCoroutine()
+    // 자동 공격 시작
+    public void StartAutoAttack()
     {
-        while (isAutoAttacking)
+        if (autoAttackCoroutine != null)
+        {
+            StopCoroutine(autoAttackCoroutine);
+        }
+        autoAttackCoroutine = StartCoroutine(AutoAttackCoroutine());
+        
+    }
+
+    // 자동 공격 코루틴
+    public IEnumerator AutoAttackCoroutine()
+    {
+        while (true)
         {
             Attack();
-            yield return new WaitForSeconds(1f / attackRate); // 초당 공격 횟수에 따라 대기 시간 조정
-            Debug.Log($"공격 대기 시간: {1f / attackRate:F2}초");
+            yield return new WaitForSeconds(GameManager.Instance.player.characterData.autoNum); // 0.3초마다 공격 실행
+            Debug.Log("자동 공격 시작!");
         }
     }
 
-    public void Critical()
+    public void SpawnParticle(GameObject particlePrefab) // 마우스 위치에 파티클 생성
     {
-        Debug.Log("크리티컬 공격 실행!");
-    }
+        Vector3 mousePosition = Input.mousePosition; // 마우스 포인터 위치 (스크린 좌표)
+        mousePosition.z = Camera.main.nearClipPlane; // z값을 카메라의 클리핑 평면으로 설정
 
-    public void AttackEffect()
-    {
-        Debug.Log("공격 이펙트 실행!");
+        Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition); // 월드 좌표로 변환
+
+        Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 마우스 위치에 파티클 생성
+        Debug.Log("마우스 위치에 파티클 생성!");
     }
 }

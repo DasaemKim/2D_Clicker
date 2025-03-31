@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public PlayerData playerData;
-    public Stat stat;
     public GoldManager goldManager;
-    public CharacterData characterData;
+
+    public Player player;
+
 
     private Enemy enemy;
 
@@ -27,19 +27,14 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        playerData = new PlayerData()
-        {
-            stage = 1,
-            gold = 0
-        };
-        SaveGame();
+        player.Init();
     }
     public void LoadGame()
     {
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath);
-            playerData = JsonUtility.FromJson<PlayerData>(json);
+            player.playerData = JsonUtility.FromJson<PlayerData>(json);
         }
         else
         {
@@ -48,15 +43,22 @@ public class GameManager : MonoBehaviour
     }
     public void SaveGame()
     {
-        string json = JsonUtility.ToJson(playerData,true);
+        string json = JsonUtility.ToJson(player.playerData,true);
         File.WriteAllText(savePath, json);
     }
-
-    
-
     public Enemy Enemy
     {
         get { return enemy; }
         set { enemy = value; }
+    }
+    public void SetEquippedWeapon(string weaponName, int level)
+    {
+        player.playerData.equippedWeaponName = weaponName;
+        player.playerData.equippedWeaponLevel = level;
+        SaveGame();
+    }
+    public int GetEquippedWeaponLevel()
+    {
+        return player.playerData.equippedWeaponLevel;
     }
 }
