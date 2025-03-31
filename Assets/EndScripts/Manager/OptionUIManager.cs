@@ -1,4 +1,4 @@
-using System.Collections;
+ï»¿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -6,14 +6,14 @@ using UnityEngine.SceneManagement;
 
 public class OptionUIManager : MonoBehaviour
 {
-    [Header("¿É¼Ç ÆĞ³Î")]
+    [Header("ì˜µì…˜ íŒ¨ë„")]
     public GameObject optionPanel;
     public bool isOpen = false;
 
-    [Header("º¼·ıÁ¶Àı")]
+    [Header("ë³¼ë¥¨ì¡°ì ˆ")]
     public Slider bgmSlider;
 
-    [Header("¹è°æÀ½¾Ç")]
+    [Header("ë°°ê²½ìŒì•…")]
     public AudioSource bgmAudioSource;
     private void Start()
     {

@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -32,7 +32,7 @@ public class PoolManager : MonoBehaviour
     {
         if (!pools.ContainsKey(prefabIndex))
         {
-            Debug.LogError($"ÇÁ¸®ÆÕ ÀÎµ¦½º {prefabIndex}¿¡ ´ëÇÑ Ç®ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogError($"í”„ë¦¬íŒ¹ ì¸ë±ìŠ¤ {prefabIndex}ì— ëŒ€í•œ í’€ì´ ì¡´ì¬í•˜ì§€ ì•ŠìŠµë‹ˆë‹¤.");
             return null;
         }
 
