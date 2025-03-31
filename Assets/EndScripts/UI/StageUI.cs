@@ -16,8 +16,15 @@ public class StageUI : MonoBehaviour
     public Image EnemyHP;
     public Image DelayedHP;
 
+    private CreateText createText;
     private DamageTextUI damageTextUI;
     private Coroutine delayedCoroutine;
+
+    public CreateText CreateText
+    {
+        get => createText;
+        set => createText = value;
+    }
 
     public DamageTextUI DamageTextUI
     {

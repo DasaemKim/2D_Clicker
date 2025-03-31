@@ -53,20 +53,22 @@ public class Enemy : MonoBehaviour, IPoolable
         }
 
         OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // 체력 업데이트 이벤트 구독
+        OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     private void OnDisable()
     {
         OnHealthChanged -= StageUI.Instance.UpdateEnemyHP;
+        OnDamageText -= StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     void Die()
     {
-        float randomX = (UnityEngine.Random.value < 0.5f) ? -5f : 5f; // 좌우 튕기는 값
+        float randomX = (UnityEngine.Random.value < 0.5f) ? -3f : 3f; // 좌우 튕기는 값
         float randomTorque = (UnityEngine.Random.value < 0.5f) ? -10f : 10f; // 회전 값
 
         rb.gravityScale = 1; // 중력값 초기화
-        rb.AddForce(new Vector2(randomX, 7f), ForceMode2D.Impulse); // 적 사망 시 좌우로 튕기기
+        rb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse); // 적 사망 시 좌우로 튕기기
         rb.AddTorque(randomTorque, ForceMode2D.Impulse); // 적 사망 시 회전력 추가
 
         EnemyManager.Instance.Respawn(); // 적 사망 시 리스폰
@@ -78,7 +80,6 @@ public class Enemy : MonoBehaviour, IPoolable
         CurrentHealth = EnemyStat.CurrentHealth;
 
         Invoke(nameof(OnDespawn), 3f); // 사망 이후 3초 뒤에 비활성화
-        Invoke(nameof(StageUI.Instance.DamageTextUI.OnDespawn), 3f);
     }
 
 
@@ -102,7 +103,7 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         CurrentHealth -= damage;
 
-        OnDamageText?.Invoke(100);
+        OnDamageText?.Invoke(damage);
 
         if (CurrentHealth <= 0)
         {
