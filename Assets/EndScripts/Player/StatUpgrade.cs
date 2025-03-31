@@ -14,8 +14,10 @@ public class StatUpgrade : MonoBehaviour
     public float autoUpgradePoint;
     public float coinUpgradePoint;
 
-    private Coroutine upgradeCoroutine;
+    public AttackSystem attackSystem;
 
+    private bool isHolding = false;
+    
     //TODO 진행 중
     // 현재 강화 시 값은 올라가나 프로그램 종료 후 다시 키면 초기 값으로 돌아감.
     // 내일 UI텍스트를 추가하여 RefreshUI 메서드를 통하여 나가더라도 값이 고정되도록 변경
@@ -43,7 +45,6 @@ public class StatUpgrade : MonoBehaviour
         {
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
-            StopUpgrade();
         }
     }
 
@@ -54,16 +55,17 @@ public class StatUpgrade : MonoBehaviour
         if (characterData.statPoint >= autoUpgradePoint)
         {
             characterData.statPoint -= (int)autoUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-            characterData.autoNum = 0 + characterData.autoNum + 0.3f; // 스탯 포인트 증가값
+           // characterData.autoNum = 1 - characterData.autoNum + 0.3f; // 스탯 포인트 증가값
+           characterData.autoNum *= 0.9f; // 0.9배씩 감소
             autoUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
-
+            
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
+            attackSystem.StartAutoAttack();
         }
         else
         {
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
-            StopUpgrade();
         }
     }
 
@@ -83,31 +85,27 @@ public class StatUpgrade : MonoBehaviour
         {
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
-            StopUpgrade();
         }
     }
 
-    // TODO 완료
+    // TODO
     // 마우스 키 다운시 0.2초 간격으로 강화 하는거 만들기
-    // 키 다운 시 연속 강화 진행
+    // 아마도 input.MounseButtonDown을 이용하여 작성
     public void RunUpgrade()
     {
-        upgradeCoroutine = StartCoroutine(IsHolding());
+        if (Input.GetMouseButtonDown(0))
+        {
+            isHolding = true;
+            StartCoroutine(IsHolding());
+        }
+        else
+        {
+            isHolding = false;
+        }
     }
 
-    // 키 다운 해제 시 연속 강화 정지
-    public void StopUpgrade()
-    {
-        StopCoroutine(upgradeCoroutine);
-    }
-
-    // 코루틴 설정
     public IEnumerator IsHolding()
     {
-        while (true)
-        {
-            yield return new WaitForSeconds(1);
-            CriDamageUpgrade();
-        }
+        yield return new WaitForSeconds(1);
     }
 }

@@ -4,24 +4,24 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class Weapon : MonoBehaviour
+[System.Serializable]
+public class Weapon
 {
-    [System.Serializable]
-    public class WeaponList
-    {
-        public string WeaponName;
-        public int Attack;
-        public float Critical;
+    public string WeaponName;
+    public int Attack;
+    public float Critical;
 
-        public int UpgradeLevel;
-        public List<int> UpgradeAttack;
-        public List<float> UpgradeCritical;
+    public int UpgradeLevel;
+    public List<int> UpgradeAttack;
+    public List<float> UpgradeCritical;
 
-        public bool IsObatained = false;
-    }
+    public bool IsObatained = false;
+}
+public class WeaponManager : MonoBehaviour
+{
 
-    public List<WeaponList> weaponLists;
-    public WeaponList equippedWeapon;
+    public List<Weapon> weaponLists;
+    public Weapon equippedWeapon;
     public int UpgradeCost = 10;
     public int Balance = 0;
     public Button WeaponChangeButton;
@@ -85,7 +85,7 @@ public class Weapon : MonoBehaviour
         UpdateWeaponUI();
     }
 
-    private void EquipWeapon(WeaponList weapon)
+    private void EquipWeapon(Weapon weapon)
     {
         equippedWeapon = weapon;
         upgradeCount = equippedWeapon.UpgradeLevel;

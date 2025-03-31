@@ -27,6 +27,7 @@ public class UIButtonController : MonoBehaviour
 
     public Player player;
     public StatUpgrade statUpgrade;
+    public AttackSystem attackSystem;
 
     public void Start()
     {

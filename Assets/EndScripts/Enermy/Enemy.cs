@@ -95,7 +95,7 @@ public class Enemy : MonoBehaviour, IPoolable
         returnPool?.Invoke(gameObject);
     }
 
-    public void TakeDamage(int damage)
+    public void TakeDamage(float damage)
     {
         CurrentHealth -= damage;
 
