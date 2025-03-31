@@ -42,6 +42,4 @@ public class Player : MonoBehaviour
 
         GameManager.Instance.SaveGame();
     }
-    
-    
 }

@@ -4213,11 +4213,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  player: {fileID: 0}
   HitRed: {fileID: 0}
   HitYello: {fileID: 0}
-  criticalChance: 0.2
-  criticalMultiplier: 2
-  isAutoAttacking: 0
 --- !u!114 &1001657215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4244,6 +4242,7 @@ MonoBehaviour:
   errorPanel: {fileID: 1756497067}
   player: {fileID: 2082643985}
   statUpgrade: {fileID: 2082643984}
+  attackSystem: {fileID: 0}
 --- !u!114 &1001657216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8878,6 +8877,7 @@ MonoBehaviour:
   criUpgradePoint: 10
   autoUpgradePoint: 10
   coinUpgradePoint: 10
+  attackSystem: {fileID: 0}
 --- !u!114 &2082643985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8891,6 +8891,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 4d03326cce692b4438d1158f80bd6566, type: 2}
+  equipweapon:
+    WeaponName: 
+    Attack: 0
+    Critical: 0
+    UpgradeLevel: 0
+    UpgradeAttack: 
+    UpgradeCritical: []
+    IsObatained: 0
+  playerData:
+    damage: 0
+    criticalRate: 0
+    stage: 0
+    gold: 0
+    autoNum: 0
+    criticalDamageLevel: 0
+    autoAttackLevel: 0
+    goldBonusLevel: 0
+    equippedWeaponName: 
+    equippedWeaponLevel: 0
+    weaponList: []
+    equippedWeapon:
+      WeaponName: 
+      Attack: 0
+      Critical: 0
+      UpgradeLevel: 0
+      UpgradeAttack: 
+      UpgradeCritical: []
+      IsObatained: 0
+    statPoint: 0
+    selectedCharacter: 
+    baseGoldBonus: 0
+  attackSystem: {fileID: 0}
 --- !u!4 &2082643986
 Transform:
   m_ObjectHideFlags: 0
@@ -8917,6 +8949,7 @@ GameObject:
   - component: {fileID: 2126241548}
   - component: {fileID: 2126241549}
   - component: {fileID: 2126241550}
+  - component: {fileID: 2126241551}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -8951,23 +8984,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4410538657ae4cb5a9a87b7380730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    stage: 0
-    gold: 0
-    criticalDamageLevel: 0
-    autoAttackLevel: 0
-    goldBonusLevel: 0
-    equippedWeaponName: 
-    equippedWeaponLevel: 0
-    statPoint: 0
-    selectedCharacter: 
-  stat:
-    baseAttack: 0
-    baseCriticalRate: 0
-    baseCriticalDamage: 0
-    baseGoldBonus: 0
   goldManager: {fileID: 0}
-  characterData: {fileID: 0}
+  player: {fileID: 0}
 --- !u!114 &2126241550
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8984,6 +9002,20 @@ MonoBehaviour:
   isOpen: 0
   bgmSlider: {fileID: 1713920233}
   bgmAudioSource: {fileID: 530155049}
+--- !u!114 &2126241551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2126241546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ec8daa13617074d864c64ee5def003, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  popupDuration: 1
+  goldText: {fileID: 2016306108}
 --- !u!1 &2134801862
 GameObject:
   m_ObjectHideFlags: 0
