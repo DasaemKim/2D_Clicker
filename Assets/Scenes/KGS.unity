@@ -1205,7 +1205,6 @@ MonoBehaviour:
   Step: 0
   EnemyIndex: 0
   SpawnCount: 0
-  isEnemy: 0
 --- !u!114 &313009073
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1403,7 +1402,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 634032433}
+  m_Father: {fileID: 1001657213}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
@@ -2054,108 +2053,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 625008595}
   m_CullTransparentMesh: 1
---- !u!1 &634032429
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 634032433}
-  - component: {fileID: 634032432}
-  - component: {fileID: 634032431}
-  - component: {fileID: 634032430}
-  m_Layer: 5
-  m_Name: Canvas
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &634032430
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634032429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: dc42784cf147c0c48a680349fa168899, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
-  m_BlockingMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
---- !u!114 &634032431
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634032429}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0cd44c1031e13a943bb63640046fad76, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_UiScaleMode: 0
-  m_ReferencePixelsPerUnit: 100
-  m_ScaleFactor: 1
-  m_ReferenceResolution: {x: 800, y: 600}
-  m_ScreenMatchMode: 0
-  m_MatchWidthOrHeight: 0
-  m_PhysicalUnit: 3
-  m_FallbackScreenDPI: 96
-  m_DefaultSpriteDPI: 96
-  m_DynamicPixelsPerUnit: 1
-  m_PresetInfoIsWorld: 1
---- !u!223 &634032432
-Canvas:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634032429}
-  m_Enabled: 1
-  serializedVersion: 3
-  m_RenderMode: 2
-  m_Camera: {fileID: 0}
-  m_PlaneDistance: 100
-  m_PixelPerfect: 0
-  m_ReceivesEvents: 1
-  m_OverrideSorting: 0
-  m_OverridePixelPerfect: 0
-  m_SortingBucketNormalizedSize: 0
-  m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
-  m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
-  m_TargetDisplay: 0
---- !u!224 &634032433
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 634032429}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children:
-  - {fileID: 406769922}
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 380, y: 640}
-  m_SizeDelta: {x: 760, y: 1280}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &651829092
 GameObject:
   m_ObjectHideFlags: 0
@@ -3098,6 +2995,7 @@ RectTransform:
   - {fileID: 1175281550}
   - {fileID: 1840982094}
   - {fileID: 1756497068}
+  - {fileID: 406769922}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -3118,7 +3016,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  isAutoAttacking: 0
+  player: {fileID: 0}
+  HitRed: {fileID: 0}
+  HitYello: {fileID: 0}
 --- !u!114 &1001657215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3145,6 +3045,7 @@ MonoBehaviour:
   errorPanel: {fileID: 1756497067}
   player: {fileID: 2082643985}
   statUpgrade: {fileID: 2082643984}
+  attackSystem: {fileID: 0}
 --- !u!114 &1001657216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7125,6 +7026,7 @@ MonoBehaviour:
   criUpgradePoint: 10
   autoUpgradePoint: 10
   coinUpgradePoint: 10
+  attackSystem: {fileID: 0}
 --- !u!114 &2082643985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7138,6 +7040,38 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 4d03326cce692b4438d1158f80bd6566, type: 2}
+  equipweapon:
+    WeaponName: 
+    Attack: 0
+    Critical: 0
+    UpgradeLevel: 0
+    UpgradeAttack: 
+    UpgradeCritical: []
+    IsObatained: 0
+  playerData:
+    damage: 0
+    criticalRate: 0
+    stage: 0
+    gold: 0
+    autoNum: 0
+    criticalDamageLevel: 0
+    autoAttackLevel: 0
+    goldBonusLevel: 0
+    equippedWeaponName: 
+    equippedWeaponLevel: 0
+    weaponList: []
+    equippedWeapon:
+      WeaponName: 
+      Attack: 0
+      Critical: 0
+      UpgradeLevel: 0
+      UpgradeAttack: 
+      UpgradeCritical: []
+      IsObatained: 0
+    statPoint: 0
+    selectedCharacter: 
+    baseGoldBonus: 0
+  attackSystem: {fileID: 0}
 --- !u!4 &2082643986
 Transform:
   m_ObjectHideFlags: 0
@@ -7197,16 +7131,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4410538657ae4cb5a9a87b7380730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    stage: 0
-    gold: 0
-  stat:
-    attack: 0
-    criticalRate: 0
-    criticalDamage: 0
-    goldBonus: 0
   goldManager: {fileID: 0}
-  characterData: {fileID: 0}
+  player: {fileID: 2082643985}
 --- !u!1 &2134801862
 GameObject:
   m_ObjectHideFlags: 0
@@ -7294,4 +7220,3 @@ SceneRoots:
   - {fileID: 1653212130}
   - {fileID: 313009074}
   - {fileID: 2126241548}
-  - {fileID: 634032433}

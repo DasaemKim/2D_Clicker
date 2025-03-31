@@ -9,8 +9,6 @@ public class DamageTextUI : MonoBehaviour, IPoolable
 {
     public Action<GameObject> returnPoolt; // 오브젝트 비활성화 액션
 
-    public RectTransform bigSunMoonTimer;
-
     public TextMeshProUGUI DamageText;
 
     private Rigidbody2D textRb;
@@ -33,7 +31,7 @@ public class DamageTextUI : MonoBehaviour, IPoolable
         }
     }
 
-    public void DownTextDamage(int damage)
+    public void DownTextDamage(float damage)
     {
         DamageText.color = Color.yellow;
         DamageText.fontSize = 25;

@@ -37,7 +37,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject GetObject(Vector3 position, Quaternion rotation, int prefabIndex = 10) // 적 오브젝트 생성 또는 활성화
+    public GameObject GetObject(Vector3 position, Quaternion rotation, int prefabIndex) // 적 오브젝트 생성 또는 활성화
     {
         if (!pools.ContainsKey(prefabIndex))
         {
@@ -53,6 +53,7 @@ public class PoolManager : MonoBehaviour
         else
         {
             obj = Instantiate(Prefabs[prefabIndex]);
+
             obj.GetComponent<IPoolable>()?.Initialize(o => ReturnObject(prefabIndex, o, "Enemy"));
         }
 

@@ -12,7 +12,7 @@ public class CreateText : MonoBehaviour
         StageUI.Instance.CreateText = this;
     }
 
-    public void CreateTextDamage(int damage)
+    public void CreateTextDamage(float damage)
     {
         PoolManager.Instance.GetObject2(transform.position, Quaternion.identity, DamageIndex);
 

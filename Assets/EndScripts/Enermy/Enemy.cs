@@ -11,10 +11,7 @@ public class Enemy : MonoBehaviour, IPoolable
     public Action<GameObject> returnPool; // 오브젝트 비활성화 액션
 
     public event Action OnHealthChanged; // 체력 업데이트
-    public event Action<int> OnDamageText; // 데미지 텍스트
-
-    public float bounceForce = 5f;  // 튕기는 힘
-    public float deathGravityScale = 2f;  // 죽을 때 중력 증가
+    public event Action<float> OnDamageText; // 데미지 텍스트
 
     public float MaxHealth;
     public float CurrentHealth;
@@ -54,6 +51,19 @@ public class Enemy : MonoBehaviour, IPoolable
 
         OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // 체력 업데이트 이벤트 구독
         OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
+
+        if (gameObject == null)
+        {
+            Debug.LogError("[Enemy] gameObject가 null입니다.");
+        }
+
+        if (transform == null)
+        {
+            Debug.LogError("[Enemy] transform이 null입니다.");
+        }
+
+        Debug.Log("[Enemy] OnEnable 실행됨");
+
     }
 
     private void OnDisable()
@@ -99,7 +109,7 @@ public class Enemy : MonoBehaviour, IPoolable
         returnPool?.Invoke(gameObject);
     }
 
-    public void TakeDamage(int damage) // 적 받는 피해
+    public void TakeDamage(float damage) // 적 받는 피해
     {
         CurrentHealth -= damage;
 

@@ -24,8 +24,6 @@ public class EnemyManager : MonoBehaviour
     public int EnemyIndex;
     public int SpawnCount = 0;
 
-    public bool isEnemy;
-
     private void Awake()
     {
         Instance = this;
@@ -47,8 +45,6 @@ public class EnemyManager : MonoBehaviour
 
     public void Respawn()
     {
-        isEnemy = true;
-
         if (SpawnCount < 11)
         {
             PoolManager.GetObject(transform.position, Quaternion.identity, EnemyIndex);
