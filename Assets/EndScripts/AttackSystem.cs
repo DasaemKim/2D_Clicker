@@ -9,14 +9,20 @@ public class AttackSystem : MonoBehaviour
 
     public GameManager gameManager;
 
-    //public Button AutoAttackBtn;
+    public GameObject HitRed;
+    public GameObject HitYello;
+
+    // 치명타 확률
+    public float criticalChance = 0.2f; // 20% 확률로 치명타
+    public float criticalMultiplier = 2f; // 치명타 피해 배율
+
     public bool isAutoAttacking = false;
     private float attackRate = 0f; // 초기 공격 속도 (0초에 1회)
     private readonly float maxAttackRate = 10f; // 최대 공격 속도 (초당 10회)
 
     public void Start()
     {
-      //  AutoAttackBtn.onClick.AddListener(OnAutoAttack);
+
     }
 
 
@@ -24,7 +30,29 @@ public class AttackSystem : MonoBehaviour
     {
         Debug.Log("공격 실행!");
 
-        GameManager.Instance.Enemy.TakeDamage(100);
+        // 치명타 여부 체크
+        bool isCritical = CheckCriticalHit();
+        int damage = isCritical ? 200 : 100; // 치명타 시 200, 아니면 100
+
+        GameManager.Instance.Enemy.TakeDamage(damage);
+
+        // 치명타일 경우 메시지 출력
+        if (isCritical)
+        {
+            Debug.Log("치명타 공격 발생!");
+
+            SpawnParticle(HitYello);
+            return;
+        }
+
+        // 파티클 생성
+        SpawnParticle(HitRed);
+
+    }
+
+    public bool CheckCriticalHit()
+    {
+        return Random.Range(0f, 1f) < criticalChance; // 랜덤값이 criticalChance보다 작으면 치명타 발생
 
     }
 
@@ -56,8 +84,15 @@ public class AttackSystem : MonoBehaviour
         Debug.Log("크리티컬 공격 실행!");
     }
 
-    public void AttackEffect()
+
+    public void SpawnParticle(GameObject particlePrefab) // 마우스 위치에 파티클 생성
     {
-        Debug.Log("공격 이펙트 실행!");
+        Vector3 mousePosition = Input.mousePosition; // 마우스 포인터 위치 (스크린 좌표)
+        mousePosition.z = Camera.main.nearClipPlane; // z값을 카메라의 클리핑 평면으로 설정
+
+        Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition); // 월드 좌표로 변환
+
+        Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 마우스 위치에 파티클 생성
+        Debug.Log("마우스 위치에 파티클 생성!");
     }
 }
