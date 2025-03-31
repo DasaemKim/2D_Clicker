@@ -16,5 +16,5 @@ MonoBehaviour:
   criDamage: 0
   statPoint: 1000
   weaponPoint: 1000
-  autoNum: 0
+  autoNum: 3
   coinGet: 0
