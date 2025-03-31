@@ -1,4 +1,4 @@
-using System;
+ï»¿using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -14,7 +14,7 @@ public class PlayerData
         stage = 1;
         gold = 0;
         criticalDamageLevel = 0;
-        autoAttackLevel = 0;
+        autoAttackLevel = 0; 
         goldBonusLevel = 0;
         equippedWeaponLevel = 0;
         selectedCharacter = "";
@@ -29,12 +29,12 @@ public class PlayerData
     
     public float autoNum;
 
-    //½ºÅÈ ¾÷±×·¹ÀÌµå ·¹º§
+    //ìŠ¤íƒ¯ ì—…ê·¸ë ˆì´ë“œ ë ˆë²¨
     public int criticalDamageLevel;
     public int autoAttackLevel;
     public int goldBonusLevel;
 
-    //¹«±â Á¤º¸
+    //ë¬´ê¸° ì •ë³´
     public string equippedWeaponName;
     public int equippedWeaponLevel;
 
@@ -42,7 +42,7 @@ public class PlayerData
 
     public Weapon equippedWeapon;
 
-    //±âÅ¸
+    //ê¸°íƒ€
     public int statPoint;
     public string selectedCharacter;
 
@@ -60,7 +60,7 @@ public class PlayerData
     {
         return (damage * (1.5f + (criticalDamageLevel * 0.1f)));
     }
-    public int FinalGoldBonus()
+    public int FinalGoldBonus() 
     {
         return baseGoldBonus + (100 * goldBonusLevel);
     }
