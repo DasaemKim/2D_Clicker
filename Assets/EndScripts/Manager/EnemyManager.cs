@@ -47,7 +47,7 @@ public class EnemyManager : MonoBehaviour
     {
         if (SpawnCount < 11)
         {
-            PoolManager.GetObject(EnemyIndex, Vector2.zero, Quaternion.identity);
+            PoolManager.GetObject(transform.position, Quaternion.identity, EnemyIndex);
         }
         else
         {
@@ -63,7 +63,7 @@ public class EnemyManager : MonoBehaviour
 
             EnemyData = EnemyObject[EnemyIndex].EnemyData;
 
-            PoolManager.GetObject(EnemyIndex, Vector2.zero, Quaternion.identity);
+            PoolManager.GetObject(transform.position, Quaternion.identity, EnemyIndex);
         }
 
         SpawnCount++;

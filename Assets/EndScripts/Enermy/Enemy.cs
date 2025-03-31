@@ -11,6 +11,7 @@ public class Enemy : MonoBehaviour, IPoolable
     public Action<GameObject> returnPool; // 오브젝트 비활성화 액션
 
     public event Action OnHealthChanged; // 체력 업데이트
+    public event Action<int> OnDamageText; // 데미지 텍스트
 
     public float bounceForce = 5f;  // 튕기는 힘
     public float deathGravityScale = 2f;  // 죽을 때 중력 증가
@@ -72,10 +73,12 @@ public class Enemy : MonoBehaviour, IPoolable
 
         OnHealthChanged?.Invoke(); // 체력 업데이트
 
+        StageUI.Instance.DelayedHP.fillAmount = 1;
         EnemyStat.CurrentHealth = MaxHealth;
         CurrentHealth = EnemyStat.CurrentHealth;
 
         Invoke(nameof(OnDespawn), 3f); // 사망 이후 3초 뒤에 비활성화
+        Invoke(nameof(StageUI.Instance.DamageTextUI.OnDespawn), 3f);
     }
 
 
@@ -98,6 +101,8 @@ public class Enemy : MonoBehaviour, IPoolable
     public void TakeDamage(int damage) // 적 받는 피해
     {
         CurrentHealth -= damage;
+
+        OnDamageText?.Invoke(100);
 
         if (CurrentHealth <= 0)
         {

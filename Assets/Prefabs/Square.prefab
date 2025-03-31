@@ -113,9 +113,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   EnemyObject: {fileID: 0}
-  EnemyData: {fileID: 0}
   bounceForce: 5
   deathGravityScale: 2
+  MaxHealth: 0
+  CurrentHealth: 0
 --- !u!50 &777149158351171069
 Rigidbody2D:
   serializedVersion: 4
