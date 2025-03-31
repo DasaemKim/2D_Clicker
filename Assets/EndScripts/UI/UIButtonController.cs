@@ -72,6 +72,11 @@ public class UIButtonController : MonoBehaviour
         criUpgradeText.text = statUpgrade.criUpgradePoint.ToString("N0");
         autoUpgradeText.text = statUpgrade.autoUpgradePoint.ToString("N0");
         coinUpgradeText.text = statUpgrade.coinUpgradePoint.ToString("N0");
+        
+        // 비용에 따라 글자 색상 적용
+        criUpgradeText.color = SetColor(statUpgrade.criUpgradePoint, player.characterData.statPoint);
+        autoUpgradeText.color = SetColor(statUpgrade.autoUpgradePoint, player.characterData.statPoint);
+        coinUpgradeText.color = SetColor(statUpgrade.coinUpgradePoint, player.characterData.statPoint);
     }
 
     // ErrorPanel 패널 생성
@@ -80,13 +85,23 @@ public class UIButtonController : MonoBehaviour
         errorPanel.SetActive(true);
     }
 
-    // TODO 완료
-    // 에러 패널이 3초 뒤에 사라지도록 설정
-    // 코루틴을 이용하여 1초뒤 사라지도록 설정
     // ErrorPanel 패널 사라짐
     public IEnumerator CloseErrorPanel()
     {
         yield return new WaitForSeconds(1);
         errorPanel.SetActive(false);
+    }
+    
+    // 비용에 따른 색 변화
+    public Color SetColor(float upgradeCost, float currentStatPoint)    // 업그레이드 비용, 현재 보유 재화
+    {
+        if (currentStatPoint >= upgradeCost)
+        {
+            return Color.black; // 재화가 충분할 때
+        }
+        else
+        {
+            return Color.red;   // 재화가 부족할 때
+        }
     }
 }

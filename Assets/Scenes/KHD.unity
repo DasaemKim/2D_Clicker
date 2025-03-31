@@ -3005,6 +3005,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  HitRed: {fileID: 6248060604191086225, guid: c8766e816e789264fb6e56f8f449f08f, type: 3}
+  HitYello: {fileID: 7940792184390634005, guid: e1e76f675816dea41b8741674a0639ba, type: 3}
   isAutoAttacking: 0
 --- !u!114 &1001657215
 MonoBehaviour:
