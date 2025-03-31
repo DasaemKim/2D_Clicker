@@ -14,6 +14,8 @@ public class StatUpgrade : MonoBehaviour
     public float autoUpgradePoint;
     public float coinUpgradePoint;
 
+    public AttackSystem attackSystem;
+
     private bool isHolding = false;
     
     //TODO 진행 중
@@ -53,10 +55,12 @@ public class StatUpgrade : MonoBehaviour
         if (characterData.statPoint >= autoUpgradePoint)
         {
             characterData.statPoint -= (int)autoUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-            characterData.autoNum = 1 + characterData.autoNum + 0.3f; // 스탯 포인트 증가값
+           // characterData.autoNum = 1 - characterData.autoNum + 0.3f; // 스탯 포인트 증가값
+           characterData.autoNum *= 0.9f; // 0.9배씩 감소
             autoUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
-
+            
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
+            attackSystem.StartAutoAttack();
         }
         else
         {
