@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Circle
   m_EditorClassIdentifier: 
   Name: "\uB3D9\uADF8\uB77C\uBBF8 \uAD34\uBB3C"
-  Health: 100
+  Health: 110
   HealthGrowth: 20
