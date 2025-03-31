@@ -7,23 +7,20 @@ using UnityEngine.UI;
 [System.Serializable]
 public class Weapon
 {
-    public string WeaponName;
-    public int Attack;
-    public float Critical;
+    public string WeaponName; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    public int Attack; // ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+    public float Critical; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ý·ï¿½
+    public int UpgradeLevel; //ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½ï¿½
+    public List<int> UpgradeAttack; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ ï¿½ï¿½ï¿½Ý·ï¿½
+    public List<float> UpgradeCritical; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½×·ï¿½ï¿½Ìµï¿½ Å©ï¿½ï¿½Æ¼ï¿½ï¿½
 
-    public int UpgradeLevel;
-    public List<int> UpgradeAttack;
-    public List<float> UpgradeCritical;
-
-    public bool IsObatained = false;
+    public bool IsObatained = false; // ï¿½ï¿½È¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 }
 public class WeaponManager : MonoBehaviour
 {
-
     public List<Weapon> weaponLists;
     public Weapon equippedWeapon;
     public int UpgradeCost = 10;
-    public int Balance = 0;
     public Button WeaponChangeButton;
     public Button BackButton;
     public GameObject WeaponBag;
@@ -32,7 +29,6 @@ public class WeaponManager : MonoBehaviour
     public TextMeshProUGUI Attack;
     public TextMeshProUGUI Critical;
     public TextMeshProUGUI Upgrade_Cost;
-    public TextMeshProUGUI Balance_;
     public TextMeshProUGUI WeaponLevel;
     public Button UpgradeButton;
 
@@ -53,24 +49,17 @@ public class WeaponManager : MonoBehaviour
     {
         if (equippedWeapon == null || !equippedWeapon.IsObatained)
         {
-            Debug.Log("¾ÆÁ÷ ¹«±â¸¦ È¹µæÇÏÁö ¸øÇß½À´Ï´Ù");
+            Debug.Log("ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â¸¦ È¹ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ß½ï¿½ï¿½Ï´ï¿½");
             return;
         }
 
         if (equippedWeapon.UpgradeLevel >= equippedWeapon.UpgradeAttack.Count)
         {
-            Debug.Log("ÃÖ´ë ·¹º§¿¡ µµ´ÞÇÏ¼Å¼­ ¿Ã¸®½Ç ¼ö ¾ø½À´Ï´Ù.");
+            Debug.Log("ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¼Å¼ï¿½ ï¿½Ã¸ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï´ï¿½.");
             return;
         }
 
-        if (Balance < UpgradeCost)
-        {
-            Debug.Log("ÀÜ¾×ÀÌ ºÎÁ·ÇÕ´Ï´Ù.");
-            return;
-        }
-
-        Balance -= UpgradeCost;
-        upgradeCount++;
+        equippedWeapon.UpgradeLevel++; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 
         if (equippedWeapon.UpgradeLevel >= equippedWeapon.UpgradeAttack.Count)
         {
@@ -79,6 +68,7 @@ public class WeaponManager : MonoBehaviour
 
         equippedWeapon.UpgradeLevel = UpgradeCost;
 
+        // ï¿½Ã¶ï¿½ ï¿½É·ï¿½Ä¡ ï¿½Ý¿ï¿½
         equippedWeapon.Attack = equippedWeapon.UpgradeAttack[equippedWeapon.UpgradeLevel];
         equippedWeapon.Critical = equippedWeapon.UpgradeCritical[equippedWeapon.UpgradeLevel];
 
@@ -94,31 +84,30 @@ public class WeaponManager : MonoBehaviour
 
     private void UpdateWeaponUI()
     {
-        if (equippedWeapon != null)
+        if (equippedWeapon != null) // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½â°¡ ï¿½Ö´Ù¸ï¿½
         {
             WeaponName.text = $"{equippedWeapon.WeaponName}";
-            Attack.text = $"°ø°Ý·Â : {equippedWeapon.Attack}";
-            Critical.text = $"Ä¡¸íÅ¸ È®·ü : {(equippedWeapon.Critical * 100).ToString("F1")}%";
+            Attack.text = $"ï¿½ï¿½ï¿½Ý·ï¿½ : {equippedWeapon.Attack}";
+            Critical.text = $"Ä¡ï¿½ï¿½Å¸ È®ï¿½ï¿½ : {(equippedWeapon.Critical * 100).ToString("F1")}%";
             WeaponLevel.text = $"LV. {equippedWeapon.UpgradeLevel + 1}";
             Upgrade_Cost.text = $"{UpgradeCost}";
-            Balance_.text = $"{Balance}";
         }
-        else
+        else // ï¿½ï¿½È¹ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         {
             WeaponName.text = "???";
-            Attack.text = "°ø°Ý·Â : 10";
-            Critical.text = "Ä¡¸íÅ¸ È®·ü : 20%";
+            Attack.text = "ï¿½ï¿½ï¿½Ý·ï¿½ : 10";
+            Critical.text = "Ä¡ï¿½ï¿½Å¸ È®ï¿½ï¿½ : 20%";
         }
 
-        WeaponLevel.text = $"·¹º§ : {equippedWeapon.UpgradeLevel + 1}";
+        WeaponLevel.text = $"ï¿½ï¿½ï¿½ï¿½ : {equippedWeapon.UpgradeLevel + 1}";
     }
 
-    public void ToggleWeaponBag()
+    public void ToggleWeaponBag() // ï¿½ï¿½ï¿½ï¿½UI È°ï¿½ï¿½È­
     {
         WeaponBag.SetActive(!WeaponBag.activeSelf);
     }
 
-    public void CloseWeaponBag()
+    public void CloseWeaponBag() // ï¿½Ú·Î°ï¿½ï¿½ï¿½ ï¿½ï¿½Æ°
     {
         WeaponBag.SetActive(false);
     }
