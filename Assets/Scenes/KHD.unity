@@ -3005,6 +3005,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
+  player: {fileID: 0}
   HitRed: {fileID: 6248060604191086225, guid: c8766e816e789264fb6e56f8f449f08f, type: 3}
   HitYello: {fileID: 7940792184390634005, guid: e1e76f675816dea41b8741674a0639ba, type: 3}
   isAutoAttacking: 0
@@ -6936,6 +6937,30 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   characterData: {fileID: 11400000, guid: 4d03326cce692b4438d1158f80bd6566, type: 2}
+  equipweapon:
+    WeaponName: 
+    Attack: 0
+    Critical: 0
+    UpgradeLevel: 0
+    UpgradeAttack: 
+    UpgradeCritical: []
+    IsObatained: 0
+  playerData:
+    stage: 0
+    gold: 0
+    criticalDamageLevel: 0
+    autoAttackLevel: 0
+    goldBonusLevel: 0
+    equippedWeaponName: 
+    equippedWeaponLevel: 0
+    statPoint: 0
+    selectedCharacter: 
+  stat:
+    baseAttack: 0
+    baseCriticalRate: 0
+    baseCriticalDamage: 0
+    baseGoldBonus: 0
+  attackSystem: {fileID: 1001657214}
 --- !u!4 &2082643986
 Transform:
   m_ObjectHideFlags: 0
@@ -6995,23 +7020,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4410538657ae4cb5a9a87b7380730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerData:
-    stage: 0
-    gold: 0
-    criticalDamageLevel: 0
-    autoAttackLevel: 0
-    goldBonusLevel: 0
-    equippedWeaponName: 
-    equippedWeaponLevel: 0
-    statPoint: 0
-    selectedCharacter: 
-  stat:
-    baseAttack: 0
-    baseCriticalRate: 0
-    baseCriticalDamage: 0
-    baseGoldBonus: 0
   goldManager: {fileID: 0}
-  characterData: {fileID: 0}
+  player: {fileID: 2082643985}
 --- !u!1 &2134801862
 GameObject:
   m_ObjectHideFlags: 0
@@ -7093,9 +7103,9 @@ SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
   - {fileID: 1596567821}
+  - {fileID: 2126241548}
   - {fileID: 1001657213}
   - {fileID: 1705997753}
   - {fileID: 2082643986}
   - {fileID: 1653212130}
   - {fileID: 313009074}
-  - {fileID: 2126241548}

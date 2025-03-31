@@ -6,16 +6,16 @@ using UnityEngine;
 [Serializable]
 public class Stat
 {
-    public int baseAttack;
+    public float baseAttack = GameManager.Instance.player.characterData.damage;
     public float baseCriticalRate;
     public int baseCriticalDamage;
     public int baseGoldBonus;
 
-    public int FinalAttack(PlayerData playerData, Weapon.WeaponList weapon)
+    public float FinalAttack(PlayerData playerData, Weapon weapon)
     {
         return baseAttack + weapon.Attack;
     }
-    public float FinalCriticaRate(PlayerData playerData, Weapon.WeaponList weapon)
+    public float FinalCriticaRate(PlayerData playerData, Weapon weapon)
     {
         return baseCriticalRate + weapon.Critical;
     }

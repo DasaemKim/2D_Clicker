@@ -9,10 +9,10 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance;
 
-    public PlayerData playerData;
-    public Stat stat;
     public GoldManager goldManager;
-    public CharacterData characterData;
+
+    public Player player;
+
 
     private Enemy enemy;
     private EnemyStat enemyStat;
@@ -29,25 +29,14 @@ public class GameManager : MonoBehaviour
 
     public void NewGame()
     {
-        playerData = new PlayerData()
-        {
-            stage = 1,
-            gold = 0,
-            criticalDamageLevel = 0,
-            autoAttackLevel = 0,
-            goldBonusLevel = 0,
-            equippedWeaponLevel = 0,
-            selectedCharacter = "default",
-            equippedWeaponName = "³ª¹«°Ë"
-        };
-        SaveGame();
+        player.Init();
     }
     public void LoadGame()
     {
         if (File.Exists(savePath))
         {
             string json = File.ReadAllText(savePath);
-            playerData = JsonUtility.FromJson<PlayerData>(json);
+            player.playerData = JsonUtility.FromJson<PlayerData>(json);
         }
         else
         {
@@ -56,7 +45,7 @@ public class GameManager : MonoBehaviour
     }
     public void SaveGame()
     {
-        string json = JsonUtility.ToJson(playerData,true);
+        string json = JsonUtility.ToJson(player.playerData,true);
         File.WriteAllText(savePath, json);
     }
     public Enemy Enemy
@@ -66,12 +55,12 @@ public class GameManager : MonoBehaviour
     }
     public void SetEquippedWeapon(string weaponName, int level)
     {
-        playerData.equippedWeaponName = weaponName;
-        playerData.equippedWeaponLevel = level;
+        player.playerData.equippedWeaponName = weaponName;
+        player.playerData.equippedWeaponLevel = level;
         SaveGame();
     }
     public int GetEquippedWeaponLevel()
     {
-        return playerData.equippedWeaponLevel;
+        return player.playerData.equippedWeaponLevel;
     }
 }
