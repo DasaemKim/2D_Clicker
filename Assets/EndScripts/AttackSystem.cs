@@ -9,6 +9,9 @@ public class AttackSystem : MonoBehaviour
 
     public GameManager gameManager;
 
+    public GameObject HitRed;
+    public GameObject HitYello;
+
     //public Button AutoAttackBtn;
     public bool isAutoAttacking = false;
     private float attackRate = 0f; // 초기 공격 속도 (0초에 1회)
@@ -16,7 +19,7 @@ public class AttackSystem : MonoBehaviour
 
     public void Start()
     {
-      //  AutoAttackBtn.onClick.AddListener(OnAutoAttack);
+
     }
 
 
@@ -25,6 +28,7 @@ public class AttackSystem : MonoBehaviour
         Debug.Log("공격 실행!");
 
         GameManager.Instance.Enemy.TakeDamage(100);
+        SpawnParticle(HitRed);
 
     }
 
@@ -56,8 +60,15 @@ public class AttackSystem : MonoBehaviour
         Debug.Log("크리티컬 공격 실행!");
     }
 
-    public void AttackEffect()
+
+    public void SpawnParticle(GameObject particlePrefab) // 마우스 위치에 파티클 생성
     {
-        Debug.Log("공격 이펙트 실행!");
+        Vector3 mousePosition = Input.mousePosition; // 마우스 포인터 위치 (스크린 좌표)
+        mousePosition.z = Camera.main.nearClipPlane; // z값을 카메라의 클리핑 평면으로 설정
+
+        Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition); // 월드 좌표로 변환
+
+        Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 마우스 위치에 파티클 생성
+        Debug.Log("마우스 위치에 파티클 생성!");
     }
 }
