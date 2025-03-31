@@ -1428,10 +1428,9 @@ MonoBehaviour:
   NowStage: {fileID: 407685347}
   MaxStage: {fileID: 422086630}
   StepEnemyName: {fileID: 1694544649}
-  Step: {fileID: 469068636}
   EnemyName: {fileID: 1217100362}
-  EnemyStep: {fileID: 2049770034}
   EnemyHP: {fileID: 1579300683}
+  DelayedHP: {fileID: 0}
 --- !u!114 &313009072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1465,6 +1464,8 @@ MonoBehaviour:
   - {fileID: 2059999867289050475, guid: 11a6a6af22ad99b468cdc42356d71aae, type: 3}
   - {fileID: 1659531517205214308, guid: 5e845878f4aa2d14eb3cef7eae59cd78, type: 3}
   - {fileID: 5919694440093521436, guid: fe9588b701fba57458f7cc9c10d798ea, type: 3}
+  Prefabs2: []
+  TakeDamageText: {fileID: 0}
 --- !u!4 &313009074
 Transform:
   m_ObjectHideFlags: 0
@@ -8984,8 +8985,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32f4410538657ae4cb5a9a87b7380730, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  goldManager: {fileID: 0}
-  player: {fileID: 0}
+  goldManager: {fileID: 2126241551}
+  player: {fileID: 2082643985}
 --- !u!114 &2126241550
 MonoBehaviour:
   m_ObjectHideFlags: 0
