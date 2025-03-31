@@ -14,8 +14,6 @@ public class AttackSystem : MonoBehaviour
     public GameObject HitRed;
     public GameObject HitYello;
 
-
-    public bool isAutoAttacking = false;
     public Coroutine autoAttackCoroutine; // 자동 공격 코루틴
 
     public void Start()
@@ -23,22 +21,6 @@ public class AttackSystem : MonoBehaviour
         player = GameManager.Instance.player;
     }
 
-    //public void Update()
-    //{
-    //    // 기존에 실행 중인 자동 공격 코루틴이 있으면 중지
-    //    if (autoAttackCoroutine != null)
-    //    {
-    //        StopCoroutine(autoAttackCoroutine);
-    //        autoAttackCoroutine = null; // 코루틴 변수를 초기화
-    //    }
-
-    //    // 코루틴이 실행 중인지 확인 후 버튼이 눌렸을 때 새로 실행
-    //    if (UIBtnManager.Instance.uiBtnController.OnClickAutoNumBtn()) // () 괄호 추가
-    //    {
-    //        // 새 코루틴 시작
-    //        autoAttackCoroutine = StartCoroutine(AutoAttackCoroutine());
-    //    }
-    //}
     public void Attack()
     {
         Debug.Log("공격 실행!");
@@ -63,14 +45,18 @@ public class AttackSystem : MonoBehaviour
     // 자동 공격 시작
     public void StartAutoAttack()
     {
-        isAutoAttacking = true;
+        if (autoAttackCoroutine != null)
+        {
+            StopCoroutine(autoAttackCoroutine);
+        }
         autoAttackCoroutine = StartCoroutine(AutoAttackCoroutine());
+        
     }
 
     // 자동 공격 코루틴
     public IEnumerator AutoAttackCoroutine()
     {
-        while (isAutoAttacking)
+        while (true)
         {
             Attack();
             yield return new WaitForSeconds(GameManager.Instance.player.characterData.autoNum); // 0.3초마다 공격 실행

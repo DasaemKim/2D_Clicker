@@ -48,14 +48,6 @@ public class UIButtonController : MonoBehaviour
     // AutoNumBtn을 눌렀을 때
     public void OnClickAutoNumBtn()
     {
-        if (attackSystem.autoAttackCoroutine != null)
-        {
-            StopCoroutine(attackSystem.autoAttackCoroutine);
-            attackSystem.autoAttackCoroutine = null;
-        }
-
-        attackSystem.autoAttackCoroutine = StartCoroutine(attackSystem.AutoAttackCoroutine());
-
         UIBtnManager.Instance.statUpgrade.AutoNumUpgrade();
     }
 

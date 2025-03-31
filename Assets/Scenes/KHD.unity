@@ -1795,7 +1795,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 314.25, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &469068635
@@ -2078,7 +2078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 378.43002, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 54.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651829094
@@ -3008,7 +3008,6 @@ MonoBehaviour:
   player: {fileID: 0}
   HitRed: {fileID: 6248060604191086225, guid: c8766e816e789264fb6e56f8f449f08f, type: 3}
   HitYello: {fileID: 7940792184390634005, guid: e1e76f675816dea41b8741674a0639ba, type: 3}
-  isAutoAttacking: 0
 --- !u!114 &1001657215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3896,7 +3895,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 112.21, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1217100361
@@ -5467,7 +5466,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 269.31, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1694544648
@@ -6269,8 +6268,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 380, y: 0}
-  m_SizeDelta: {x: 760, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943590944
 MonoBehaviour:
@@ -6713,7 +6712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 251.26001, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2049770033
@@ -6948,19 +6947,27 @@ MonoBehaviour:
     UpgradeCritical: []
     IsObatained: 0
   playerData:
+    damage: 0
+    criticalRate: 0
     stage: 0
     gold: 0
+    autoNum: 0
     criticalDamageLevel: 0
     autoAttackLevel: 0
     goldBonusLevel: 0
     equippedWeaponName: 
     equippedWeaponLevel: 0
+    weaponList: []
+    equippedWeapon:
+      WeaponName: 
+      Attack: 0
+      Critical: 0
+      UpgradeLevel: 0
+      UpgradeAttack: 
+      UpgradeCritical: []
+      IsObatained: 0
     statPoint: 0
     selectedCharacter: 
-  stat:
-    baseAttack: 0
-    baseCriticalRate: 0
-    baseCriticalDamage: 0
     baseGoldBonus: 0
   attackSystem: {fileID: 1001657214}
 --- !u!4 &2082643986
