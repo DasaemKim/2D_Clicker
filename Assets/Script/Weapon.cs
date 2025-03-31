@@ -7,23 +7,22 @@ using UnityEngine.UI;
 public class Weapon : MonoBehaviour
 {
     [System.Serializable]
-    public class WeaponList
+    public class WeaponList // 무기 정보 저장
     {
-        public string WeaponName;
-        public int Attack;
-        public float Critical;
+        public string WeaponName; // 무기 이름
+        public int Attack; // 무기 공격력
+        public float Critical; // 무기 치명타 확률
 
-        public int UpgradeLevel;
-        public List<int> UpgradeAttack;
-        public List<float> UpgradeCritical;
+        public int UpgradeLevel; // 무기의 업그레이드 레벨
+        public List<int> UpgradeAttack; // 무기 업그레이드 공격력
+        public List<float> UpgradeCritical; // 무기 업그레이드 크리티컬
 
-        public bool IsObatained = false;
+        public bool IsObatained = false; // 미획득한 무기
     }
 
-    public List<WeaponList> weaponLists;
-    public WeaponList equippedWeapon;
+    public List<WeaponList> weaponLists; // 게임에서 사용할 수 있는 무기들 저장
+    public WeaponList equippedWeapon; // 현재 장착된 무기
     public int UpgradeCost = 10;
-    public int Balance = 0;
     public Button WeaponChangeButton;
     public Button BackButton;
     public GameObject WeaponBag;
@@ -32,7 +31,6 @@ public class Weapon : MonoBehaviour
     public TextMeshProUGUI Attack;
     public TextMeshProUGUI Critical;
     public TextMeshProUGUI Upgrade_Cost;
-    public TextMeshProUGUI Balance_;
     public TextMeshProUGUI WeaponLevel;
     public Button UpgradeButton;
 
@@ -63,14 +61,7 @@ public class Weapon : MonoBehaviour
             return;
         }
 
-        if (Balance < UpgradeCost)
-        {
-            Debug.Log("잔액이 부족합니다.");
-            return;
-        }
-
-        Balance -= UpgradeCost;
-        upgradeCount++;
+        equippedWeapon.UpgradeLevel++; // 레벨 증가
 
         if (equippedWeapon.UpgradeLevel >= equippedWeapon.UpgradeAttack.Count)
         {
@@ -79,6 +70,7 @@ public class Weapon : MonoBehaviour
 
         equippedWeapon.UpgradeLevel = UpgradeCost;
 
+        // 올라간 능력치 반영
         equippedWeapon.Attack = equippedWeapon.UpgradeAttack[equippedWeapon.UpgradeLevel];
         equippedWeapon.Critical = equippedWeapon.UpgradeCritical[equippedWeapon.UpgradeLevel];
 
@@ -94,16 +86,15 @@ public class Weapon : MonoBehaviour
 
     private void UpdateWeaponUI()
     {
-        if (equippedWeapon != null)
+        if (equippedWeapon != null) // 장착된 무기가 있다면
         {
             WeaponName.text = $"{equippedWeapon.WeaponName}";
             Attack.text = $"공격력 : {equippedWeapon.Attack}";
             Critical.text = $"치명타 확률 : {(equippedWeapon.Critical * 100).ToString("F1")}%";
             WeaponLevel.text = $"LV. {equippedWeapon.UpgradeLevel + 1}";
             Upgrade_Cost.text = $"{UpgradeCost}";
-            Balance_.text = $"{Balance}";
         }
-        else
+        else // 미획득한 무기
         {
             WeaponName.text = "???";
             Attack.text = "공격력 : 10";
@@ -113,12 +104,12 @@ public class Weapon : MonoBehaviour
         WeaponLevel.text = $"레벨 : {equippedWeapon.UpgradeLevel + 1}";
     }
 
-    public void ToggleWeaponBag()
+    public void ToggleWeaponBag() // 무기UI 활성화
     {
         WeaponBag.SetActive(!WeaponBag.activeSelf);
     }
 
-    public void CloseWeaponBag()
+    public void CloseWeaponBag() // 뒤로가기 버튼
     {
         WeaponBag.SetActive(false);
     }
