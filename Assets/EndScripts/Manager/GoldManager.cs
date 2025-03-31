@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class GoldManager : MonoBehaviour
 {
-    public GameObject errorPopup;
     public float popupDuration = 1.0f;
 
     public TMPro.TextMeshProUGUI goldText;
@@ -29,7 +28,7 @@ public class GoldManager : MonoBehaviour
         }
         else
         {
-            StartCoroutine(ShowErrorPopup());
+            ShowErrorPopup();
             return false;
         }
     }
@@ -40,10 +39,10 @@ public class GoldManager : MonoBehaviour
             goldText.text = $"Gold: {GameManager.Instance.playerData.gold}";
         }
     }
-    private IEnumerator ShowErrorPopup()
+    private void ShowErrorPopup()
     {
-        errorPopup.SetActive(true);
-        yield return new WaitForSeconds(popupDuration);
-        errorPopup.SetActive(false);
+        var controller = UIBtnManager.Instance.uiBtnController;
+        controller.ErrorPanel();
+        controller.StartCoroutine(controller.CloseErrorPanel());
     }
 }
