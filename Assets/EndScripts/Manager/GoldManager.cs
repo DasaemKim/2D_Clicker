@@ -34,7 +34,9 @@ public class GoldManager : MonoBehaviour
     }
     public void RefreshGoldUI()
     {
-        if (goldText != null)
+        if (goldText != null &&
+             GameManager.Instance.player != null &&
+             GameManager.Instance.player.playerData != null)
         {
             goldText.text = $"Gold: {GameManager.Instance.player.playerData.gold}";
         }
