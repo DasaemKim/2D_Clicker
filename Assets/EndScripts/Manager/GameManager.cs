@@ -35,6 +35,7 @@ public class GameManager : MonoBehaviour
         {
             string json = File.ReadAllText(savePath);
             player.playerData = JsonUtility.FromJson<PlayerData>(json);
+
         }
         else
         {

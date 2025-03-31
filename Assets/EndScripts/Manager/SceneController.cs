@@ -17,27 +17,27 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        fadeImage.color = new Color(0, 0, 0, 1); // ½ÃÀÛÀº °ËÀº È­¸é
-        StartCoroutine(FadeAlpha(1f, 0f)); // ¼­¼­È÷ ¹à¾ÆÁü
+        fadeImage.color = new Color(0, 0, 0, 1); // ì‹œì‘ì€ ê²€ì€ í™”ë©´
+        StartCoroutine(FadeAlpha(1f, 0f)); // ì„œì„œíˆ ë°ì•„ì§
     }
 
     public void StartNewGame()
     {
         GameManager.Instance.NewGame();
-        StartCoroutine(TransitionToScene("MainScene"));
+        StartCoroutine(TransitionToScene("Test"));
     }
 
     public void LoadSavedGame()
     {
         GameManager.Instance.LoadGame();
-        StartCoroutine(TransitionToScene("MainScene"));
+        StartCoroutine(TransitionToScene("Test"));
     }
 
     private IEnumerator TransitionToScene(string sceneName)
     {
-        Debug.Log("¾À ÀüÈ¯ ÁØºñ");
+        Debug.Log("ì”¬ ì „í™˜ ì¤€ë¹„");
         yield return StartCoroutine(FadeAlpha(0f, 1f));
-        Debug.Log("¾À ÀüÈ¯ ½Ãµµ: " + sceneName);
+        Debug.Log("ì”¬ ì „í™˜ ì‹œë„: " + sceneName);
         SceneManager.LoadScene(sceneName);
     }
 
