@@ -3035,6 +3035,7 @@ MonoBehaviour:
   errorPanel: {fileID: 1756497067}
   player: {fileID: 2082643985}
   statUpgrade: {fileID: 2082643984}
+  attackSystem: {fileID: 1001657214}
 --- !u!114 &1001657216
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6924,6 +6925,7 @@ MonoBehaviour:
   criUpgradePoint: 10
   autoUpgradePoint: 10
   coinUpgradePoint: 10
+  attackSystem: {fileID: 1001657214}
 --- !u!114 &2082643985
 MonoBehaviour:
   m_ObjectHideFlags: 0

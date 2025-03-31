@@ -6,7 +6,7 @@ using UnityEngine;
 [Serializable]
 public class Stat
 {
-    public float baseAttack = GameManager.Instance.player.characterData.damage;
+    public float baseAttack;
     public float baseCriticalRate;
     public int baseCriticalDamage;
     public int baseGoldBonus;

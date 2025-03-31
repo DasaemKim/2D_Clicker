@@ -9,10 +9,16 @@ public class Player : MonoBehaviour
     public CharacterData characterData;
     public Weapon equipweapon;
 
-    public PlayerData playerData;
+    public PlayerData playerData; 
     public Stat stat;
 
     public AttackSystem attackSystem;
+
+    public void Start()
+    {
+        stat = new Stat();
+        stat.baseAttack = GameManager.Instance.player.characterData.damage;
+    }
 
     public bool CheckCriticalHit()
     {
@@ -31,24 +37,6 @@ public class Player : MonoBehaviour
             return stat.FinalAttack(playerData, equipweapon); // 일반 데미지 계산
         }
     }
-
-    public void AutoAttackLevel()
-    {
-        playerData.autoAttackLevel++;
-
-        // 자동 공격 주기 설정 (기본 0.3회/초로 설정)
-        characterData.autoNum = 0.3f; // 0.3회/초 (즉, 3.33초당 한 번의 공격)
-
-        // 자동 공격 주기 출력
-        Debug.Log($"자동 공격 레벨: {playerData.autoAttackLevel}, 자동 공격 시간: {characterData.autoNum}");
-
-        // 자동 공격을 시작
-        if (!attackSystem.isAutoAttacking)
-        {
-            attackSystem.StartAutoAttack();
-        }
-    }
-
 
     public void Init() 
     {
