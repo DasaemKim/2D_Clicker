@@ -9,7 +9,6 @@ public class PlayerData
     public PlayerData(CharacterData data)
     {
         damage = data.damage;
-        criticalRate = data.criDamage;
         autoNum = data.autoNum;
         stage = 1;
         gold = 0;

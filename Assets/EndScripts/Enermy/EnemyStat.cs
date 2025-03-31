@@ -9,7 +9,7 @@ public class EnemyStat
     private float currentHealth;
     private float maxHealth;
 
-    public EnemyStat (EnemyData enemyData)
+    public EnemyStat (EnemyData enemyData) // 적 스탯 생성
     {
         maxHealth = enemyData.Health;
         currentHealth = maxHealth;
