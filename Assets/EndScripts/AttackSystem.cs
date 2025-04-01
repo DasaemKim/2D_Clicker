@@ -13,6 +13,9 @@ public class AttackSystem : MonoBehaviour
     public GameObject HitRed;
     public GameObject HitYello;
 
+    public AudioSource sfxSource;
+    public AudioClip hitSfx;
+
     public Coroutine autoAttackCoroutine; // 자동 공격 코루틴
 
 
@@ -32,8 +35,13 @@ public class AttackSystem : MonoBehaviour
             return;
         }
 
+        if (sfxSource != null && hitSfx != null)
+        {
+            sfxSource.PlayOneShot(hitSfx);
+        }
         // 파티클 생성
         SpawnParticle(HitYello);
+
 
     }
 
