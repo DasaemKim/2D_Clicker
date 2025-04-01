@@ -66,7 +66,7 @@ public class AttackSystem : MonoBehaviour
 
         Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition); // 월드 좌표로 변환
 
-        //Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 마우스 위치에 파티클 생성
+        Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 마우스 위치에 파티클 생성
         Debug.Log("마우스 위치에 파티클 생성!");
     }
 }
