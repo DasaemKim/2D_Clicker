@@ -45,23 +45,23 @@ public class StageUI : MonoBehaviour
     }
 
 
-    public void UpdateStage()  // ½ºÅ×ÀÌÁö ¾÷µ¥ÀÌÆ®
+    public void UpdateStage()  // ìŠ¤í…Œì´ì§€ ì—…ë°ì´íŠ¸
     {
         NowStage.text = (EnemyManager.Instance.SpawnCount - 1).ToString();
     }
 
-    public void UpdateEnemyName() // EnemyÀÌ¸§ ¾÷µ¥ÀÌÆ®
+    public void UpdateEnemyName() // Enemyì´ë¦„ ì—…ë°ì´íŠ¸
     {
         StepEnemyName.text = EnemyManager.Instance.EnemyData.Name + " " + EnemyManager.Instance.Step.ToString();
         EnemyName.text = StepEnemyName.text;
     }
 
-    //public void UpdateEnemyHP()  // EnemyÃ¼·Â ¾÷µ¥ÀÌÆ®
+    //public void UpdateEnemyHP()  // Enemyì²´ë ¥ ì—…ë°ì´íŠ¸
     //{
     //    EnemyHP.fillAmount = GameManager.Instance.Enemy.CurrentHealth / GameManager.Instance.Enemy.MaxHealth;
     //}
 
-    public void UpdateEnemyHP()  // EnemyÃ¼·Â ¾÷µ¥ÀÌÆ®
+    public void UpdateEnemyHP()  // Enemyì²´ë ¥ ì—…ë°ì´íŠ¸
     {
         EnemyHP.fillAmount = GameManager.Instance.Enemy.CurrentHealth / GameManager.Instance.Enemy.MaxHealth;
 
@@ -71,13 +71,13 @@ public class StageUI : MonoBehaviour
         delayedCoroutine = StartCoroutine(SmoothUpdateEnemyHP(EnemyHP.fillAmount));
     }
     
-    public IEnumerator SmoothUpdateEnemyHP(float target)  // EnemyÃ¼·Â °¨¼Ò ¿¬Ãâ
+    public IEnumerator SmoothUpdateEnemyHP(float target)  // Enemyì²´ë ¥ ê°ì†Œ ì—°ì¶œ
     {
-        yield return new WaitForSeconds(0.2f); // µô·¹ÀÌ È¿°ú
+        yield return new WaitForSeconds(0.2f); // ë”œë ˆì´ íš¨ê³¼
 
         float start = DelayedHP.fillAmount;
         float elapsedTime = 0f;
-        float duration = 0.7f; // Ã¼·Â¹Ù°¡ º¯È­ÇÏ´Â ½Ã°£
+        float duration = 0.7f; // ì²´ë ¥ë°”ê°€ ë³€í™”í•˜ëŠ” ì‹œê°„
 
         while (elapsedTime < duration)
         {

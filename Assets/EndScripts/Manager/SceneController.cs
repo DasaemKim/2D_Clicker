@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -9,6 +10,8 @@ public class SceneController : MonoBehaviour
 
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
+
+    private bool isNewGame;
 
     private void Awake()
     {
@@ -23,13 +26,12 @@ public class SceneController : MonoBehaviour
 
     public void StartNewGame()
     {
-        GameManager.Instance.NewGame();
+        isNewGame = true;
         StartCoroutine(TransitionToScene("MainScene"));
     }
 
     public void LoadSavedGame()
     {
-        GameManager.Instance.LoadGame();
         StartCoroutine(TransitionToScene("MainScene"));
     }
 
@@ -46,7 +48,13 @@ public class SceneController : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded; // 이벤트 해제 (중복 실행 방지)
         Debug.Log("씬 전환 완료! NewGame() 실행");
-        GameManager.Instance.NewGame();
+
+        if (!File.Exists(GameManager.Instance.savePath) || isNewGame)
+        {
+            GameManager.Instance.NewGame();
+            isNewGame = false;
+        }
+        GameManager.Instance.LoadGame();
     }
 
     private IEnumerator FadeAlpha(float from, float to, System.Action onComplete = null)
