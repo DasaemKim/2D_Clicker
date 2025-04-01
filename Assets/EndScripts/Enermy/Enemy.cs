@@ -8,10 +8,10 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public EnemyStat EnemyStat;
 
-    public Action<GameObject> returnPool; // ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­ ¾×¼Ç
+    public Action<GameObject> returnPool; // ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™” ì•¡ì…˜
 
-    public event Action OnHealthChanged; // Ã¼·Â ¾÷µ¥ÀÌÆ®
-    public event Action<float> OnDamageText; // µ¥¹ÌÁö ÅØ½ºÆ®
+    public event Action OnHealthChanged; // ì²´ë ¥ ì—…ë°ì´íŠ¸
+    public event Action<float> OnDamageText; // ë°ë¯¸ì§€ í…ìŠ¤íŠ¸
 
     public float MaxHealth;
     public float CurrentHealth;
@@ -25,75 +25,68 @@ public class Enemy : MonoBehaviour, IPoolable
 
         rb = GetComponent<Rigidbody2D>();
 
-        rb.gravityScale = 0; // Áß·Â°ª 0
+        rb.gravityScale = 0; // ì¤‘ë ¥ê°’ 0
 
-        rb.velocity = Vector2.zero;  // ±âÁ¸ ¿òÁ÷ÀÓ Á¤Áö
+        rb.velocity = Vector2.zero;  // ê¸°ì¡´ ì›€ì§ì„ ì •ì§€
 
         EnemyObject = EnemyManager.Instance.EnemyObject[EnemyManager.Instance.EnemyIndex];
         EnemyObject.GetEnemyData();
 
-        EnemyStat = new EnemyStat(EnemyManager.Instance.EnemyData); // »õ·Î¿î Àû »ı¼º ½Ã ½ºÅÈ »ı¼º
-        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth; // ½ºÅ×ÀÌÁö¿¡ µû¶ó Ã¼·Â Áõ°¡
-        CurrentHealth = EnemyStat.CurrentHealth; // Ã¼·Â ÃÊ±âÈ­
+        EnemyStat = new EnemyStat(EnemyManager.Instance.EnemyData); // ìƒˆë¡œìš´ ì  ìƒì„± ì‹œ ìŠ¤íƒ¯ ìƒì„±
+        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth; // ìŠ¤í…Œì´ì§€ì— ë”°ë¼ ì²´ë ¥ ì¦ê°€
+        CurrentHealth = EnemyStat.CurrentHealth; // ì²´ë ¥ ì´ˆê¸°í™”
 
         OnHealthChanged?.Invoke();
+        OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     private void OnEnable()
     {
-        GameManager.Instance.Enemy = this; // Àû ÃÊ±âÈ­
+        GameManager.Instance.Enemy = this; // ì  ì´ˆê¸°í™”
 
-        if (EnemyStat != null) // ½ºÅ×ÀÌÁö¿¡ µû¶ó Ã¼·Â Áõ°¡
+        if (EnemyStat != null) // ìŠ¤í…Œì´ì§€ì— ë”°ë¼ ì²´ë ¥ ì¦ê°€
         {
             MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth;
             CurrentHealth = MaxHealth;
         }
 
-        OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // Ã¼·Â ¾÷µ¥ÀÌÆ® ÀÌº¥Æ® ±¸µ¶
-        OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
+        OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // ì²´ë ¥ ì—…ë°ì´íŠ¸ ì´ë²¤íŠ¸ êµ¬ë…
 
-        if (gameObject == null)
-        {
-            Debug.LogError("[Enemy] gameObject°¡ nullÀÔ´Ï´Ù.");
-        }
-
-        if (transform == null)
-        {
-            Debug.LogError("[Enemy] transformÀÌ nullÀÔ´Ï´Ù.");
-        }
-
-        Debug.Log("[Enemy] OnEnable ½ÇÇàµÊ");
-
+        if (StageUI.Instance.CreateText != null)
+            OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     private void OnDisable()
     {
-        OnHealthChanged -= StageUI.Instance.UpdateEnemyHP;
-        OnDamageText -= StageUI.Instance.CreateText.CreateTextDamage;
+        if (StageUI.Instance != null)
+        {
+            OnHealthChanged -= StageUI.Instance.UpdateEnemyHP;
+            OnDamageText -= StageUI.Instance.CreateText.CreateTextDamage;
+        }
     }
 
     void Die()
     {
-        float randomX = (UnityEngine.Random.value < 0.5f) ? -3f : 3f; // ÁÂ¿ì Æ¨±â´Â °ª
-        float randomTorque = (UnityEngine.Random.value < 0.5f) ? -10f : 10f; // È¸Àü °ª
+        float randomX = (UnityEngine.Random.value < 0.5f) ? -3f : 3f; // ì¢Œìš° íŠ•ê¸°ëŠ” ê°’
+        float randomTorque = (UnityEngine.Random.value < 0.5f) ? -10f : 10f; // íšŒì „ ê°’
 
-        rb.gravityScale = 1; // Áß·Â°ª ÃÊ±âÈ­
-        rb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse); // Àû »ç¸Á ½Ã ÁÂ¿ì·Î Æ¨±â±â
-        rb.AddTorque(randomTorque, ForceMode2D.Impulse); // Àû »ç¸Á ½Ã È¸Àü·Â Ãß°¡
+        rb.gravityScale = 1; // ì¤‘ë ¥ê°’ ì´ˆê¸°í™”
+        rb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse); // ì  ì‚¬ë§ ì‹œ ì¢Œìš°ë¡œ íŠ•ê¸°ê¸°
+        rb.AddTorque(randomTorque, ForceMode2D.Impulse); // ì  ì‚¬ë§ ì‹œ íšŒì „ë ¥ ì¶”ê°€
 
-        EnemyManager.Instance.Respawn(); // Àû »ç¸Á ½Ã ¸®½ºÆù
+        EnemyManager.Instance.Respawn(); // ì  ì‚¬ë§ ì‹œ ë¦¬ìŠ¤í°
 
-        OnHealthChanged?.Invoke(); // Ã¼·Â ¾÷µ¥ÀÌÆ®
+        OnHealthChanged?.Invoke(); // ì²´ë ¥ ì—…ë°ì´íŠ¸
 
         StageUI.Instance.DelayedHP.fillAmount = 1;
         EnemyStat.CurrentHealth = MaxHealth;
         CurrentHealth = EnemyStat.CurrentHealth;
 
-        Invoke(nameof(OnDespawn), 3f); // »ç¸Á ÀÌÈÄ 3ÃÊ µÚ¿¡ ºñÈ°¼ºÈ­
+        Invoke(nameof(OnDespawn), 3f); // ì‚¬ë§ ì´í›„ 3ì´ˆ ë’¤ì— ë¹„í™œì„±í™”
     }
 
 
-    public void Initialize(Action<GameObject> returnaction) // Ç®¸Å´ÏÀú ReturnObjectÇÔ¼ö °¡Á®¿Í¼­ ¾×¼Ç µî·Ï
+    public void Initialize(Action<GameObject> returnaction) // í’€ë§¤ë‹ˆì € ReturnObjectí•¨ìˆ˜ ê°€ì ¸ì™€ì„œ ì•¡ì…˜ ë“±ë¡
     {
         returnPool = returnaction;
     }
@@ -103,13 +96,13 @@ public class Enemy : MonoBehaviour, IPoolable
         
     }
 
-    public void OnDespawn() // ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+    public void OnDespawn() // ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
     {
         rb.gravityScale = 0;
         returnPool?.Invoke(gameObject);
     }
 
-    public void TakeDamage(float damage) // Àû ¹Ş´Â ÇÇÇØ
+    public void TakeDamage(float damage) // ì  ë°›ëŠ” í”¼í•´
     {
         CurrentHealth -= damage;
 
@@ -121,7 +114,7 @@ public class Enemy : MonoBehaviour, IPoolable
             return;
         }
 
-        OnHealthChanged?.Invoke(); // Ã¼·Â ¾÷µ¥ÀÌÆ®
+        OnHealthChanged?.Invoke(); // ì²´ë ¥ ì—…ë°ì´íŠ¸
     }
 
     

@@ -16,12 +16,12 @@ public class GameManager : MonoBehaviour
 
     private Enemy enemy;
 
-    private string savePath;
+    public string savePath;
 
     private void Awake()
     {
         Instance = this;
-        savePath = Path.Combine(Application.persistentDataPath,"save.json");
+        savePath = Path.Combine(Application.persistentDataPath, "save.json");
         Debug.Log(savePath);
     }
 
@@ -31,20 +31,18 @@ public class GameManager : MonoBehaviour
     }
     public void LoadGame()
     {
-        if (File.Exists(savePath))
-        {
-            string json = File.ReadAllText(savePath);
-            player.playerData = JsonUtility.FromJson<PlayerData>(json);
-        }
-        else
-        {
-            NewGame();
-        }
+        string json = File.ReadAllText(savePath);
+        player.playerData = JsonUtility.FromJson<PlayerData>(json);
+
+        Debug.Log(player.playerData);
     }
+
     public void SaveGame()
     {
         string json = JsonUtility.ToJson(player.playerData,true);
         File.WriteAllText(savePath, json);
+
+        Debug.Log("저장");
     }
     public Enemy Enemy
     {

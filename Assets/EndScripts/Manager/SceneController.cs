@@ -1,4 +1,5 @@
 using System.Collections;
+using System.IO;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,6 +11,8 @@ public class SceneController : MonoBehaviour
     [SerializeField] private Image fadeImage;
     [SerializeField] private float fadeDuration = 1f;
 
+    private bool isNewGame;
+
     private void Awake()
     {
         Instance = this;
@@ -17,28 +20,41 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        fadeImage.color = new Color(0, 0, 0, 1); // ½ÃÀÛÀº °ËÀº È­¸é
-        StartCoroutine(FadeAlpha(1f, 0f)); // ¼­¼­È÷ ¹à¾ÆÁü
+        fadeImage.color = new Color(0, 0, 0, 1); // ì‹œì‘ì€ ê²€ì€ í™”ë©´
+        StartCoroutine(FadeAlpha(1f, 0f)); // ì„œì„œíˆ ë°ì•„ì§
     }
 
     public void StartNewGame()
     {
-        GameManager.Instance.NewGame();
+        isNewGame = true;
         StartCoroutine(TransitionToScene("MainScene"));
     }
 
     public void LoadSavedGame()
     {
-        GameManager.Instance.LoadGame();
         StartCoroutine(TransitionToScene("MainScene"));
     }
 
     private IEnumerator TransitionToScene(string sceneName)
     {
-        Debug.Log("¾À ÀüÈ¯ ÁØºñ");
+        Debug.Log("ì”¬ ì „í™˜ ì¤€ë¹„");
         yield return StartCoroutine(FadeAlpha(0f, 1f));
-        Debug.Log("¾À ÀüÈ¯ ½Ãµµ: " + sceneName);
+        Debug.Log("ì”¬ ì „í™˜ ì‹œë„: " + sceneName);
+        SceneManager.sceneLoaded += OnSceneLoaded; // ì”¬ ë¡œë“œ í›„ ì‹¤í–‰í•  ë©”ì„œë“œ ë“±ë¡
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // ì´ë²¤íŠ¸ í•´ì œ (ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€)
+        Debug.Log("ì”¬ ì „í™˜ ì™„ë£Œ! NewGame() ì‹¤í–‰");
+
+        if (!File.Exists(GameManager.Instance.savePath) || isNewGame)
+        {
+            GameManager.Instance.NewGame();
+            isNewGame = false;
+        }
+        GameManager.Instance.LoadGame();
     }
 
     private IEnumerator FadeAlpha(float from, float to, System.Action onComplete = null)
