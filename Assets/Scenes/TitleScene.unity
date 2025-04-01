@@ -772,6 +772,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   goldManager: {fileID: 279854969}
   player: {fileID: 179302613}
+  savePath: 
 --- !u!4 &279854967
 Transform:
   m_ObjectHideFlags: 0

@@ -18,6 +18,8 @@ public class Enemy : MonoBehaviour, IPoolable
 
     private Rigidbody2D rb;
 
+    public GameObject MonsterDieParticle;
+
 
     private void Start()
     {
@@ -83,6 +85,8 @@ public class Enemy : MonoBehaviour, IPoolable
         CurrentHealth = EnemyStat.CurrentHealth;
 
         Invoke(nameof(OnDespawn), 3f); // 사망 이후 3초 뒤에 비활성화
+
+        
     }
 
 
@@ -111,12 +115,27 @@ public class Enemy : MonoBehaviour, IPoolable
         if (CurrentHealth <= 0)
         {
             Die();
+            SpawnParticleAtMonster(gameObject, MonsterDieParticle); // 적 사망 시 파티클 생성
             return;
         }
 
         OnHealthChanged?.Invoke(); // 체력 업데이트
     }
 
-    
+    public void SpawnParticleAtMonster(GameObject monster, GameObject particlePrefab) // 몬스터 위치에 파티클 생성
+    {
+        if (monster != null) // 몬스터가 null이 아닌지 확인
+        {
+            Vector3 spawnPosition = monster.transform.position; // 몬스터의 월드 좌표 가져오기
+            Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 몬스터 위치에 파티클 생성
+            Debug.Log("몬스터 위치에 파티클 생성!");
+        }
+        else
+        {
+            Debug.LogWarning("몬스터가 null입니다. 파티클을 생성할 수 없습니다.");
+        }
+    }
+
+
 
 }

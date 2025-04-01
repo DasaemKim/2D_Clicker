@@ -112,11 +112,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 120488f75a1446a4f95e692ccc6493ec, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  EnemyObject: {fileID: 0}
-  bounceForce: 5
-  deathGravityScale: 2
+  EnemyObject: {fileID: 7287340648512553841}
   MaxHealth: 0
   CurrentHealth: 0
+  MonsterDieParticle: {fileID: 6061365415782975082, guid: c2f25239e5222784e8fc7728ef1aae8d, type: 3}
 --- !u!50 &777149158351171069
 Rigidbody2D:
   serializedVersion: 4
