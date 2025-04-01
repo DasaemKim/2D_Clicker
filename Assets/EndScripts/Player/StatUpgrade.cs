@@ -92,15 +92,24 @@ public class StatUpgrade : MonoBehaviour
 
     // TODO
     // 마우스 키 다운시 0.2초 간격으로 강화 하는거 만들기
+    // 키 다운 시
     public void RunUpgrade(System.Action upgradeMethod)
     {
+        if (upgradeCoroutine != null)
+            return;
+
         upgradeAction = upgradeMethod;
         upgradeCoroutine = StartCoroutine(IsHolding());
     }
 
+    // 키 다운 종료 시
     public void StopUpgrade()
     {
-        StopCoroutine(upgradeCoroutine);
+        if (upgradeCoroutine != null)
+        {
+            StopCoroutine(upgradeCoroutine);
+            upgradeCoroutine = null;
+        }
     }
 
     public IEnumerator IsHolding()
@@ -111,7 +120,7 @@ public class StatUpgrade : MonoBehaviour
             yield return new WaitForSeconds(1);
         }
     }
-    
+
     public void StartCriDamageUpgrade()
     {
         RunUpgrade(CriDamageUpgrade);
