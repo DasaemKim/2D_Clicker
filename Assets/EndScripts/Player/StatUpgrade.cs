@@ -45,6 +45,7 @@ public class StatUpgrade : MonoBehaviour
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
         }
+        GameManager.Instance.SaveGame();
     }
 
     // 자동 공격 횟수 증가
@@ -66,6 +67,7 @@ public class StatUpgrade : MonoBehaviour
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
         }
+        GameManager.Instance.SaveGame();
     }
 
     // 코인 획득량 증가
@@ -85,6 +87,7 @@ public class StatUpgrade : MonoBehaviour
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
         }
+        GameManager.Instance.SaveGame();
     }
 
     // TODO

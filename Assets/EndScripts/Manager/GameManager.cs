@@ -35,6 +35,9 @@ public class GameManager : MonoBehaviour
         {
             string json = File.ReadAllText(savePath);
             player.playerData = JsonUtility.FromJson<PlayerData>(json);
+
+            Debug.Log(player.playerData);
+
         }
         else
         {
@@ -45,6 +48,8 @@ public class GameManager : MonoBehaviour
     {
         string json = JsonUtility.ToJson(player.playerData,true);
         File.WriteAllText(savePath, json);
+
+        Debug.Log("저장");
     }
     public Enemy Enemy
     {

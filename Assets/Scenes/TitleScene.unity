@@ -527,7 +527,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &179302612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -569,7 +569,9 @@ MonoBehaviour:
     damage: 0
     criticalRate: 0
     stage: 0
-    gold: 0
+    statPoint: 0
+    coinGet: 0
+    criDamage: 0
     autoNum: 0
     criticalDamageLevel: 0
     autoAttackLevel: 0
@@ -585,10 +587,9 @@ MonoBehaviour:
       UpgradeAttack: 
       UpgradeCritical: []
       IsObatained: 0
-    statPoint: 0
+    weaponPoint: 0
     selectedCharacter: 
     baseGoldBonus: 0
-  attackSystem: {fileID: 0}
 --- !u!4 &179302614
 Transform:
   m_ObjectHideFlags: 0
