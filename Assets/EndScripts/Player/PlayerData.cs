@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -19,7 +19,7 @@ public class PlayerData
         equippedWeaponLevel = 0;
         selectedCharacter = "";
         equippedWeaponName = "";
-        weaponList = new List<Weapon>();
+        weaponList = new List<WeaponData>();
     }
 
     public float damage;
@@ -38,9 +38,9 @@ public class PlayerData
     public string equippedWeaponName;
     public int equippedWeaponLevel;
 
-    public List<Weapon> weaponList;
+    public List<WeaponData> weaponList;
 
-    public Weapon equippedWeapon;
+    public WeaponData equippedWeapon;
 
     //기타
     public int statPoint;
