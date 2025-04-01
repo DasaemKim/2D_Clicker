@@ -15,14 +15,14 @@ public class GoldManager : MonoBehaviour
     }
     public void AddGold(int amount)
     {
-        GameManager.Instance.player.playerData.gold += amount;
+        GameManager.Instance.player.playerData.statPoint += amount;
         RefreshGoldUI();
     }
     public bool UseGold(int amount)
     {
-        if (GameManager.Instance.player.playerData.gold >= amount)
+        if (GameManager.Instance.player.playerData.statPoint >= amount)
         {
-            GameManager.Instance.player.playerData.gold -= amount;
+            GameManager.Instance.player.playerData.statPoint -= amount;
             RefreshGoldUI();
             return true;
         }
@@ -36,7 +36,7 @@ public class GoldManager : MonoBehaviour
     {
         if (goldText != null)
         {
-            goldText.text = $"Gold: {GameManager.Instance.player.playerData.gold}";
+            goldText.text = $"Gold: {GameManager.Instance.player.playerData.statPoint}";
         }
     }
     private void ShowErrorPopup()
