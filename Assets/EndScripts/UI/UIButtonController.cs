@@ -25,7 +25,6 @@ public class UIButtonController : MonoBehaviour
     [Header("UI 패널")]
     public GameObject errorPanel;   // 에러 패널
 
-    public Player player;
     public StatUpgrade statUpgrade;
     public AttackSystem attackSystem;
 
@@ -61,13 +60,13 @@ public class UIButtonController : MonoBehaviour
     public void RefreshUI()
     {
         // 플레이어가 보유 중인 포인트 변경
-        weaponText.text = player.characterData.weaponPoint.ToString("N0");
-        statText.text = player.characterData.statPoint.ToString("N0");
+        weaponText.text = GameManager.Instance.player.playerData.weaponPoint.ToString("N0");
+        statText.text = GameManager.Instance.player.playerData.statPoint.ToString("N0");
 
         // 플레이어가 업그레이드 시 텍스트 변경
-        criInfoText.text = player.characterData.criDamage.ToString("N2") + " %";
-        autoInfoText.text = player.characterData.autoNum.ToString("N1") + " 초/회";
-        coinInfoText.text = player.characterData.coinGet.ToString("N2") + " %";
+        criInfoText.text = GameManager.Instance.player.playerData.criDamage.ToString("N2") + " %";
+        autoInfoText.text = GameManager.Instance.player.playerData.autoNum.ToString("N1") + " 초/회";
+        coinInfoText.text = GameManager.Instance.player.playerData.coinGet.ToString("N2") + " %";
 
         // 플레이어가 업그레이드 시 포인트 값 변경
         criUpgradeText.text = statUpgrade.criUpgradePoint.ToString("N0");
@@ -75,9 +74,9 @@ public class UIButtonController : MonoBehaviour
         coinUpgradeText.text = statUpgrade.coinUpgradePoint.ToString("N0");
         
         // 비용에 따라 글자 색상 적용
-        criUpgradeText.color = SetColor(statUpgrade.criUpgradePoint, player.characterData.statPoint);
-        autoUpgradeText.color = SetColor(statUpgrade.autoUpgradePoint, player.characterData.statPoint);
-        coinUpgradeText.color = SetColor(statUpgrade.coinUpgradePoint, player.characterData.statPoint);
+        criUpgradeText.color = SetColor(statUpgrade.criUpgradePoint, GameManager.Instance.player.playerData.statPoint);
+        autoUpgradeText.color = SetColor(statUpgrade.autoUpgradePoint, GameManager.Instance.player.playerData.statPoint);
+        coinUpgradeText.color = SetColor(statUpgrade.coinUpgradePoint, GameManager.Instance.player.playerData.statPoint);
     }
 
     // ErrorPanel 패널 생성

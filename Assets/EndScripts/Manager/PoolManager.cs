@@ -1,4 +1,4 @@
-ï»¿using System;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
@@ -6,19 +6,19 @@ using UnityEngine;
 
 public interface IPoolable
 {
-    void Initialize(Action<GameObject> action); // ReturnObjectÇÔ¼ö·Î ÃÊ±âÈ­
+    void Initialize(Action<GameObject> action); // ReturnObjectï¿½Ô¼ï¿½ï¿½ï¿½ ï¿½Ê±ï¿½È­
     void OnSpawn();
     void OnDespawn();
 }
 
 public class PoolManager : MonoBehaviour
 {
-    public GameObject[] Prefabs;  // Enemy ÇÁ¸®ÆÕ
-    public GameObject[] Prefabs2; // Text ÇÁ¸®ÆÕ
-    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>(); // Ç® ¸®½ºÆ®
-    private Dictionary<int, Queue<GameObject>> pools2 = new Dictionary<int, Queue<GameObject>>(); // Ç® ¸®½ºÆ®
+    public GameObject[] Prefabs;  // Enemy ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    public GameObject[] Prefabs2; // Text ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>(); // Ç® ï¿½ï¿½ï¿½ï¿½Æ®
+    private Dictionary<int, Queue<GameObject>> pools2 = new Dictionary<int, Queue<GameObject>>(); // Ç® ï¿½ï¿½ï¿½ï¿½Æ®
 
-    [SerializeField] private GameObject TakeDamageText; // CanvasÀÇ ÀÚ½Ä ¿ÀºêÁ§Æ®
+    [SerializeField] private GameObject TakeDamageText; // Canvasï¿½ï¿½ ï¿½Ú½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®
 
     public static PoolManager Instance { get; private set; }
 
@@ -37,7 +37,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject GetObject(Vector3 position, Quaternion rotation, int prefabIndex) // Àû ¿ÀºêÁ§Æ® »ý¼º ¶Ç´Â È°¼ºÈ­
+    public GameObject GetObject(Vector3 position, Quaternion rotation, int prefabIndex) // ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ È°ï¿½ï¿½È­
     {
         if (!pools.ContainsKey(prefabIndex))
         {
@@ -48,7 +48,7 @@ public class PoolManager : MonoBehaviour
         GameObject obj;
         if (pools[prefabIndex].Count > 0)
         {
-            obj = pools[prefabIndex].Dequeue();  // Ç®¿¡¼­ ¿ÀºêÁ§Æ® »©¿À±â
+            obj = pools[prefabIndex].Dequeue();  // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
@@ -65,18 +65,18 @@ public class PoolManager : MonoBehaviour
         return obj;
     }
 
-    public GameObject GetObject2(Vector3 position, Quaternion rotation, int prefabIndex) // ÅØ½ºÆ® ¿ÀºêÁ§Æ® »ý¼º ¶Ç´Â È°¼ºÈ­
+    public GameObject GetObject2(Vector3 position, Quaternion rotation, int prefabIndex) // ï¿½Ø½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ ï¿½Ç´ï¿½ È°ï¿½ï¿½È­
     {
         if (!pools2.ContainsKey(prefabIndex))
         {
-            Debug.LogError($"ÇÁ¸®ÆÕ ÀÎµ¦½º {prefabIndex}¿¡ ´ëÇÑ Ç®ÀÌ Á¸ÀçÇÏÁö ¾Ê½À´Ï´Ù.");
+            Debug.LogError($"ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Îµï¿½ï¿½ï¿½ {prefabIndex}ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Ç®ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ê½ï¿½ï¿½Ï´ï¿½.");
             return null;
         }
 
         GameObject obj;
         if (pools2[prefabIndex].Count > 0)
         {
-            obj = pools2[prefabIndex].Dequeue();  // Ç®¿¡¼­ ¿ÀºêÁ§Æ® »©¿À±â
+            obj = pools2[prefabIndex].Dequeue();  // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         }
         else
         {
@@ -92,30 +92,30 @@ public class PoolManager : MonoBehaviour
         return obj;
     }
 
-    public void ReturnObject(int prefabIndex, GameObject obj, string obType)  // ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+    public void ReturnObject(int prefabIndex, GameObject obj, string obType)  // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½È°ï¿½ï¿½È­
     {
         if (obType == "Enemy")
         {
-            if (!pools.ContainsKey(prefabIndex))  // Ç®¿¡¼­ ¿ÀºêÁ§Æ® Á¦°Å
+            if (!pools.ContainsKey(prefabIndex))  // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             {
                 Destroy(obj);
                 return;
             }
 
             obj.SetActive(false);
-            pools[prefabIndex].Enqueue(obj); // ¿ÀºêÁ§Æ® Ç®·Î ¿Å±â±â
+            pools[prefabIndex].Enqueue(obj); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç®ï¿½ï¿½ ï¿½Å±ï¿½ï¿½
         }
 
         else if (obType == "Text")
         {
-            if (!pools2.ContainsKey(prefabIndex))  // Ç®¿¡¼­ ¿ÀºêÁ§Æ® Á¦°Å
+            if (!pools2.ContainsKey(prefabIndex))  // Ç®ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® ï¿½ï¿½ï¿½ï¿½
             {
                 Destroy(obj);
                 return;
             }
 
             obj.SetActive(false);
-            pools2[prefabIndex].Enqueue(obj); // ¿ÀºêÁ§Æ® Ç®·Î ¿Å±â±â
+            pools2[prefabIndex].Enqueue(obj); // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ® Ç®ï¿½ï¿½ ï¿½Å±ï¿½ï¿½
         }
     }
 }

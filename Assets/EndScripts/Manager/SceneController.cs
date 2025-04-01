@@ -17,28 +17,36 @@ public class SceneController : MonoBehaviour
 
     private void Start()
     {
-        fadeImage.color = new Color(0, 0, 0, 1); // ½ÃÀÛÀº °ËÀº È­¸é
-        StartCoroutine(FadeAlpha(1f, 0f)); // ¼­¼­È÷ ¹à¾ÆÁü
+        fadeImage.color = new Color(0, 0, 0, 1); // ì‹œì‘ì€ ê²€ì€ í™”ë©´
+        StartCoroutine(FadeAlpha(1f, 0f)); // ì„œì„œíˆ ë°ì•„ì§
     }
 
     public void StartNewGame()
     {
         GameManager.Instance.NewGame();
-        StartCoroutine(TransitionToScene("MainScene"));
+        StartCoroutine(TransitionToScene("KGS"));
     }
 
     public void LoadSavedGame()
     {
         GameManager.Instance.LoadGame();
-        StartCoroutine(TransitionToScene("MainScene"));
+        StartCoroutine(TransitionToScene("KGS"));
     }
 
     private IEnumerator TransitionToScene(string sceneName)
     {
-        Debug.Log("¾À ÀüÈ¯ ÁØºñ");
+        Debug.Log("ì”¬ ì „í™˜ ì¤€ë¹„");
         yield return StartCoroutine(FadeAlpha(0f, 1f));
-        Debug.Log("¾À ÀüÈ¯ ½Ãµµ: " + sceneName);
+        Debug.Log("ì”¬ ì „í™˜ ì‹œë„: " + sceneName);
+        SceneManager.sceneLoaded += OnSceneLoaded; // ì”¬ ë¡œë“œ í›„ ì‹¤í–‰í•  ë©”ì„œë“œ ë“±ë¡
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // ì´ë²¤íŠ¸ í•´ì œ (ì¤‘ë³µ ì‹¤í–‰ ë°©ì§€)
+        Debug.Log("ì”¬ ì „í™˜ ì™„ë£Œ! NewGame() ì‹¤í–‰");
+        GameManager.Instance.NewGame();
     }
 
     private IEnumerator FadeAlpha(float from, float to, System.Action onComplete = null)
