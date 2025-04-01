@@ -12,9 +12,11 @@ public class OptionUIManager : MonoBehaviour
 
     [Header("볼륨조절")]
     public Slider bgmSlider;
+    public Slider sfxSlider;
 
     [Header("배경음악")]
     public AudioSource bgmAudioSource;
+    public AudioSource sfxAudioSource;
     private void Start()
     {
         float saveVolume = PlayerPrefs.GetFloat("BGMVolume", 0.5f);
@@ -26,6 +28,16 @@ public class OptionUIManager : MonoBehaviour
         {
             bgmAudioSource.volume = value;
             PlayerPrefs.SetFloat("BGMVolume", value);
+        });
+
+        float saveSfxVolume = PlayerPrefs.GetFloat("SFXVolume", 0.5f);
+        sfxSlider.value = saveSfxVolume;
+        sfxAudioSource.volume = saveSfxVolume;
+
+        sfxSlider.onValueChanged.AddListener((value) =>
+        {
+            sfxAudioSource.volume = value;
+            PlayerPrefs.SetFloat("SFXVolume", value);
         });
 
     }
