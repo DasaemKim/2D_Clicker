@@ -8,13 +8,9 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public List<EnemyObject> EnemyObject;
-
     public Action<GameObject> returnPool;
 
     private PoolManager PoolManager;
-
-    public EnemyData EnemyData;
 
     public event Action UpdateStageNum;
     public event Action UpdateStepNum;
@@ -31,13 +27,6 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (var enemy in PoolManager.Instance.Prefabs)
-        {
-            EnemyObject.Add(enemy.GetComponent<EnemyObject>());
-        }
-
-        EnemyData = EnemyObject[EnemyIndex].EnemyData;
-
         PoolManager = PoolManager.Instance;
 
         Respawn();
@@ -61,8 +50,6 @@ public class EnemyManager : MonoBehaviour
                 UpdateStepNum?.Invoke();
             }
 
-            EnemyData = EnemyObject[EnemyIndex].EnemyData;
-
             PoolManager.GetObject(transform.position, Quaternion.identity, EnemyIndex);
         }
 
@@ -70,12 +57,4 @@ public class EnemyManager : MonoBehaviour
         UpdateEnemyName?.Invoke();
         UpdateStageNum?.Invoke();
     }
-
-
-
-    public void Onbt()
-    {
-        GameManager.Instance.Enemy.TakeDamage(100);
-    }
-    
 }

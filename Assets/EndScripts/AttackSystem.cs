@@ -24,7 +24,7 @@ public class AttackSystem : MonoBehaviour
         Debug.Log("공격 실행!");
 
         bool isCri = GameManager.Instance.player.CheckCriticalHit();
-        GameManager.Instance.Enemy.TakeDamage(GameManager.Instance.player.GetDamage(isCri));
+        GameManager.Instance.Enemy.TakeDamage(GameManager.Instance.player.GetDamage(isCri), isCri);
 
         // 치명타일 경우 메시지 출력
         if (isCri)

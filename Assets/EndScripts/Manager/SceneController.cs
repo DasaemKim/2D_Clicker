@@ -27,12 +27,12 @@ public class SceneController : MonoBehaviour
     public void StartNewGame()
     {
         isNewGame = true;
-        StartCoroutine(TransitionToScene("KHD"));
+        StartCoroutine(TransitionToScene("MainScene"));
     }
 
     public void LoadSavedGame()
     {
-        StartCoroutine(TransitionToScene("KHD"));
+        StartCoroutine(TransitionToScene("MainScene"));
     }
 
     private IEnumerator TransitionToScene(string sceneName)

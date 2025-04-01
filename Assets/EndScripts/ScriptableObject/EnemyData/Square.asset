@@ -15,3 +15,5 @@ MonoBehaviour:
   Name: "\uB124\uBAA8 \uAD34\uBB3C"
   Health: 300
   HealthGrowth: 40
+  FallStatPoint: 20
+  FallWeaponPoint: 20

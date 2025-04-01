@@ -42,7 +42,7 @@ public class PlayerData
 
     public List<Weapon> weaponList;
 
-    public Weapon equippedWeapon;
+    public Weapon equippedWeapon = null;
 
     //기타
     public int weaponPoint;

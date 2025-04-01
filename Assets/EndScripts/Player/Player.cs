@@ -53,8 +53,7 @@ public class Player : MonoBehaviour
     }
     public float FinalCriticalDamage()
     {
-        if (playerData.equippedWeapon == null) return playerData.damage;
-        return (playerData.damage * (1.5f + (playerData.criticalDamageLevel * 0.1f)));
+        return (FinalAttack() * (1.5f + (playerData.criticalDamageLevel * 0.1f)));
     }
     public int FinalGoldBonus()
     {

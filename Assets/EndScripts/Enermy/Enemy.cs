@@ -4,14 +4,11 @@ using UnityEngine.UI;
 
 public class Enemy : MonoBehaviour, IPoolable
 {
-    public EnemyObject EnemyObject;
-
-    public EnemyStat EnemyStat;
+    public EnemyData EnemyData;
 
     public Action<GameObject> returnPool; // 오브젝트 비활성화 액션
 
     public event Action OnHealthChanged; // 체력 업데이트
-    public event Action<float> OnDamageText; // 데미지 텍스트
 
     public float MaxHealth;
     public float CurrentHealth;
@@ -30,32 +27,21 @@ public class Enemy : MonoBehaviour, IPoolable
         rb.gravityScale = 0; // 중력값 0
 
         rb.velocity = Vector2.zero;  // 기존 움직임 정지
-
-        EnemyObject = EnemyManager.Instance.EnemyObject[EnemyManager.Instance.EnemyIndex];
-        EnemyObject.GetEnemyData();
-
-        EnemyStat = new EnemyStat(EnemyManager.Instance.EnemyData); // 새로운 적 생성 시 스탯 생성
-        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth; // 스테이지에 따라 체력 증가
-        CurrentHealth = EnemyStat.CurrentHealth; // 체력 초기화
+        
+        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health;
+        CurrentHealth = MaxHealth; // 체력 초기화
 
         OnHealthChanged?.Invoke();
-        OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     private void OnEnable()
     {
         GameManager.Instance.Enemy = this; // 적 초기화
 
-        if (EnemyStat != null) // 스테이지에 따라 체력 증가
-        {
-            MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyStat.MaxHealth + (EnemyManager.Instance.Step * EnemyManager.Instance.EnemyData.HealthGrowth) : EnemyStat.MaxHealth;
-            CurrentHealth = MaxHealth;
-        }
+        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health;
+        CurrentHealth = MaxHealth;
 
         OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // 체력 업데이트 이벤트 구독
-
-        if (StageUI.Instance.CreateText != null)
-            OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     private void OnDisable()
@@ -63,12 +49,16 @@ public class Enemy : MonoBehaviour, IPoolable
         if (StageUI.Instance != null)
         {
             OnHealthChanged -= StageUI.Instance.UpdateEnemyHP;
-            OnDamageText -= StageUI.Instance.CreateText.CreateTextDamage;
         }
     }
 
     void Die()
     {
+        GameManager.Instance.player.playerData.statPoint += EnemyData.FallStatPoint;
+        GameManager.Instance.player.playerData.weaponPoint += EnemyData.FallWeaponPoint;
+
+        UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
+
         float randomX = (UnityEngine.Random.value < 0.5f) ? -3f : 3f; // 좌우 튕기는 값
         float randomTorque = (UnityEngine.Random.value < 0.5f) ? -10f : 10f; // 회전 값
 
@@ -81,12 +71,9 @@ public class Enemy : MonoBehaviour, IPoolable
         OnHealthChanged?.Invoke(); // 체력 업데이트
 
         StageUI.Instance.DelayedHP.fillAmount = 1;
-        EnemyStat.CurrentHealth = MaxHealth;
-        CurrentHealth = EnemyStat.CurrentHealth;
+        CurrentHealth = MaxHealth;
 
         Invoke(nameof(OnDespawn), 3f); // 사망 이후 3초 뒤에 비활성화
-
-        
     }
 
 
@@ -106,11 +93,11 @@ public class Enemy : MonoBehaviour, IPoolable
         returnPool?.Invoke(gameObject);
     }
 
-    public void TakeDamage(float damage) // 적 받는 피해
+    public void TakeDamage(float damage, bool isCri) // 적 받는 피해
     {
         CurrentHealth -= damage;
 
-        OnDamageText?.Invoke(damage);
+        StageUI.Instance.CreateText.CreateTextDamage(damage, isCri);
 
         if (CurrentHealth <= 0)
         {
