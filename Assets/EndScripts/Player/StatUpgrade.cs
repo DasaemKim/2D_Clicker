@@ -7,7 +7,6 @@ using UnityEngine;
 public class StatUpgrade : MonoBehaviour
 {
     // CharacterData의 주소값 없음
-    CharacterData characterData;
 
     // 버튼의 스탯 포인트 기본값
     public float criUpgradePoint;
@@ -26,17 +25,17 @@ public class StatUpgrade : MonoBehaviour
     void Start()
     {
         // 힙 메모리 영역의 주소값을 가져옴
-        characterData = GetComponent<Player>().characterData;
+        
     }
 
     // 크리티컬 데미지 증가
     public void CriDamageUpgrade()
     {
         // 플레이어의 스탯 포인트가 강화 스탯 포인트 보다 클때
-        if (characterData.statPoint >= criUpgradePoint)
+        if (GameManager.Instance.player.playerData.statPoint >= criUpgradePoint)
         {
-            characterData.statPoint -= (int)criUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-            characterData.criDamage = 0.1f + characterData.criDamage * 1.5f; // 스탯 포인트 증가값
+            GameManager.Instance.player.playerData.statPoint -= (int)criUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
+            GameManager.Instance.player.playerData.criDamage = 0.1f + GameManager.Instance.player.playerData.criDamage * 1.5f; // 스탯 포인트 증가값
             criUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
@@ -52,11 +51,11 @@ public class StatUpgrade : MonoBehaviour
     public void AutoNumUpgrade()
     {
         // 플레이어의 스탯 포인트가 강화 스탯 포인트 보다 클때
-        if (characterData.statPoint >= autoUpgradePoint)
+        if (GameManager.Instance.player.playerData.statPoint >= autoUpgradePoint)
         {
-            characterData.statPoint -= (int)autoUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-           // characterData.autoNum = 1 - characterData.autoNum + 0.3f; // 스탯 포인트 증가값
-           characterData.autoNum *= 0.9f; // 0.9배씩 감소
+            GameManager.Instance.player.playerData.statPoint -= (int)autoUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
+           // GameManager.Instance.player.PlayerData.autoNum = 1 - GameManager.Instance.player.PlayerData.autoNum + 0.3f; // 스탯 포인트 증가값
+           GameManager.Instance.player.playerData.autoNum *= 0.9f; // 0.9배씩 감소
             autoUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
@@ -73,10 +72,10 @@ public class StatUpgrade : MonoBehaviour
     public void CoinGetUpgrade()
     {
         // 플레이어의 스탯 포인트가 강화 스탯 포인트 보다 클때
-        if (characterData.statPoint >= coinUpgradePoint)
+        if (GameManager.Instance.player.playerData.statPoint >= coinUpgradePoint)
         {
-            characterData.statPoint -= (int)coinUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-            characterData.coinGet = 0.1f + characterData.coinGet * 2f; // 스탯 포인트 증가값
+            GameManager.Instance.player.playerData.statPoint -= (int)coinUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
+            GameManager.Instance.player.playerData.coinGet = 0.1f + GameManager.Instance.player.playerData.coinGet * 2f; // 스탯 포인트 증가값
             coinUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화

@@ -7,7 +7,7 @@ using DG.Tweening;
 
 public class DamageTextUI : MonoBehaviour, IPoolable
 {
-    public Action<GameObject> returnPoolt; // ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­ ¾×¼Ç
+    public Action<GameObject> returnPoolt; // ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™” ì•¡ì…˜
 
     public TextMeshProUGUI DamageText;
 
@@ -22,46 +22,55 @@ public class DamageTextUI : MonoBehaviour, IPoolable
     {
         StageUI.Instance.DamageTextUI = this;
 
-        // ÅØ½ºÆ®°¡ È°¼ºÈ­µÉ ¶§¸¶´Ù Rigidbody2D¸¦ Ãß°¡
+        // í…ìŠ¤íŠ¸ê°€ í™œì„±í™”ë  ë•Œë§ˆë‹¤ Rigidbody2Dë¥¼ ì¶”ê°€
         textRb = gameObject.GetComponent<Rigidbody2D>();
         if (textRb == null)
         {
-            textRb = gameObject.AddComponent<Rigidbody2D>(); // Rigidbody2D Ãß°¡
-            textRb.gravityScale = 1; // Áß·Â °ª ¼³Á¤
+            textRb = gameObject.AddComponent<Rigidbody2D>(); // Rigidbody2D ì¶”ê°€
+            textRb.gravityScale = 1; // ì¤‘ë ¥ ê°’ ì„¤ì •
         }
     }
 
     public void DownTextDamage(float damage)
     {
-        DamageText.color = Color.yellow;
-        DamageText.fontSize = 25;
+        if (GameManager.Instance.player.CheckCriticalHit())
+        {
+            DamageText.color = Color.red;
+            DamageText.fontSize = 40;
+        }
+        else
+        {
+            DamageText.color = Color.yellow;
+            DamageText.fontSize = 30;
+        }
+
         DamageText.text = damage.ToString();
 
-        float randomX = (UnityEngine.Random.value < 0.5f) ? -200f : 200f; // ÁÂ¿ì ·£´ı ÀÌµ¿
+        float randomX = (UnityEngine.Random.value < 0.5f) ? -200f : 200f; // ì¢Œìš° ëœë¤ ì´ë™
 
         float jumpPower = 150f;
-        float duration = (jumpPower / 100) * 0.2f; // Á¡ÇÁ ½Ã°£
+        float duration = (jumpPower / 100) * 0.2f; // ì í”„ ì‹œê°„
 
-        float fallDuration = 1f; // ³«ÇÏ ½Ã°£
-        float endY = -1000f; // ³¡ À§Ä¡ (Y°ª)
+        float fallDuration = 1f; // ë‚™í•˜ ì‹œê°„
+        float endY = -1000f; // ë ìœ„ì¹˜ (Yê°’)
 
-        // ÅØ½ºÆ® Æ¨°Ü¿À¸£±â + ¶³¾îÁö±â ¿¬Ãâ
-        transform.DOLocalMoveY(jumpPower, duration)  // Á¡ÇÁ
-            .SetEase(Ease.OutQuad)  // Á¡ÇÁ½Ã ºÎµå·´°Ô ¿Ã¶ó°¡°Ô
+        // í…ìŠ¤íŠ¸ íŠ•ê²¨ì˜¤ë¥´ê¸° + ë–¨ì–´ì§€ê¸° ì—°ì¶œ
+        transform.DOLocalMoveY(jumpPower, duration)  // ì í”„
+            .SetEase(Ease.OutQuad)  // ì í”„ì‹œ ë¶€ë“œëŸ½ê²Œ ì˜¬ë¼ê°€ê²Œ
             .OnComplete(() =>
             {
-                // Á¡ÇÁ ÈÄ ¹Ù·Î ¶³¾îÁö±â
-                transform.DOLocalMoveY(-1000f, fallDuration)  // ¶³¾îÁö´Â °Å¸®¿Í ½Ã°£
-                    .SetEase(Ease.InQuad)  // ¶³¾îÁú ¶§ ÀÚ¿¬½º·´°Ô
-                    .OnKill(() => OnDespawn());  // ¶³¾îÁö¸é »ç¶óÁü
+                // ì í”„ í›„ ë°”ë¡œ ë–¨ì–´ì§€ê¸°
+                transform.DOLocalMoveY(-1000f, fallDuration)  // ë–¨ì–´ì§€ëŠ” ê±°ë¦¬ì™€ ì‹œê°„
+                    .SetEase(Ease.InQuad)  // ë–¨ì–´ì§ˆ ë•Œ ìì—°ìŠ¤ëŸ½ê²Œ
+                    .OnKill(() => OnDespawn());  // ë–¨ì–´ì§€ë©´ ì‚¬ë¼ì§
             });
 
-        // ÁÂ¿ì·Î Æ¨±â°Ô ÇÏ±â
-        textRb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse);  // ÁÂ¿ì·Î Æ¨±â±â
+        // ì¢Œìš°ë¡œ íŠ•ê¸°ê²Œ í•˜ê¸°
+        textRb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse);  // ì¢Œìš°ë¡œ íŠ•ê¸°ê¸°
     }
 
 
-    public void Initialize(Action<GameObject> returnaction) // Ç®¸Å´ÏÀú ReturnObjectÇÔ¼ö °¡Á®¿Í¼­ ¾×¼Ç µî·Ï
+    public void Initialize(Action<GameObject> returnaction) // í’€ë§¤ë‹ˆì € ReturnObjectí•¨ìˆ˜ ê°€ì ¸ì™€ì„œ ì•¡ì…˜ ë“±ë¡
     {
         returnPoolt = returnaction;
     }
@@ -71,7 +80,7 @@ public class DamageTextUI : MonoBehaviour, IPoolable
         
     }
 
-    public void OnDespawn() // ¿ÀºêÁ§Æ® ºñÈ°¼ºÈ­
+    public void OnDespawn() // ì˜¤ë¸Œì íŠ¸ ë¹„í™œì„±í™”
     {
         textRb.gravityScale = 0;
         DamageText.fontSize = 25;

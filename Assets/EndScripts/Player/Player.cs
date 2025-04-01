@@ -11,16 +11,14 @@ public class Player : MonoBehaviour
 
     public PlayerData playerData; 
 
-    public AttackSystem attackSystem;
-
     public void Start()
     {
-
+        
     }
 
     public bool CheckCriticalHit()
     {
-        return Random.Range(0f, 1f) < playerData.FinalCriticaRate(); // 랜덤값이 criticalChance보다 작으면 치명타 발생
+        return Random.Range(0f, 1f) < FinalCriticaRate(); // 랜덤값이 criticalChance보다 작으면 치명타 발생
 
     }
 
@@ -28,11 +26,11 @@ public class Player : MonoBehaviour
     {
         if(isCri)
         {
-            return playerData.FinalCriticalDamage();  //  치명타 데미지 계산
+            return FinalCriticalDamage();  //  치명타 데미지 계산
         }
         else
         {
-            return playerData.FinalAttack(); // 일반 데미지 계산
+            return FinalAttack(); // 일반 데미지 계산
         }
     }
 
@@ -41,5 +39,25 @@ public class Player : MonoBehaviour
         playerData = new PlayerData(characterData);
 
         GameManager.Instance.SaveGame();
+    }
+
+    public float FinalAttack()
+    {
+        if (playerData.equippedWeapon == null) return playerData.damage;
+        return playerData.damage + playerData.equippedWeapon.Attack;
+    }
+    public float FinalCriticaRate()
+    {
+        if (playerData.equippedWeapon == null) return playerData.criticalRate;
+        return playerData.criticalRate + playerData.equippedWeapon.Critical;
+    }
+    public float FinalCriticalDamage()
+    {
+        if (playerData.equippedWeapon == null) return playerData.damage;
+        return (playerData.damage * (1.5f + (playerData.criticalDamageLevel * 0.1f)));
+    }
+    public int FinalGoldBonus()
+    {
+        return playerData.baseGoldBonus + (100 * playerData.goldBonusLevel);
     }
 }
