@@ -51,20 +51,9 @@ public class Enemy : MonoBehaviour, IPoolable
         }
 
         OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // 체력 업데이트 이벤트 구독
-        OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
 
-        if (gameObject == null)
-        {
-            Debug.LogError("[Enemy] gameObject가 null입니다.");
-        }
-
-        if (transform == null)
-        {
-            Debug.LogError("[Enemy] transform이 null입니다.");
-        }
-
-        Debug.Log("[Enemy] OnEnable 실행됨");
-
+        if (StageUI.Instance.CreateText != null)
+            OnDamageText += StageUI.Instance.CreateText.CreateTextDamage;
     }
 
     private void OnDisable()
