@@ -24,13 +24,13 @@ public class SceneController : MonoBehaviour
     public void StartNewGame()
     {
         GameManager.Instance.NewGame();
-        StartCoroutine(TransitionToScene("KGS"));
+        StartCoroutine(TransitionToScene("MainScene"));
     }
 
     public void LoadSavedGame()
     {
         GameManager.Instance.LoadGame();
-        StartCoroutine(TransitionToScene("KGS"));
+        StartCoroutine(TransitionToScene("MainScene"));
     }
 
     private IEnumerator TransitionToScene(string sceneName)
