@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec5e38a7e8f11cf48b86e840bbd17cf1, type: 3}
   m_Name: Weapon 1
   m_EditorClassIdentifier: 
-  WeaponName: 
-  Attack: 0
-  Critical: 0
+  WeaponName: "\uB098\uBB34\uAC80"
+  Attack: 5
+  Critical: 15
   UpgradeLevel: 0
   UpgradeAttack: 
   UpgradeCritical: []

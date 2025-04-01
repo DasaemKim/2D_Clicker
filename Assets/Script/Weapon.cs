@@ -4,7 +4,7 @@ using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
 
-public class WeaponManager : MonoBehaviour
+public class Weapon : MonoBehaviour
 {
     public List<WeaponData> weaponLists;
     public WeaponData equippedWeapon;
@@ -41,24 +41,13 @@ public class WeaponManager : MonoBehaviour
             return;
         }
 
-        if (equippedWeapon.UpgradeLevel >= equippedWeapon.UpgradeAttack.Count)
-        {
-            Debug.Log("�ִ� ������ �����ϼż� �ø��� �� �����ϴ�.");
-            return;
-        }
-
         equippedWeapon.UpgradeLevel++; // ���� ����
-
-        if (equippedWeapon.UpgradeLevel >= equippedWeapon.UpgradeAttack.Count)
-        {
-            equippedWeapon.UpgradeLevel = equippedWeapon.UpgradeAttack.Count - 1;
-        }
 
         equippedWeapon.UpgradeLevel = UpgradeCost;
 
         // �ö� �ɷ�ġ �ݿ�
-        equippedWeapon.Attack = equippedWeapon.UpgradeAttack[equippedWeapon.UpgradeLevel];
-        equippedWeapon.Critical = equippedWeapon.UpgradeCritical[equippedWeapon.UpgradeLevel];
+        equippedWeapon.Attack += equippedWeapon.UpgradeAttack;
+        equippedWeapon.Critical_Rate += equippedWeapon.UpgradeCritical;
 
         UpdateWeaponUI();
     }
@@ -76,7 +65,7 @@ public class WeaponManager : MonoBehaviour
         {
             WeaponName.text = $"{equippedWeapon.WeaponName}";
             Attack.text = $"���ݷ� : {equippedWeapon.Attack}";
-            Critical.text = $"ġ��Ÿ Ȯ�� : {(equippedWeapon.Critical * 100).ToString("F1")}%";
+            Critical.text = $"ġ��Ÿ Ȯ�� : {(equippedWeapon.Critical_Rate * 100).ToString("F1")}%";
             WeaponLevel.text = $"LV. {equippedWeapon.UpgradeLevel + 1}";
             Upgrade_Cost.text = $"{UpgradeCost}";
         }
@@ -92,7 +81,7 @@ public class WeaponManager : MonoBehaviour
 
     public void ToggleWeaponBag() // ����UI Ȱ��ȭ
     {
-        WeaponBag.SetActive(!WeaponBag.activeSelf);
+        WeaponBag.SetActive(true);
     }
 
     public void CloseWeaponBag() // �ڷΰ��� ��ư

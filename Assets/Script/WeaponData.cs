@@ -7,10 +7,11 @@ public class WeaponData : ScriptableObject
 {
     public string WeaponName; // ���� ���� ����
     public int Attack; // ���� �̸�
-    public float Critical; // ���� ���ݷ�
+    public float Critical_Rate; // ���� ���ݷ�
     public int UpgradeLevel; //������ ���׷��̵� ����
-    public List<int> UpgradeAttack; // ���� ���׷��̵� ���ݷ�
-    public List<float> UpgradeCritical; // ���� ���׷��̵� ũ��Ƽ��
+    public int UpgradeAttack; // ���� ���׷��̵� ���ݷ�
+    public float UpgradeCritical; // ���� ���׷��̵� ũ��Ƽ��
+    public Sprite WeaponObject;
 
-    public bool IsObatained = false; // ��ȹ���� ����
+    public bool IsObatained; // ��ȹ���� ����
 }

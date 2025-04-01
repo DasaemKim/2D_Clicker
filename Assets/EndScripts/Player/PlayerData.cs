@@ -53,7 +53,7 @@ public class PlayerData
     }
     public float FinalCriticaRate()
     {
-        return criticalRate + equippedWeapon.Critical;
+        return criticalRate + equippedWeapon.Critical_Rate;
     }
     public float FinalCriticalDamage()
     {

@@ -967,7 +967,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 181640160}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1037,7 +1037,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.7176471, g: 0.94117653, b: 0.9607844, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -1464,7 +1464,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC15\uD654\n"
+  m_text: "\uCC29\uC6A9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
   m_sharedMaterial: {fileID: 8825301884654712890, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
@@ -1776,8 +1776,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 181640161}
   - {fileID: 500835888}
+  - {fileID: 181640161}
   m_Father: {fileID: 64865655}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -2188,10 +2188,9 @@ MonoBehaviour:
   NowStage: {fileID: 407685347}
   MaxStage: {fileID: 422086630}
   StepEnemyName: {fileID: 1694544649}
-  Step: {fileID: 469068636}
   EnemyName: {fileID: 1217100362}
-  EnemyStep: {fileID: 2049770034}
   EnemyHP: {fileID: 1579300683}
+  DelayedHP: {fileID: 0}
 --- !u!114 &313009072
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2225,6 +2224,8 @@ MonoBehaviour:
   - {fileID: 2059999867289050475, guid: 11a6a6af22ad99b468cdc42356d71aae, type: 3}
   - {fileID: 1659531517205214308, guid: 5e845878f4aa2d14eb3cef7eae59cd78, type: 3}
   - {fileID: 5919694440093521436, guid: fe9588b701fba57458f7cc9c10d798ea, type: 3}
+  Prefabs2: []
+  TakeDamageText: {fileID: 0}
 --- !u!4 &313009074
 Transform:
   m_ObjectHideFlags: 0
@@ -2431,7 +2432,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCC29\uC6A9"
+  m_text: "\uAC15\uD654\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
   m_sharedMaterial: {fileID: 8825301884654712890, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
@@ -3159,7 +3160,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 314.25, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &469068635
@@ -3369,7 +3370,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7254902, g: 0.93725497, b: 0.9607844, a: 1}
+  m_Color: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -3540,8 +3541,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+      - m_Target: {fileID: 1377287221}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
         m_MethodName: CloseWeaponBag
         m_Mode: 1
         m_Arguments:
@@ -3864,7 +3865,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 378.43002, y: 0}
   m_SizeDelta: {x: 0, y: 54.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651829094
@@ -4074,7 +4075,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.7254902, g: 0.93725497, b: 0.9607844, a: 1}
+  m_Color: {r: 0.9607844, g: 0.9607844, b: 0.9607844, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -4337,8 +4338,8 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 1920043452}
   - {fileID: 673332280}
+  - {fileID: 1920043452}
   m_Father: {fileID: 1578850878}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -5002,7 +5003,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uCC29\uC6A9"
+  m_text: "\uAC15\uD654"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
   m_sharedMaterial: {fileID: 8825301884654712890, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
@@ -6988,7 +6989,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 112.21, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1217100361
@@ -7350,6 +7351,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1377287220}
+  - component: {fileID: 1377287221}
   m_Layer: 0
   m_Name: WeaponBag
   m_TagString: Untagged
@@ -7372,6 +7374,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1377287221
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1377287218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d00bc5f1b32b4642bce27af03b12393, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponLists: []
+  equippedWeapon: {fileID: 11400000, guid: f796c7326e3066e44b51ed2bbb8e0ef0, type: 2}
+  UpgradeCost: 10
+  WeaponChangeButton: {fileID: 1558663544}
+  BackButton: {fileID: 621549427}
+  WeaponBag: {fileID: 1101579909}
+  WeaponName: {fileID: 705420606}
+  Attack: {fileID: 1016155607}
+  Critical: {fileID: 1568201814}
+  Upgrade_Cost: {fileID: 337770196}
+  WeaponLevel: {fileID: 1603575262}
+  UpgradeButton: {fileID: 500835889}
 --- !u!1 &1380902767
 GameObject:
   m_ObjectHideFlags: 0
@@ -7970,37 +7996,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1421051166}
   m_CullTransparentMesh: 1
---- !u!1 &1527578833
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1527578834}
-  m_Layer: 0
-  m_Name: WeaponData
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1527578834
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1527578833}
-  serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1533491804
 GameObject:
   m_ObjectHideFlags: 0
@@ -8264,8 +8259,8 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: Weapon, Assembly-CSharp
+      - m_Target: {fileID: 1377287221}
+        m_TargetAssemblyTypeName: WeaponManager, Assembly-CSharp
         m_MethodName: ToggleWeaponBag
         m_Mode: 1
         m_Arguments:
@@ -9454,7 +9449,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 269.31, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1694544648
@@ -10705,7 +10700,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0.6901961, g: 0.9058824, b: 0.92549026, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -11189,7 +11184,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uAC15\uD654\n"
+  m_text: "\uCC29\uC6A9"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
   m_sharedMaterial: {fileID: 8825301884654712890, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
@@ -12331,7 +12326,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 251.26001, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2049770033
@@ -12788,4 +12783,3 @@ SceneRoots:
   - {fileID: 313009074}
   - {fileID: 1377287220}
   - {fileID: 2126241548}
-  - {fileID: 1527578834}
