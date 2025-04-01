@@ -12,6 +12,11 @@ public class UIButtonController : MonoBehaviour
     public Button autoNumBtn;
     public Button coinGetBtn;
 
+    [Header("강화 수치")]
+    public TextMeshProUGUI criUpText;
+    public TextMeshProUGUI autoUpText;
+    public TextMeshProUGUI coinUpText;
+    
     [Header("UI 재화")]
     public TextMeshProUGUI weaponText;  // 현재 보유 무기 포인트
     public TextMeshProUGUI statText;    // 현재 보유 스탯 포인트
@@ -77,7 +82,10 @@ public class UIButtonController : MonoBehaviour
         criUpgradeText.color = SetColor(statUpgrade.criUpgradePoint, GameManager.Instance.player.playerData.statPoint);
         autoUpgradeText.color = SetColor(statUpgrade.autoUpgradePoint, GameManager.Instance.player.playerData.statPoint);
         coinUpgradeText.color = SetColor(statUpgrade.coinUpgradePoint, GameManager.Instance.player.playerData.statPoint);
+        
+        // 버튼 누를때 마다 1씩 상승
     }
+    
 
     // ErrorPanel 패널 생성
     public void ErrorPanel()
