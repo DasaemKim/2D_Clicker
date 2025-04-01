@@ -35,30 +35,7 @@ public class UIButtonController : MonoBehaviour
 
     public void Start()
     {
-        // 버튼 활성화
-        criBtn.onClick.AddListener(OnClickCriBtn);
-        autoNumBtn.onClick.AddListener(OnClickAutoNumBtn);
-        coinGetBtn.onClick.AddListener(OnClickCoinGetBtn);
-
         RefreshUI();
-    }
-
-    // CriBtn을 눌렀을 때
-    public void OnClickCriBtn()
-    {
-        UIBtnManager.Instance.statUpgrade.CriDamageUpgrade();
-    }
-
-    // AutoNumBtn을 눌렀을 때
-    public void OnClickAutoNumBtn()
-    {
-        UIBtnManager.Instance.statUpgrade.AutoNumUpgrade();
-    }
-
-    // CoinGetBtn을 눌렀을 때
-    public void OnClickCoinGetBtn()
-    {
-        UIBtnManager.Instance.statUpgrade.CoinGetUpgrade();
     }
 
     // 플레이어의 행동에 따른 UI Text 변경
@@ -83,7 +60,10 @@ public class UIButtonController : MonoBehaviour
         autoUpgradeText.color = SetColor(statUpgrade.autoUpgradePoint, GameManager.Instance.player.playerData.statPoint);
         coinUpgradeText.color = SetColor(statUpgrade.coinUpgradePoint, GameManager.Instance.player.playerData.statPoint);
         
-        // 버튼 누를때 마다 1씩 상승
+        // 버튼 누를 시 강화 수치 1 증가
+        criUpText.text = $"LV.{statUpgrade.criUpLevel} 치명타";
+        autoUpText.text = $"LV.{statUpgrade.autoUpLevel} 자동 공격";
+        coinUpText.text = $"LV.{statUpgrade.coinGetUpLevel} 골드 획득";
     }
     
 
