@@ -2088,7 +2088,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 333.49002, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 54.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651829094
@@ -3016,9 +3016,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 0}
-  player: {fileID: 0}
-  HitRed: {fileID: 0}
-  HitYello: {fileID: 0}
+  HitRed: {fileID: 6248060604191086225, guid: c8766e816e789264fb6e56f8f449f08f, type: 3}
+  HitYello: {fileID: 7940792184390634005, guid: e1e76f675816dea41b8741674a0639ba, type: 3}
 --- !u!114 &1001657215
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3043,7 +3042,6 @@ MonoBehaviour:
   autoUpgradeText: {fileID: 352112617}
   coinUpgradeText: {fileID: 68526033}
   errorPanel: {fileID: 1756497067}
-  player: {fileID: 2082643985}
   statUpgrade: {fileID: 2082643984}
   attackSystem: {fileID: 0}
 --- !u!114 &1001657216
@@ -5477,7 +5475,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 269.31, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1694544648
@@ -6370,8 +6368,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 380, y: 0}
-  m_SizeDelta: {x: 760, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1943590944
 MonoBehaviour:
@@ -7026,7 +7024,7 @@ MonoBehaviour:
   criUpgradePoint: 10
   autoUpgradePoint: 10
   coinUpgradePoint: 10
-  attackSystem: {fileID: 0}
+  attackSystem: {fileID: 1001657214}
 --- !u!114 &2082643985
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7052,7 +7050,9 @@ MonoBehaviour:
     damage: 0
     criticalRate: 0
     stage: 0
-    gold: 0
+    statPoint: 0
+    coinGet: 0
+    criDamage: 0
     autoNum: 0
     criticalDamageLevel: 0
     autoAttackLevel: 0
@@ -7068,10 +7068,9 @@ MonoBehaviour:
       UpgradeAttack: 
       UpgradeCritical: []
       IsObatained: 0
-    statPoint: 0
+    weaponPoint: 0
     selectedCharacter: 
     baseGoldBonus: 0
-  attackSystem: {fileID: 0}
 --- !u!4 &2082643986
 Transform:
   m_ObjectHideFlags: 0

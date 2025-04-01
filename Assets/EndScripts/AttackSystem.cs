@@ -9,24 +9,19 @@ public class AttackSystem : MonoBehaviour
 {
 
     public GameManager gameManager;
-    public Player player;
 
     public GameObject HitRed;
     public GameObject HitYello;
 
     public Coroutine autoAttackCoroutine; // 자동 공격 코루틴
 
-    public void Start()
-    {
-        player = GameManager.Instance.player;
-    }
 
     public void Attack()
     {
         Debug.Log("공격 실행!");
 
-        bool isCri = player.CheckCriticalHit();
-        GameManager.Instance.Enemy.TakeDamage(player.GetDamage(isCri));
+        bool isCri = GameManager.Instance.player.CheckCriticalHit();
+        GameManager.Instance.Enemy.TakeDamage(GameManager.Instance.player.GetDamage(isCri));
 
         // 치명타일 경우 메시지 출력
         if (isCri)
@@ -59,7 +54,7 @@ public class AttackSystem : MonoBehaviour
         while (true)
         {
             Attack();
-            yield return new WaitForSeconds(GameManager.Instance.player.characterData.autoNum); // 0.3초마다 공격 실행
+            yield return new WaitForSeconds(GameManager.Instance.player.playerData.autoNum); // 0.3초마다 공격 실행
             Debug.Log("자동 공격 시작!");
         }
     }

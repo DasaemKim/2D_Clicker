@@ -24,13 +24,13 @@ public class SceneController : MonoBehaviour
     public void StartNewGame()
     {
         GameManager.Instance.NewGame();
-        StartCoroutine(TransitionToScene("Test"));
+        StartCoroutine(TransitionToScene("KGS"));
     }
 
     public void LoadSavedGame()
     {
         GameManager.Instance.LoadGame();
-        StartCoroutine(TransitionToScene("Test"));
+        StartCoroutine(TransitionToScene("KGS"));
     }
 
     private IEnumerator TransitionToScene(string sceneName)
@@ -38,7 +38,15 @@ public class SceneController : MonoBehaviour
         Debug.Log("씬 전환 준비");
         yield return StartCoroutine(FadeAlpha(0f, 1f));
         Debug.Log("씬 전환 시도: " + sceneName);
+        SceneManager.sceneLoaded += OnSceneLoaded; // 씬 로드 후 실행할 메서드 등록
         SceneManager.LoadScene(sceneName);
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded; // 이벤트 해제 (중복 실행 방지)
+        Debug.Log("씬 전환 완료! NewGame() 실행");
+        GameManager.Instance.NewGame();
     }
 
     private IEnumerator FadeAlpha(float from, float to, System.Action onComplete = null)

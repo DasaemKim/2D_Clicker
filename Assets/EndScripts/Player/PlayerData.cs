@@ -11,7 +11,8 @@ public class PlayerData
         damage = data.damage;
         autoNum = data.autoNum;
         stage = 1;
-        gold = 0;
+        statPoint = data.statPoint;
+        weaponPoint = data.weaponPoint;
         criticalDamageLevel = 0;
         autoAttackLevel = 0; 
         goldBonusLevel = 0;
@@ -24,8 +25,10 @@ public class PlayerData
     public float damage;
     public float criticalRate;
     public int stage;
-    public int gold;
-    
+    public int statPoint;
+    public float coinGet;
+    public float criDamage;
+
     public float autoNum;
 
     //스탯 업그레이드 레벨
@@ -42,25 +45,10 @@ public class PlayerData
     public Weapon equippedWeapon;
 
     //기타
-    public int statPoint;
+    public int weaponPoint;
     public string selectedCharacter;
 
     public int baseGoldBonus;
 
-    public float FinalAttack()
-    {
-        return damage + equippedWeapon.Attack;
-    }
-    public float FinalCriticaRate()
-    {
-        return criticalRate + equippedWeapon.Critical;
-    }
-    public float FinalCriticalDamage()
-    {
-        return (damage * (1.5f + (criticalDamageLevel * 0.1f)));
-    }
-    public int FinalGoldBonus() 
-    {
-        return baseGoldBonus + (100 * goldBonusLevel);
-    }
+    
 }
