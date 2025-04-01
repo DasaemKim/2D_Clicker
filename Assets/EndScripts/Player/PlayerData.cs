@@ -6,6 +6,10 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
+    public WeaponData Weapondata;
+
+    public List<Weapon> weapon_Wears;
+
     public PlayerData(CharacterData data)
     {
         damage = data.damage;
@@ -19,7 +23,7 @@ public class PlayerData
         equippedWeaponLevel = 0;
         selectedCharacter = "";
         equippedWeaponName = "";
-        weaponList = new List<Weapon>();
+        //weaponList = new List<Weapon>();
     }
 
     public float damage;
@@ -50,5 +54,10 @@ public class PlayerData
 
     public int baseGoldBonus;
 
-    
+    public void AddWeapon(WeaponData weaponData)
+    {
+        Weapon weapon_Wear = new Weapon(weaponData);
+
+        weapon_Wears.Add(weapon_Wear);
+    }
 }

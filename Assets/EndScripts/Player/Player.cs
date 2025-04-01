@@ -44,12 +44,14 @@ public class Player : MonoBehaviour
     public float FinalAttack()
     {
         if (playerData.equippedWeapon == null) return playerData.damage;
-        return playerData.damage + playerData.equippedWeapon.Attack;
+        //return playerData.damage + playerData.equippedWeapon.Attack;
+        return 0;
     }
     public float FinalCriticaRate()
     {
         if (playerData.equippedWeapon == null) return playerData.criticalRate;
-        return playerData.criticalRate + playerData.equippedWeapon.Critical;
+        //return playerData.criticalRate + playerData.equippedWeapon.Critical;
+        return 0;
     }
     public float FinalCriticalDamage()
     {

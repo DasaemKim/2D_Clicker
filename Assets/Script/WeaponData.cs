@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon", menuName = "New Weapon")]
 public class WeaponData : ScriptableObject
 {
+    [Header("Stats")]
     public string WeaponName; // ���� ���� ����
     public int Attack; // ���� �̸�
     public float Critical_Rate; // ���� ���ݷ�

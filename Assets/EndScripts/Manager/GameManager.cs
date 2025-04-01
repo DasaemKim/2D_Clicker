@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
 
     public Player player;
 
+    public Weapon weapon;
 
     private Enemy enemy;
 
