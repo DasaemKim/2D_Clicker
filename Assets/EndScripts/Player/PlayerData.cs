@@ -25,6 +25,8 @@ public class PlayerData
         selectedCharacter = "";
         equippedWeaponName = "";
         weaponList = new List<Weapon>();
+
+        isAutoAttack = false;
     }
 
     //스탯관련
@@ -67,5 +69,7 @@ public class PlayerData
     public string selectedCharacter;
     public int baseGoldBonus;
 
-    
+    // 자동 공격 상태 
+    public bool isAutoAttack;
+
 }
