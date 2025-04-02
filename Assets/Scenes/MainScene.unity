@@ -1597,7 +1597,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 497617505639b834c8a8a8faf72c2a2e, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -2708,7 +2708,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 333.49002, y: 0}
+  m_AnchoredPosition: {x: 290.9, y: 0}
   m_SizeDelta: {x: 0, y: 54.45}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &651829094
@@ -4757,7 +4757,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uBB34\uAE30 \uBCC0\uACBD / \uAC15\uD654"
+  m_text: "\uC7A5\uB09C\uAC10 \uBCC0\uACBD / \uAC15\uD654"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
   m_sharedMaterial: {fileID: 8825301884654712890, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
@@ -5579,7 +5579,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB098\uBB34 \uAC80"
+  m_text: "\uD578\uB4E4\uB9C1"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
   m_sharedMaterial: {fileID: 8825301884654712890, guid: d260878dd44396d4b860b2faa059fca3, type: 2}
@@ -7366,7 +7366,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 269.31, y: 0}
+  m_AnchoredPosition: {x: 226.72, y: 0}
   m_SizeDelta: {x: 0, y: 65.5}
   m_Pivot: {x: 1, y: 0.5}
 --- !u!114 &1694544648
@@ -7403,7 +7403,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uB3D9\uADF8\uB77C\uBBF8 \uAD34\uBB3C"
+  m_text: "\uACE0\uC591\uC774 \uAD34\uBB3C"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: ac884bcb3a9471446ab8e559ede762cc, type: 2}
   m_sharedMaterial: {fileID: 8296721841716133596, guid: ac884bcb3a9471446ab8e559ede762cc, type: 2}
@@ -7912,7 +7912,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: f333cf221d723174b9cedf4d38302d3d, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -8406,7 +8406,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 0}
+  m_Sprite: {fileID: 21300000, guid: 10ba227b636322341a2dc6785803f963, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -9235,9 +9235,6 @@ MonoBehaviour:
     criUpgradeCost: 0
     autoUpgradeCost: 0
     coinUpgradeCost: 0
-    criticalDamageLevel: 0
-    autoAttackLevel: 0
-    goldBonusLevel: 0
     criUpLevel: 0
     autoUpLevel: 0
     coinGetUpLevel: 0
