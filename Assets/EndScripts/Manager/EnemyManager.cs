@@ -8,21 +8,16 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public List<EnemyObject> EnemyObject;
-
     public Action<GameObject> returnPool;
 
     private PoolManager PoolManager;
 
-    public EnemyData EnemyData;
-
     public event Action UpdateStageNum;
-    public event Action UpdateStepNum;
     public event Action UpdateEnemyName;
 
     public int Step;
     public int EnemyIndex;
-    public int SpawnCount = 0;
+    public int SpawnCount;
 
     private void Awake()
     {
@@ -31,14 +26,14 @@ public class EnemyManager : MonoBehaviour
 
     private void Start()
     {
-        foreach (var enemy in PoolManager.Instance.Prefabs)
-        {
-            EnemyObject.Add(enemy.GetComponent<EnemyObject>());
-        }
-
-        EnemyData = EnemyObject[EnemyIndex].EnemyData;
-
         PoolManager = PoolManager.Instance;
+
+        if (GameManager.Instance.player.playerData != null)
+        {
+            SpawnCount = GameManager.Instance.player.playerData.stage;
+            EnemyIndex = GameManager.Instance.player.playerData.enemyIndex;
+            Step = GameManager.Instance.player.playerData.step;
+        }
 
         Respawn();
     }
@@ -58,24 +53,21 @@ public class EnemyManager : MonoBehaviour
             {
                 EnemyIndex = 0;
                 Step++;
-                UpdateStepNum?.Invoke();
             }
-
-            EnemyData = EnemyObject[EnemyIndex].EnemyData;
 
             PoolManager.GetObject(transform.position, Quaternion.identity, EnemyIndex);
         }
 
         SpawnCount++;
+
+        GameManager.Instance.player.playerData.stage = SpawnCount - 1;
+        GameManager.Instance.player.playerData.step = Step;
+        GameManager.Instance.player.playerData.enemyIndex = EnemyIndex;
+
         UpdateEnemyName?.Invoke();
         UpdateStageNum?.Invoke();
+
+        
+        GameManager.Instance.SaveGame();
     }
-
-
-
-    public void Onbt()
-    {
-        GameManager.Instance.Enemy.TakeDamage(100);
-    }
-    
 }

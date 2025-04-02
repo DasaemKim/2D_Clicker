@@ -9,4 +9,6 @@ public class EnemyData : ScriptableObject
     public string Name;
     public float Health;
     public float HealthGrowth;
+    public int FallStatPoint;
+    public int FallWeaponPoint;
 }

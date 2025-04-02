@@ -13,28 +13,29 @@ public class AttackSystem : MonoBehaviour
     public GameObject HitRed;
     public GameObject HitYello;
 
-    public Coroutine autoAttackCoroutine; // 자동 공격 코루틴
+    public AudioSource sfxSource;
+    public AudioClip hitSfx;
+
+    public Coroutine autoAttackCoroutine;
 
 
-    public void Attack()
+    public void Attack() 
     {
-        Debug.Log("공격 실행!");
-
         bool isCri = GameManager.Instance.player.CheckCriticalHit();
-        GameManager.Instance.Enemy.TakeDamage(GameManager.Instance.player.GetDamage(isCri));
+        GameManager.Instance.Enemy.TakeDamage(GameManager.Instance.player.GetDamage(isCri), isCri);
 
         // 치명타일 경우 메시지 출력
         if (isCri)
         {
-            Debug.Log("치명타 공격 발생!");
-
             SpawnParticle(HitRed);
             return;
         }
 
-        // 파티클 생성
+        if (sfxSource != null && hitSfx != null)
+        {
+            sfxSource.PlayOneShot(hitSfx);
+        }
         SpawnParticle(HitYello);
-
     }
 
     // 자동 공격 시작
@@ -54,8 +55,7 @@ public class AttackSystem : MonoBehaviour
         while (true)
         {
             Attack();
-            yield return new WaitForSeconds(GameManager.Instance.player.playerData.autoNum); // 0.3초마다 공격 실행
-            Debug.Log("자동 공격 시작!");
+            yield return new WaitForSeconds(GameManager.Instance.player.playerData.autoNum); 
         }
     }
 
@@ -67,6 +67,5 @@ public class AttackSystem : MonoBehaviour
         Vector3 spawnPosition = Camera.main.ScreenToWorldPoint(mousePosition); // 월드 좌표로 변환
 
         Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 마우스 위치에 파티클 생성
-        Debug.Log("마우스 위치에 파티클 생성!");
     }
 }
