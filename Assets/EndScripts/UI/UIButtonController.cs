@@ -35,9 +35,9 @@ public class UIButtonController : MonoBehaviour
 
     public void Start()
     {
-        criInfoText.gameObject.SetActive(false);
-        autoInfoText.gameObject.SetActive(false);
-        coinInfoText.gameObject.SetActive(false);
+        criInfoText.gameObject.SetActive(true);
+        autoInfoText.gameObject.SetActive(true);
+        coinInfoText.gameObject.SetActive(true);
         
         RefreshUI();
     }
@@ -63,11 +63,13 @@ public class UIButtonController : MonoBehaviour
         criUpgradeText.color = SetColor(statUpgrade.criUpgradePoint, GameManager.Instance.player.playerData.statPoint);
         autoUpgradeText.color = SetColor(statUpgrade.autoUpgradePoint, GameManager.Instance.player.playerData.statPoint);
         coinUpgradeText.color = SetColor(statUpgrade.coinUpgradePoint, GameManager.Instance.player.playerData.statPoint);
-        
+
         // 버튼 누를 시 강화 수치 1 증가
-        criUpText.text = $"LV.{statUpgrade.criUpLevel} 치명타";
-        autoUpText.text = $"LV.{statUpgrade.autoUpLevel} 자동 공격";
-        coinUpText.text = $"LV.{statUpgrade.coinGetUpLevel} 포인트 획득";
+        var data = GameManager.Instance.player.playerData;
+
+        criUpText.text = $"LV.{data.criUpLevel} 치명타";
+        autoUpText.text = $"LV.{data.autoUpLevel} 자동 공격";
+        coinUpText.text = $"LV.{data.coinGetUpLevel} 골드 획득";
     }
     
     // ErrorPanel 패널 생성

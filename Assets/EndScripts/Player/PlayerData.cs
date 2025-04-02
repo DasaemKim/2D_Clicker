@@ -18,6 +18,9 @@ public class PlayerData
         criticalDamageLevel = 0;
         autoAttackLevel = 0; 
         goldBonusLevel = 0;
+        criUpgradeCost = 10f;
+        autoUpgradeCost = 10f;
+        coinUpgradeCost = 10f;
         equippedWeaponLevel = 0;
         selectedCharacter = "";
         equippedWeaponName = "";
@@ -38,10 +41,20 @@ public class PlayerData
     public int step;
     public int stage;
 
+    //업그레이드 소모량 저장
+    public float criUpgradeCost;
+    public float autoUpgradeCost;
+    public float coinUpgradeCost;
+
     //스탯 업그레이드 레벨
     public int criticalDamageLevel;
     public int autoAttackLevel;
     public int goldBonusLevel;
+
+    //Stage UI연동용 레벨
+    public int criUpLevel;
+    public int autoUpLevel;
+    public int coinGetUpLevel;
 
     //무기 정보
     public string equippedWeaponName;
