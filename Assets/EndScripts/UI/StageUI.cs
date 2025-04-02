@@ -2,7 +2,6 @@ using System.Collections;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
-//using static System.Net.Mime.MediaTypeNames;
 
 public class StageUI : MonoBehaviour
 {
@@ -55,11 +54,6 @@ public class StageUI : MonoBehaviour
         StepEnemyName.text = GameManager.Instance.Enemy.EnemyData.Name + " " + GameManager.Instance.player.playerData.step.ToString();
         EnemyName.text = StepEnemyName.text;
     }
-
-    //public void UpdateEnemyHP()  // Enemy체력 업데이트
-    //{
-    //    EnemyHP.fillAmount = GameManager.Instance.Enemy.CurrentHealth / GameManager.Instance.Enemy.MaxHealth;
-    //}
 
     public void UpdateEnemyHP()  // Enemy체력 업데이트
     {

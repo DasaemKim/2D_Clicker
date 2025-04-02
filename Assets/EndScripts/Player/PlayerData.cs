@@ -15,9 +15,6 @@ public class PlayerData
         enemyIndex = 0;
         statPoint = data.statPoint;
         weaponPoint = data.weaponPoint;
-        criticalDamageLevel = 0;
-        autoAttackLevel = 0; 
-        goldBonusLevel = 0;
         criUpgradeCost = 10f;
         autoUpgradeCost = 10f;
         coinUpgradeCost = 10f;
@@ -47,11 +44,6 @@ public class PlayerData
     public float criUpgradeCost;
     public float autoUpgradeCost;
     public float coinUpgradeCost;
-
-    //스탯 업그레이드 레벨
-    public int criticalDamageLevel;
-    public int autoAttackLevel;
-    public int goldBonusLevel;
 
     //Stage UI연동용 레벨
     public int criUpLevel;

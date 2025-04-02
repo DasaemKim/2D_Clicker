@@ -59,12 +59,12 @@ public class Player : MonoBehaviour
     //최종 치명타 데미지 계산
     public float FinalCriticalDamage()
     {
-        return (FinalAttack() * (1.5f + (playerData.criticalDamageLevel * 0.1f)));
+        return (FinalAttack() * (1.5f + (playerData.criUpLevel * 0.1f)));
     }
 
     //최종 골드 획득 보너스 계산
     public int FinalGoldBonus()
     {
-        return playerData.baseGoldBonus + (100 * playerData.goldBonusLevel);
+        return playerData.baseGoldBonus + (100 * playerData.coinGetUpLevel);
     }
 }

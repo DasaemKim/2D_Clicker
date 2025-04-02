@@ -41,8 +41,6 @@ public class StatUpgrade : MonoBehaviour
 
             // 구매했을때 +1 되도록 설정
             GameManager.Instance.player.playerData.criUpLevel += 1;
-            GameManager.Instance.player.playerData.criticalDamageLevel += 1;
-
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
 
@@ -69,10 +67,9 @@ public class StatUpgrade : MonoBehaviour
             GameManager.Instance.player.playerData.autoNum *= 0.9f; // 0.9배씩 감소
             autoUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.autoUpgradeCost = autoUpgradePoint;
-
-            GameManager.Instance.player.playerData.autoUpLevel += 1;
-            GameManager.Instance.player.playerData.autoAttackLevel += 1;
+            
             // 구매했을때 +1 되도록 설정
+            GameManager.Instance.player.playerData.autoUpLevel += 1;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
             attackSystem.StartAutoAttack();
@@ -101,9 +98,8 @@ public class StatUpgrade : MonoBehaviour
             coinUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.coinUpgradeCost = coinUpgradePoint;
 
-            GameManager.Instance.player.playerData.coinGetUpLevel += 1;
             // 구매했을때 +1 되도록 설정
-            GameManager.Instance.player.playerData.goldBonusLevel += 1;
+            GameManager.Instance.player.playerData.coinGetUpLevel += 1;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
 

@@ -44,7 +44,7 @@ public class GameManager : MonoBehaviour
     {
 
         // 현재 자동 공격이 실행 중인지 여부 저장
-        player.playerData.isAutoAttack = player.playerData.autoAttackLevel > 0;
+        player.playerData.isAutoAttack = player.playerData.autoUpLevel > 0;
 
         string json = JsonUtility.ToJson(player.playerData,true);
         File.WriteAllText(savePath, json);
