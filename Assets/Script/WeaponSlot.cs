@@ -44,5 +44,6 @@ public class WeaponSlot : MonoBehaviour
         attackText.text = data.attack.ToString();
         criticalrate.text = data.criticalrate.ToString("N1");
         IconImage.sprite = data.iconSpr;
+
     }
 }

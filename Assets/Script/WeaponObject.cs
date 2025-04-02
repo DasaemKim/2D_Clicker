@@ -10,6 +10,6 @@ public class WeaponObject : MonoBehaviour
 
     public void GetWeapon()
     {
-        GameManager.Instance.player.playerData.Weapondata = Data;
+        //GameManager.Instance.player.playerData.Weapondata = Data;
     }
 }

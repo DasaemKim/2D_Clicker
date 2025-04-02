@@ -11,5 +11,4 @@ public class WeaponData : ScriptableObject
     public float criticalrate;
 
     public Sprite iconSpr;
-   
 }
