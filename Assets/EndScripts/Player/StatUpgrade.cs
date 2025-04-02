@@ -41,8 +41,6 @@ public class StatUpgrade : MonoBehaviour
 
             // 구매했을때 +1 되도록 설정
             GameManager.Instance.player.playerData.criUpLevel += 1;
-            GameManager.Instance.player.playerData.criticalDamageLevel += 1;
-
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
 
@@ -65,14 +63,13 @@ public class StatUpgrade : MonoBehaviour
         // 플레이어의 스탯 포인트가 강화 스탯 포인트 보다 클때
         if (GameManager.Instance.player.playerData.statPoint >= autoUpgradePoint)
         {
-            GameManager.Instance.player.playerData.statPoint -= (int)autoUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
+            GameManager.Instance.player.playerData.statPoint -= Mathf.FloorToInt(autoUpgradePoint); // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
             GameManager.Instance.player.playerData.autoNum *= 0.9f; // 0.9배씩 감소
             autoUpgradePoint = (int)(autoUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.autoUpgradeCost = autoUpgradePoint;
 
-            GameManager.Instance.player.playerData.autoUpLevel += 1;
-            GameManager.Instance.player.playerData.autoAttackLevel += 1;
             // 구매했을때 +1 되도록 설정
+            GameManager.Instance.player.playerData.autoUpLevel += 1;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
             attackSystem.StartAutoAttack();
@@ -96,14 +93,12 @@ public class StatUpgrade : MonoBehaviour
         // 플레이어의 스탯 포인트가 강화 스탯 포인트 보다 클때
         if (GameManager.Instance.player.playerData.statPoint >= coinUpgradePoint)
         {
-            GameManager.Instance.player.playerData.statPoint -= (int)coinUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
+            GameManager.Instance.player.playerData.statPoint -= Mathf.FloorToInt(coinUpgradePoint); // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
             GameManager.Instance.player.playerData.coinGet += 1.5f; // 스탯 포인트 증가값
             coinUpgradePoint = (int)(coinUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.coinUpgradeCost = coinUpgradePoint;
 
             GameManager.Instance.player.playerData.coinGetUpLevel += 1;
-            // 구매했을때 +1 되도록 설정
-            GameManager.Instance.player.playerData.goldBonusLevel += 1;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
 
