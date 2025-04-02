@@ -1,4 +1,5 @@
 using System;
+using UnityEditor.SceneManagement;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -17,6 +18,7 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public GameObject MonsterDieParticle;
 
+    public Animator anim;
 
     private void Start()
     {
