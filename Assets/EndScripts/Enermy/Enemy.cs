@@ -58,6 +58,8 @@ public class Enemy : MonoBehaviour, IPoolable
         
         float dropStatPoint = EnemyManager.Instance.Step > 0 ? EnemyManager.Instance.Step * 1.2f  : 1;
 
+        dropStatPoint = GameManager.Instance.player.playerData.coinGet > 0 ? dropStatPoint * GameManager.Instance.player.playerData.coinGet : dropStatPoint;
+        
         GameManager.Instance.player.playerData.statPoint += (int)(EnemyData.FallStatPoint * (dropStatPoint));
         GameManager.Instance.player.playerData.weaponPoint += (int)(EnemyData.FallWeaponPoint * (dropStatPoint));
 

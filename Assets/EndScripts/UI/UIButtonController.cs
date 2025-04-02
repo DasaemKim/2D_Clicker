@@ -52,7 +52,7 @@ public class UIButtonController : MonoBehaviour
         // 플레이어가 업그레이드 시 텍스트 변경
         criInfoText.text = $"치명타 데미지\n{GameManager.Instance.player.playerData.criDamage.ToString("N1")} %";
         autoInfoText.text = GameManager.Instance.player.playerData.autoNum.ToString("N1") + " 회/초";
-        coinInfoText.text = $"골드 획득량\n{GameManager.Instance.player.playerData.coinGet.ToString("N1")} %";
+        coinInfoText.text = $"포인트 획득량\n{GameManager.Instance.player.playerData.coinGet.ToString("N1")} %";
 
         // 플레이어가 업그레이드 시 포인트 값 변경
         criUpgradeText.text = statUpgrade.criUpgradePoint.ToString("N0");
@@ -67,7 +67,7 @@ public class UIButtonController : MonoBehaviour
         // 버튼 누를 시 강화 수치 1 증가
         criUpText.text = $"LV.{statUpgrade.criUpLevel} 치명타";
         autoUpText.text = $"LV.{statUpgrade.autoUpLevel} 자동 공격";
-        coinUpText.text = $"LV.{statUpgrade.coinGetUpLevel} 골드 획득";
+        coinUpText.text = $"LV.{statUpgrade.coinGetUpLevel} 포인트 획득";
     }
     
     // ErrorPanel 패널 생성
