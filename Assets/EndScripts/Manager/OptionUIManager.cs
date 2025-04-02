@@ -85,7 +85,8 @@ public class OptionUIManager : MonoBehaviour
         isOpen = false;
         optionPanel.SetActive(false);
         Time.timeScale = 1;
-
+        
+        GameManager.Instance.SaveGame(); //게임 저장
         SceneManager.LoadScene("TitleScene");
     }
 }
