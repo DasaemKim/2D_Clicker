@@ -40,6 +40,7 @@ public class PlayerData
     public int enemyIndex;
     public int step;
     public int stage;
+    public float enemyHP;
 
     //업그레이드 소모량 저장
     public float criUpgradeCost;

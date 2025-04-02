@@ -31,6 +31,11 @@ public class Enemy : MonoBehaviour, IPoolable
         MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health;
         CurrentHealth = MaxHealth; // 체력 초기화
 
+        if (GameManager.Instance.player.playerData.enemyHP > 0 && GameManager.Instance.player.playerData.enemyHP < CurrentHealth)
+        {
+            CurrentHealth = GameManager.Instance.player.playerData.enemyHP;
+        }
+
         OnHealthChanged?.Invoke();
     }
 
@@ -72,12 +77,14 @@ public class Enemy : MonoBehaviour, IPoolable
         rb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse); // 적 사망 시 좌우로 튕기기
         rb.AddTorque(randomTorque, ForceMode2D.Impulse); // 적 사망 시 회전력 추가
 
+        StageUI.Instance.DelayedHP.fillAmount = 1;
+        CurrentHealth = MaxHealth;
+
+        GameManager.Instance.player.playerData.enemyHP = CurrentHealth;
+
         EnemyManager.Instance.Respawn(); // 적 사망 시 리스폰
 
         OnHealthChanged?.Invoke(); // 체력 업데이트
-
-        StageUI.Instance.DelayedHP.fillAmount = 1;
-        CurrentHealth = MaxHealth;
 
         Invoke(nameof(OnDespawn), 3f); // 사망 이후 3초 뒤에 비활성화
     }
@@ -113,6 +120,8 @@ public class Enemy : MonoBehaviour, IPoolable
         }
 
         OnHealthChanged?.Invoke(); // 체력 업데이트
+        GameManager.Instance.player.playerData.enemyHP = CurrentHealth;
+        GameManager.Instance.SaveGame();
     }
 
     public void SpawnParticleAtMonster(GameObject monster, GameObject particlePrefab) // 몬스터 위치에 파티클 생성
