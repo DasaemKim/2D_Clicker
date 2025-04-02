@@ -31,7 +31,7 @@ public class DamageTextUI : MonoBehaviour, IPoolable
         }
     }
 
-    public void DownTextDamage(float damage, bool isCri)
+    public void DownTextDamage(float damage, bool isCri) // 텍스트 효과
     {
         if (isCri)
         {
