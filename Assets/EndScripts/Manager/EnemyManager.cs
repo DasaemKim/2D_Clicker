@@ -8,12 +8,10 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public Action<GameObject> returnPool;
-
     private PoolManager PoolManager;
 
-    public event Action UpdateStageNum;
-    public event Action UpdateEnemyName;
+    public event Action UpdateStageNum; // 스테이지 텍스트 액션
+    public event Action UpdateEnemyName; // Enemy이름 변경 액션
 
     public int Step;
     public int EnemyIndex;

@@ -18,8 +18,6 @@ public class Enemy : MonoBehaviour, IPoolable
 
     public GameObject MonsterDieParticle;
 
-    public Animator anim;
-
     private void Start()
     {
         GameManager.Instance.Enemy = this;
@@ -30,22 +28,22 @@ public class Enemy : MonoBehaviour, IPoolable
 
         rb.velocity = Vector2.zero;  // 기존 움직임 정지
         
-        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health;
+        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health; // Step에 따른 Enemy 최대체력 증가
         CurrentHealth = MaxHealth; // 체력 초기화
 
-        if (GameManager.Instance.player.playerData.enemyHP > 0 && GameManager.Instance.player.playerData.enemyHP < CurrentHealth)
+        if (GameManager.Instance.player.playerData.enemyHP > 0 && GameManager.Instance.player.playerData.enemyHP < CurrentHealth) // 저장한 체력 불러오기
         {
             CurrentHealth = GameManager.Instance.player.playerData.enemyHP;
         }
 
-        OnHealthChanged?.Invoke();
+        OnHealthChanged?.Invoke(); // 체력 리프레쉬
     }
 
     private void OnEnable()
     {
         GameManager.Instance.Enemy = this; // 적 초기화
 
-        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health;
+        MaxHealth = EnemyManager.Instance.Step > 0 ? EnemyData.Health + (EnemyManager.Instance.Step * EnemyData.HealthGrowth) : EnemyData.Health; // Step에 따른 Enemy 최대체력 증가
         CurrentHealth = MaxHealth;
 
         OnHealthChanged += StageUI.Instance.UpdateEnemyHP; // 체력 업데이트 이벤트 구독
@@ -63,12 +61,12 @@ public class Enemy : MonoBehaviour, IPoolable
     {
         // 골드 획득량 추가
         
-        float dropStatPoint = EnemyManager.Instance.Step > 0 ? EnemyManager.Instance.Step * 1.2f  : 1;
+        float dropStatPoint = EnemyManager.Instance.Step > 0 ? EnemyManager.Instance.Step * 1.2f  : 1; // Step에 따른 드랍 포인트량 증가
 
-        dropStatPoint = GameManager.Instance.player.playerData.coinGet > 0 ? dropStatPoint * GameManager.Instance.player.playerData.coinGet : dropStatPoint;
+        dropStatPoint = GameManager.Instance.player.playerData.coinGet > 0 ? dropStatPoint * GameManager.Instance.player.playerData.coinGet : dropStatPoint; // 포인트 획득량 적용
         
-        GameManager.Instance.player.playerData.statPoint += (int)(EnemyData.FallStatPoint * (dropStatPoint));
-        GameManager.Instance.player.playerData.weaponPoint += (int)(EnemyData.FallWeaponPoint * (dropStatPoint));
+        GameManager.Instance.player.playerData.statPoint += (int)(EnemyData.FallStatPoint * (dropStatPoint)); // 포인트 추가
+        GameManager.Instance.player.playerData.weaponPoint += (int)(EnemyData.FallWeaponPoint * (dropStatPoint)); // 포인트 추가
 
         UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
 
@@ -79,10 +77,10 @@ public class Enemy : MonoBehaviour, IPoolable
         rb.AddForce(new Vector2(randomX, 3f), ForceMode2D.Impulse); // 적 사망 시 좌우로 튕기기
         rb.AddTorque(randomTorque, ForceMode2D.Impulse); // 적 사망 시 회전력 추가
 
-        StageUI.Instance.DelayedHP.fillAmount = 1;
+        StageUI.Instance.DelayedHP.fillAmount = 1; // 체력바
         CurrentHealth = MaxHealth;
 
-        GameManager.Instance.player.playerData.enemyHP = CurrentHealth;
+        GameManager.Instance.player.playerData.enemyHP = CurrentHealth; // 저장한 Enemy체력 초기화
 
         EnemyManager.Instance.Respawn(); // 적 사망 시 리스폰
 
@@ -108,11 +106,11 @@ public class Enemy : MonoBehaviour, IPoolable
         returnPool?.Invoke(gameObject);
     }
 
-    public void TakeDamage(float damage, bool isCri) // 적 받는 피해
+    public void TakeDamage(float damage, bool isCri) 
     {
-        CurrentHealth -= damage;
+        CurrentHealth -= damage; // 적 받는 피해
 
-        StageUI.Instance.CreateText.CreateTextDamage(damage, isCri);
+        StageUI.Instance.CreateText.CreateTextDamage(damage, isCri); // 데미지 텍스트 출력
 
         if (CurrentHealth <= 0)
         {
@@ -122,7 +120,7 @@ public class Enemy : MonoBehaviour, IPoolable
         }
 
         OnHealthChanged?.Invoke(); // 체력 업데이트
-        GameManager.Instance.player.playerData.enemyHP = CurrentHealth;
+        GameManager.Instance.player.playerData.enemyHP = CurrentHealth; // Enemy체력 저장
         GameManager.Instance.SaveGame();
     }
 
@@ -132,14 +130,6 @@ public class Enemy : MonoBehaviour, IPoolable
         {
             Vector3 spawnPosition = monster.transform.position; // 몬스터의 월드 좌표 가져오기
             Instantiate(particlePrefab, spawnPosition, Quaternion.identity); // 몬스터 위치에 파티클 생성
-            Debug.Log("몬스터 위치에 파티클 생성!");
-        }
-        else
-        {
-            Debug.LogWarning("몬스터가 null입니다. 파티클을 생성할 수 없습니다.");
         }
     }
-
-
-
 }
