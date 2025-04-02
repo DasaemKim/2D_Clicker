@@ -544,6 +544,9 @@ MonoBehaviour:
   autoUpgradePoint: 10
   coinUpgradePoint: 10
   attackSystem: {fileID: 0}
+  criUpLevel: 0
+  autoUpLevel: 0
+  coinGetUpLevel: 0
 --- !u!114 &179302613
 MonoBehaviour:
   m_ObjectHideFlags: 0
