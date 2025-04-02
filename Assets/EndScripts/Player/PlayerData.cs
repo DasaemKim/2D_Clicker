@@ -18,9 +18,9 @@ public class PlayerData
         criticalDamageLevel = 0;
         autoAttackLevel = 0; 
         goldBonusLevel = 0;
-        criUpgradeCost = 10f;
-        autoUpgradeCost = 10f;
-        coinUpgradeCost = 10f;
+        criUpgradeCost = 10;
+        autoUpgradeCost = 10;
+        coinUpgradeCost = 10;
         equippedWeaponLevel = 0;
         selectedCharacter = "";
         equippedWeaponName = "";
@@ -42,9 +42,9 @@ public class PlayerData
     public float enemyHP;
 
     //업그레이드 소모량 저장
-    public float criUpgradeCost;
-    public float autoUpgradeCost;
-    public float coinUpgradeCost;
+    public int criUpgradeCost;
+    public int autoUpgradeCost;
+    public int coinUpgradeCost;
 
     //스탯 업그레이드 레벨
     public int criticalDamageLevel;

@@ -4047,7 +4047,6 @@ MonoBehaviour:
   coinUpgradeText: {fileID: 68526033}
   errorPanel: {fileID: 1756497067}
   statUpgrade: {fileID: 2082643984}
-  attackSystem: {fileID: 0}
   isInfoVisible: 0
 --- !u!114 &1001657216
 MonoBehaviour:
@@ -9256,6 +9255,7 @@ MonoBehaviour:
     weaponPoint: 0
     selectedCharacter: 
     baseGoldBonus: 0
+  attackSystem: {fileID: 1001657214}
 --- !u!4 &2082643986
 Transform:
   m_ObjectHideFlags: 0

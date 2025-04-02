@@ -8,8 +8,6 @@ public class EnemyManager : MonoBehaviour
 {
     public static EnemyManager Instance;
 
-    public Action<GameObject> returnPool;
-
     private PoolManager PoolManager;
 
     public event Action UpdateStageNum;

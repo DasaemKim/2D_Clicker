@@ -7,18 +7,18 @@ using UnityEngine;
 
 public interface IPoolable
 {
-    void Initialize(Action<GameObject> action); // ReturnObject�Լ��� �ʱ�ȭ
+    void Initialize(Action<GameObject> action); // ReturnObject메서드를 받아옴
     void OnSpawn();
     void OnDespawn();
 }
 
 public class PoolManager : MonoBehaviour
 {
-    public GameObject[] Prefabs;  // Enemy ������
+    public GameObject[] Prefabs;  // Enemy, 데미지 텍스트 프리팹
     
-    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>(); // Ǯ ����Ʈ
+    private Dictionary<int, Queue<GameObject>> pools = new Dictionary<int, Queue<GameObject>>();
 
-    [SerializeField] private GameObject TakeDamageText; // Canvas�� �ڽ� ������Ʈ
+    [SerializeField] private GameObject TakeDamageText; // Canvas 자식 오브젝트
 
     public static PoolManager Instance { get; private set; }
 
@@ -32,7 +32,7 @@ public class PoolManager : MonoBehaviour
         }
     }
 
-    public GameObject GetObject(Vector3 position, Quaternion rotation, int prefabIndex) // �� ������Ʈ ���� �Ǵ� Ȱ��ȭ
+    public GameObject GetObject(Vector3 position, Quaternion rotation, int prefabIndex) // 오브젝트 생성
     {
         if (!pools.ContainsKey(prefabIndex))
         {
@@ -43,13 +43,13 @@ public class PoolManager : MonoBehaviour
         GameObject obj;
         if (pools[prefabIndex].Count > 0)
         {
-            obj = pools[prefabIndex].Dequeue();  // Ǯ���� ������Ʈ ������
+            obj = pools[prefabIndex].Dequeue();  // 풀에서 꺼내옴
         }
         else
         {
-            obj = Instantiate(Prefabs[prefabIndex]);
+            obj = Instantiate(Prefabs[prefabIndex]); // 오브젝트 생성
 
-            obj.GetComponent<IPoolable>()?.Initialize(o => ReturnObject(prefabIndex, o));
+            obj.GetComponent<IPoolable>()?.Initialize(o => ReturnObject(prefabIndex, o)); // ReturnObject메서드를 받아옴
         }
 
         if (obj.name.Contains(Prefabs[Prefabs.Length - 1].name))
@@ -63,21 +63,21 @@ public class PoolManager : MonoBehaviour
 
         obj.transform.SetPositionAndRotation(position, rotation);
         obj.SetActive(true);
-        obj.GetComponent<IPoolable>()?.OnSpawn();
+        obj.GetComponent<IPoolable>()?.OnSpawn(); // obj 스폰 시 실행되는 메서드
         return obj;
     }
 
     
 
-    public void ReturnObject(int prefabIndex, GameObject obj)  // ������Ʈ ��Ȱ��ȭ
+    public void ReturnObject(int prefabIndex, GameObject obj)  // 오브젝트 비활성화 이후 풀에 담음
     {
-        if (!pools.ContainsKey(prefabIndex))  // Ǯ���� ������Ʈ ����
+        if (!pools.ContainsKey(prefabIndex))
         {
             Destroy(obj);
             return;
         }
 
         obj.SetActive(false);
-        pools[prefabIndex].Enqueue(obj); // ������Ʈ Ǯ�� �ű��
+        pools[prefabIndex].Enqueue(obj); // 풀에 오브젝트 담음
     }
 }

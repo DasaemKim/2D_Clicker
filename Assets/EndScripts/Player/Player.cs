@@ -12,7 +12,17 @@ public class Player : MonoBehaviour
     public Weapon equipweapon;
 
     //플레이어 저장 데이터
-    public PlayerData playerData; 
+    public PlayerData playerData;
+
+    public AttackSystem attackSystem;
+
+    private void Start()
+    {
+        if (playerData.autoAttackLevel > 0)
+        {
+            attackSystem.StartAutoAttack();
+        }
+    }
 
     //치명타 여부 확인
     public bool CheckCriticalHit()

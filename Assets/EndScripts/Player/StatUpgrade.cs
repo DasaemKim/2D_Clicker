@@ -6,9 +6,9 @@ using UnityEngine;
 public class StatUpgrade : MonoBehaviour
 {
     // 버튼의 스탯 포인트 기본값
-    public float criUpgradePoint;
-    public float autoUpgradePoint;
-    public float coinUpgradePoint;
+    public int criUpgradePoint;
+    public int autoUpgradePoint;
+    public int coinUpgradePoint;
 
     public AttackSystem attackSystem;
 
@@ -34,9 +34,9 @@ public class StatUpgrade : MonoBehaviour
         // 플레이어의 스탯 포인트가 강화 스탯 포인트 보다 클때
         if (GameManager.Instance.player.playerData.statPoint >= criUpgradePoint)
         {
-            GameManager.Instance.player.playerData.statPoint -= (int)criUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
+            GameManager.Instance.player.playerData.statPoint -= criUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
             GameManager.Instance.player.playerData.criDamage += 0.8f; // 스탯 포인트 증가값
-            criUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
+            criUpgradePoint = (int)(criUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.criUpgradeCost = criUpgradePoint;
 
             // 구매했을때 +1 되도록 설정
@@ -67,7 +67,7 @@ public class StatUpgrade : MonoBehaviour
         {
             GameManager.Instance.player.playerData.statPoint -= (int)autoUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
             GameManager.Instance.player.playerData.autoNum *= 0.9f; // 0.9배씩 감소
-            autoUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
+            autoUpgradePoint = (int)(autoUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.autoUpgradeCost = autoUpgradePoint;
 
             GameManager.Instance.player.playerData.autoUpLevel += 1;
@@ -98,7 +98,7 @@ public class StatUpgrade : MonoBehaviour
         {
             GameManager.Instance.player.playerData.statPoint -= (int)coinUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
             GameManager.Instance.player.playerData.coinGet += 1.5f; // 스탯 포인트 증가값
-            coinUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
+            coinUpgradePoint = (int)(coinUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.coinUpgradeCost = coinUpgradePoint;
 
             GameManager.Instance.player.playerData.coinGetUpLevel += 1;
