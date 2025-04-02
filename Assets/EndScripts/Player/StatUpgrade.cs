@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using UnityEngine;
 
@@ -59,6 +60,9 @@ public class StatUpgrade : MonoBehaviour
             
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
             attackSystem.StartAutoAttack();
+            
+            UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
+            UIBtnManager.Instance.uiBtnController.autoInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
         }
         else
         {

@@ -30,9 +30,13 @@ public class UIButtonController : MonoBehaviour
 
     public StatUpgrade statUpgrade;
     public AttackSystem attackSystem;
+    
+    public bool isInfoVisible = false;
 
     public void Start()
     {
+        autoInfoText.gameObject.SetActive(false);
+        
         RefreshUI();
     }
 
