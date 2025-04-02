@@ -53,9 +53,9 @@ public class AttackSystem : MonoBehaviour
     public IEnumerator AutoAttackCoroutine()
     {
         while (true)
-        {
+        { 
+            yield return new WaitForSeconds(GameManager.Instance.player.playerData.autoNum);
             Attack();
-            yield return new WaitForSeconds(GameManager.Instance.player.playerData.autoNum); 
         }
     }
 
