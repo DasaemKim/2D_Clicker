@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 // 골드를 소모하여 플레이어 스탯 업그레이드 로직 구성
@@ -19,11 +17,6 @@ public class StatUpgrade : MonoBehaviour
     public int autoUpLevel;
     public int coinGetUpLevel;
     
-    //TODO 진행 중
-    // 현재 강화 시 값은 올라가나 프로그램 종료 후 다시 키면 초기 값으로 돌아감.
-    // 내일 UI텍스트를 추가하여 RefreshUI 메서드를 통하여 나가더라도 값이 고정되도록 변경
-    // PlayerData.cs에 데이더 저장 진행
-
     private Coroutine upgradeCoroutine;
     private System.Action upgradeAction;
 
@@ -34,8 +27,7 @@ public class StatUpgrade : MonoBehaviour
         if (GameManager.Instance.player.playerData.statPoint >= criUpgradePoint)
         {
             GameManager.Instance.player.playerData.statPoint -= (int)criUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-            GameManager.Instance.player.playerData.criDamage =
-                0.1f + GameManager.Instance.player.playerData.criDamage * 1.5f; // 스탯 포인트 증가값
+            GameManager.Instance.player.playerData.criDamage += 0.8f; // 스탯 포인트 증가값
             criUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
 
             // 구매했을때 +1 되도록 설정
@@ -84,8 +76,7 @@ public class StatUpgrade : MonoBehaviour
         if (GameManager.Instance.player.playerData.statPoint >= coinUpgradePoint)
         {
             GameManager.Instance.player.playerData.statPoint -= (int)coinUpgradePoint; // 업그레이드 포인트 만큼 스탯 포인트에서 값 감소
-            GameManager.Instance.player.playerData.coinGet =
-                0.1f + GameManager.Instance.player.playerData.coinGet * 2f; // 스탯 포인트 증가값
+            GameManager.Instance.player.playerData.coinGet += 1.5f; // 스탯 포인트 증가값
             coinUpgradePoint *= 1.5f; // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
 
             // 구매했을때 +1 되도록 설정

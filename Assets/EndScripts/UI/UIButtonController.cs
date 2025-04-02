@@ -1,6 +1,4 @@
-using System;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -66,7 +64,6 @@ public class UIButtonController : MonoBehaviour
         coinUpText.text = $"LV.{statUpgrade.coinGetUpLevel} 골드 획득";
     }
     
-
     // ErrorPanel 패널 생성
     public void ErrorPanel()
     {
