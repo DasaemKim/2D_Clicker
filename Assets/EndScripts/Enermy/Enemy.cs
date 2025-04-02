@@ -54,8 +54,14 @@ public class Enemy : MonoBehaviour, IPoolable
 
     void Die()
     {
-        GameManager.Instance.player.playerData.statPoint += EnemyData.FallStatPoint;
-        GameManager.Instance.player.playerData.weaponPoint += EnemyData.FallWeaponPoint;
+        // 골드 획득량 추가
+        
+        float dropStatPoint = EnemyManager.Instance.Step > 0 ? EnemyManager.Instance.Step * 1.2f  : 1;
+
+        dropStatPoint = GameManager.Instance.player.playerData.coinGet > 0 ? dropStatPoint * GameManager.Instance.player.playerData.coinGet : dropStatPoint;
+        
+        GameManager.Instance.player.playerData.statPoint += (int)(EnemyData.FallStatPoint * (dropStatPoint));
+        GameManager.Instance.player.playerData.weaponPoint += (int)(EnemyData.FallWeaponPoint * (dropStatPoint));
 
         UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
 

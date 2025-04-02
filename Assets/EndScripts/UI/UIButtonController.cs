@@ -50,9 +50,9 @@ public class UIButtonController : MonoBehaviour
         statText.text = GameManager.Instance.player.playerData.statPoint.ToString("N0");
 
         // 플레이어가 업그레이드 시 텍스트 변경
-        criInfoText.text = GameManager.Instance.player.playerData.criDamage.ToString("N1") + " %";
+        criInfoText.text = $"치명타 데미지\n{GameManager.Instance.player.playerData.criDamage.ToString("N1")} %";
         autoInfoText.text = GameManager.Instance.player.playerData.autoNum.ToString("N1") + " 회/초";
-        coinInfoText.text = GameManager.Instance.player.playerData.coinGet.ToString("N1") + " %";
+        coinInfoText.text = $"포인트 획득량\n{GameManager.Instance.player.playerData.coinGet.ToString("N1")} %";
 
         // 플레이어가 업그레이드 시 포인트 값 변경
         criUpgradeText.text = statUpgrade.criUpgradePoint.ToString("N0");
