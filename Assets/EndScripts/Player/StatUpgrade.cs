@@ -5,8 +5,6 @@ using UnityEngine;
 // 골드를 소모하여 플레이어 스탯 업그레이드 로직 구성
 public class StatUpgrade : MonoBehaviour
 {
-    // CharacterData의 주소값 없음
-
     // 버튼의 스탯 포인트 기본값
     public float criUpgradePoint;
     public float autoUpgradePoint;
@@ -14,10 +12,11 @@ public class StatUpgrade : MonoBehaviour
 
     public AttackSystem attackSystem;
 
+    // 캐릭터 스탯의 업그레이드 Lv 수치를 나타냄
     public int criUpLevel;
     public int autoUpLevel;
     public int coinGetUpLevel;
-    
+
     private Coroutine upgradeCoroutine;
     private System.Action upgradeAction;
 
@@ -28,6 +27,7 @@ public class StatUpgrade : MonoBehaviour
         coinUpgradePoint = GameManager.Instance.player.playerData.coinUpgradeCost;
         UIBtnManager.Instance.uiBtnController.RefreshUI();
     }
+
     // 크리티컬 데미지 증가
     public void CriDamageUpgrade()
     {
@@ -43,9 +43,10 @@ public class StatUpgrade : MonoBehaviour
             GameManager.Instance.player.playerData.criUpLevel += 1;
             GameManager.Instance.player.playerData.criticalDamageLevel += 1;
 
-            
+
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
-           
+
+            // 텍스트 활성화
             UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
             UIBtnManager.Instance.uiBtnController.criInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
         }
@@ -72,10 +73,11 @@ public class StatUpgrade : MonoBehaviour
             GameManager.Instance.player.playerData.autoUpLevel += 1;
             GameManager.Instance.player.playerData.autoAttackLevel += 1;
             // 구매했을때 +1 되도록 설정
-            
+
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
             attackSystem.StartAutoAttack();
-            
+
+            // 텍스트 활성화
             UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
             UIBtnManager.Instance.uiBtnController.autoInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
         }
@@ -102,11 +104,12 @@ public class StatUpgrade : MonoBehaviour
             GameManager.Instance.player.playerData.coinGetUpLevel += 1;
             // 구매했을때 +1 되도록 설정
             GameManager.Instance.player.playerData.goldBonusLevel += 1;
-            
+
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
-            
+
+            // 텍스트 활성화
             UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
-            UIBtnManager.Instance.uiBtnController.coinInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);   
+            UIBtnManager.Instance.uiBtnController.coinInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
         }
         else
         {
@@ -117,8 +120,6 @@ public class StatUpgrade : MonoBehaviour
         GameManager.Instance.SaveGame();
     }
 
-    // TODO
-    // 마우스 키 다운시 0.2초 간격으로 강화 하는거 만들기
     // 키 다운 시
     public void RunUpgrade(System.Action upgradeMethod)
     {
@@ -143,7 +144,7 @@ public class StatUpgrade : MonoBehaviour
     public IEnumerator IsHolding()
     {
         yield return new WaitForSeconds(1);
-        
+
         while (true)
         {
             upgradeAction?.Invoke();
