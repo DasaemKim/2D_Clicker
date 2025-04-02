@@ -35,6 +35,9 @@ public class StatUpgrade : MonoBehaviour
             criUpLevel += 1;
             
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
+            
+            UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
+            UIBtnManager.Instance.uiBtnController.criInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
         }
         else
         {
@@ -87,6 +90,9 @@ public class StatUpgrade : MonoBehaviour
             coinGetUpLevel += 1;
             
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
+            
+            UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
+            UIBtnManager.Instance.uiBtnController.coinInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);   
         }
         else
         {
