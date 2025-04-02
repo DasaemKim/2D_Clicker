@@ -5,14 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "Weapon", menuName = "New Weapon")]
 public class WeaponData : ScriptableObject
 {
-    [Header("Stats")]
-    public string WeaponName; // ���� ���� ����
-    public int Attack; // ���� �̸�
-    public float Critical_Rate; // ���� ���ݷ�
-    public int UpgradeLevel; //������ ���׷��̵� ����
-    public int UpgradeAttack; // ���� ���׷��̵� ���ݷ�
-    public float UpgradeCritical; // ���� ���׷��̵� ũ��Ƽ��
-    public Sprite WeaponObject;
+    public string weaponName;
+    public int level;
+    public int attack;
+    public float criticalrate;
 
-    public bool IsObatained; // ��ȹ���� ����
+    public Sprite iconSpr;
+   
 }

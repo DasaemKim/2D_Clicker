@@ -8,7 +8,7 @@ public class PlayerData
 {
     public WeaponData Weapondata;
 
-    public List<Weapon> weapon_Wears;
+    //public List<Weapon> weapon_Wears;
 
     public PlayerData(CharacterData data)
     {
@@ -44,9 +44,8 @@ public class PlayerData
     public string equippedWeaponName;
     public int equippedWeaponLevel;
 
-    public List<Weapon> weaponList;
-
-    public Weapon equippedWeapon;
+    public List<WeaponData> weaponList;
+    public WeaponData equippedWeapon;
 
     //기타
     public int weaponPoint;
@@ -56,8 +55,8 @@ public class PlayerData
 
     public void AddWeapon(WeaponData weaponData)
     {
-        Weapon weapon_Wear = new Weapon(weaponData);
+        //WeaponData weapon_Wear = new WeaponData(weaponData);
 
-        weapon_Wears.Add(weapon_Wear);
+       // weapon_Wears.Add(weapon_Wear);
     }
 }
