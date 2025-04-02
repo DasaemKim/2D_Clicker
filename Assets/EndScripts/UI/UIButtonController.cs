@@ -34,9 +34,9 @@ public class UIButtonController : MonoBehaviour
 
     public void Start()
     {
-        criInfoText.gameObject.SetActive(true);
-        autoInfoText.gameObject.SetActive(true);
-        coinInfoText.gameObject.SetActive(true);
+        criInfoText.gameObject.SetActive(false);
+        autoInfoText.gameObject.SetActive(false);
+        coinInfoText.gameObject.SetActive(false);
         
         RefreshUI();
     }

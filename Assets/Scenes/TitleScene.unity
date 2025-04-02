@@ -582,9 +582,6 @@ MonoBehaviour:
     criUpgradeCost: 0
     autoUpgradeCost: 0
     coinUpgradeCost: 0
-    criticalDamageLevel: 0
-    autoAttackLevel: 0
-    goldBonusLevel: 0
     criUpLevel: 0
     autoUpLevel: 0
     coinGetUpLevel: 0
@@ -602,6 +599,7 @@ MonoBehaviour:
     weaponPoint: 0
     selectedCharacter: 
     baseGoldBonus: 0
+    isAutoAttack: 0
 --- !u!4 &179302614
 Transform:
   m_ObjectHideFlags: 0
@@ -1015,7 +1013,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &379078448
 RectTransform:
   m_ObjectHideFlags: 0
@@ -1480,7 +1478,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "\uD130\uCE58\uCEA3"
+  m_text: "\uD130\uCE58\uCEA3\n\n\uB0E5\uC774\uB9D8\uC744 \uD754\uB4E4\uC5B4\uB77C!!"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8a4098497b55d3b469ebb8936869e848, type: 2}
   m_sharedMaterial: {fileID: 104646504340409985, guid: 8a4098497b55d3b469ebb8936869e848, type: 2}
@@ -1507,8 +1505,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 21
-  m_fontSizeBase: 21
+  m_fontSize: 13
+  m_fontSizeBase: 13
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
