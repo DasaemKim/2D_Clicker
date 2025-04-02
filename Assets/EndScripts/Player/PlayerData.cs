@@ -15,9 +15,9 @@ public class PlayerData
         enemyIndex = 0;
         statPoint = data.statPoint;
         weaponPoint = data.weaponPoint;
-        criUpgradeCost = 10f;
-        autoUpgradeCost = 10f;
-        coinUpgradeCost = 10f;
+        criUpgradeCost = 10;
+        autoUpgradeCost = 10;
+        coinUpgradeCost = 10;
         equippedWeaponLevel = 0;
         selectedCharacter = "";
         equippedWeaponName = "";
