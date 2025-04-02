@@ -68,7 +68,7 @@ public class UIButtonController : MonoBehaviour
         // 버튼 누를 시 강화 수치 1 증가
         criUpText.text = $"LV.{data.criUpLevel} 치명타";
         autoUpText.text = $"LV.{data.autoUpLevel} 자동 공격";
-        coinUpText.text = $"LV.{data.coinGetUpLevel} 골드 획득";
+        coinUpText.text = $"LV.{data.coinGetUpLevel} 포인트 획득";
     }
     
     // ErrorPanel 패널 생성
