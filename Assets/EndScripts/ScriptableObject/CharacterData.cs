@@ -1,7 +1,7 @@
 using UnityEngine;
 
 // 힙 영역에 메모리 할당
-[CreateAssetMenu(menuName = "New Data/ CharacterDataData")]
+[CreateAssetMenu(menuName = "New Data/ CharacterData")]
 public class CharacterData : ScriptableObject
 {
     // 플레이어 데이터 관리
