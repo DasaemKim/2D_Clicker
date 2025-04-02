@@ -27,14 +27,13 @@ public class PlayerData
         weaponList = new List<Weapon>();
     }
 
-    
-    public float damage;
-    public float criticalRate;
-    public int statPoint;
-    public float coinGet;
-    public float criDamage;
-
-    public float autoNum;
+    //스탯관련
+    public float damage; //기본 공격력
+    public float criticalRate; //치명타 확률
+    public int statPoint; //보유 골드
+    public float coinGet; //추가 코인획득량
+    public float criDamage; //치명타 데미지
+    public float autoNum; //자동 공격 횟수
 
     //스테이지 정보
     public int enemyIndex;
@@ -60,15 +59,12 @@ public class PlayerData
     //무기 정보
     public string equippedWeaponName;
     public int equippedWeaponLevel;
-
     public List<Weapon> weaponList;
-
     public Weapon equippedWeapon = null;
 
     //기타
     public int weaponPoint;
     public string selectedCharacter;
-
     public int baseGoldBonus;
 
     
