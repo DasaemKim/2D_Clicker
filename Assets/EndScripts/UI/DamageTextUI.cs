@@ -31,9 +31,9 @@ public class DamageTextUI : MonoBehaviour, IPoolable
         }
     }
 
-    public void DownTextDamage(float damage, bool isCri)
+    public void DownTextDamage(float damage)
     {
-        if (isCri)
+        if (GameManager.Instance.player.CheckCriticalHit())
         {
             DamageText.color = Color.red;
             DamageText.fontSize = 40;
@@ -46,12 +46,13 @@ public class DamageTextUI : MonoBehaviour, IPoolable
 
         DamageText.text = damage.ToString();
 
-        float randomX = (UnityEngine.Random.Range(-200f, 200f)); // 좌우 랜덤 이동
+        float randomX = (UnityEngine.Random.value < 0.5f) ? -200f : 200f; // 좌우 랜덤 이동
 
-        float jumpPower = (UnityEngine.Random.Range(100f, 200f));
+        float jumpPower = 150f;
         float duration = (jumpPower / 100) * 0.2f; // 점프 시간
 
         float fallDuration = 1f; // 낙하 시간
+        float endY = -1000f; // 끝 위치 (Y값)
 
         // 텍스트 튕겨오르기 + 떨어지기 연출
         transform.DOLocalMoveY(jumpPower, duration)  // 점프

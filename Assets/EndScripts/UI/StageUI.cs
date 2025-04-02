@@ -47,12 +47,12 @@ public class StageUI : MonoBehaviour
 
     public void UpdateStage()  // 스테이지 업데이트
     {
-        NowStage.text = (GameManager.Instance.player.playerData.stage).ToString();
+        NowStage.text = (EnemyManager.Instance.SpawnCount - 1).ToString();
     }
 
     public void UpdateEnemyName() // Enemy이름 업데이트
     {
-        StepEnemyName.text = GameManager.Instance.Enemy.EnemyData.Name + " " + GameManager.Instance.player.playerData.step.ToString();
+        StepEnemyName.text = EnemyManager.Instance.EnemyData.Name + " " + EnemyManager.Instance.Step.ToString();
         EnemyName.text = StepEnemyName.text;
     }
 
@@ -73,11 +73,11 @@ public class StageUI : MonoBehaviour
     
     public IEnumerator SmoothUpdateEnemyHP(float target)  // Enemy체력 감소 연출
     {
-        yield return new WaitForSeconds(-0.1f); // 딜레이 효과
+        yield return new WaitForSeconds(0.2f); // 딜레이 효과
 
         float start = DelayedHP.fillAmount;
         float elapsedTime = 0f;
-        float duration = 0.1f; // 체력바가 변화하는 시간
+        float duration = 0.7f; // 체력바가 변화하는 시간
 
         while (elapsedTime < duration)
         {

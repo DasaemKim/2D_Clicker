@@ -12,9 +12,9 @@ EditorBuildSettings:
     path: Assets/Scenes/TitleScene.unity
     guid: 3ffa84371303adb4a87cb3b483389f63
   - enabled: 1
-    path: Assets/Scenes/MainScene.unity
+    path: Assets/Scenes/KGS.unity
+    guid: 5abed0a2f6992a8499cbcb80adf65182
+  - enabled: 1
+    path: Assets/Scenes/t1.unity
     guid: 32a243249c1ee3d4a891262e5d27bf8c
-  - enabled: 0
-    path: Assets/Scenes/KHD.unity
-    guid: 54be30ff0c374b248b998303e52ad846
   m_configObjects: {}
