@@ -6,6 +6,10 @@ using UnityEngine;
 [Serializable]
 public class PlayerData
 {
+    public WeaponData Weapondata;
+
+    //public List<Weapon> weapon_Wears;
+
     public PlayerData(CharacterData data)
     {
         damage = data.damage;
@@ -59,13 +63,20 @@ public class PlayerData
     //무기 정보
     public string equippedWeaponName;
     public int equippedWeaponLevel;
-    public List<Weapon> weaponList;
-    public Weapon equippedWeapon = null;
+
+    public List<WeaponData> weaponList;
+    public WeaponData equippedWeapon;
 
     //기타
     public int weaponPoint;
     public string selectedCharacter;
     public int baseGoldBonus;
 
-    
+
+    public void AddWeapon(WeaponData weaponData)
+    {
+        //WeaponData weapon_Wear = new WeaponData(weaponData);
+
+       // weapon_Wears.Add(weapon_Wear);
+    }
 }
