@@ -28,7 +28,7 @@ public class PlayerData
 
     //스탯관련
     public float damage; //기본 공격력
-    public float criticalRate; //치명타 확률
+    public float criticalRate = 0.2f; //치명타 확률
     public int statPoint; //보유 골드
     public float coinGet; //추가 코인획득량
     public float criDamage; //치명타 데미지
