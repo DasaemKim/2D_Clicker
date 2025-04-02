@@ -71,8 +71,15 @@ public class GameManager : MonoBehaviour
         return player.playerData.equippedWeaponLevel;
     }
 
-    public void StartAutoAttack()
+    public void RestartAutoAttack()
     {
+        StartCoroutine(RestartAutoAttackCoroutine());
+    }
+
+    private IEnumerator RestartAutoAttackCoroutine()
+    {
+        yield return new WaitForSeconds(1f); // 1초 대기
+
         // 자동 공격 상태 복원
         if (player.playerData.isAutoAttack)
         {

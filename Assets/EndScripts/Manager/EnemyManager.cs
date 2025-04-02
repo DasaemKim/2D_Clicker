@@ -34,7 +34,7 @@ public class EnemyManager : MonoBehaviour
         }
 
         Respawn();
-        GameManager.Instance.StartAutoAttack();
+        GameManager.Instance.RestartAutoAttack();
     }
 
     public void Respawn()
