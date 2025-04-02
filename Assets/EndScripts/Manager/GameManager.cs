@@ -33,6 +33,7 @@ public class GameManager : MonoBehaviour
     {
         string json = File.ReadAllText(savePath);
         player.playerData = JsonUtility.FromJson<PlayerData>(json);
+        UIBtnManager.Instance.uiBtnController.RefreshUI();
 
         Debug.Log(player.playerData);
     }
