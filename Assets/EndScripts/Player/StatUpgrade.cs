@@ -18,7 +18,7 @@ public class StatUpgrade : MonoBehaviour
     public int coinGetUpLevel;
 
     private Coroutine upgradeCoroutine;
-    private System.Action upgradeAction;
+    private Action upgradeAction;
 
     private void Start()
     {
@@ -117,7 +117,7 @@ public class StatUpgrade : MonoBehaviour
     }
 
     // 키 다운 시
-    public void RunUpgrade(System.Action upgradeMethod)
+    public void RunUpgrade(Action upgradeMethod)
     {
         if (upgradeCoroutine != null)
             return;
