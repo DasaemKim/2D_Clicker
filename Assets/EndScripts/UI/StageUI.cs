@@ -47,12 +47,12 @@ public class StageUI : MonoBehaviour
 
     public void UpdateStage()  // 스테이지 업데이트
     {
-        NowStage.text = (EnemyManager.Instance.SpawnCount - 1).ToString();
+        NowStage.text = (GameManager.Instance.player.playerData.stage).ToString();
     }
 
     public void UpdateEnemyName() // Enemy이름 업데이트
     {
-        StepEnemyName.text = GameManager.Instance.Enemy.EnemyData.Name + " " + EnemyManager.Instance.Step.ToString();
+        StepEnemyName.text = GameManager.Instance.Enemy.EnemyData.Name + " " + GameManager.Instance.player.playerData.step.ToString();
         EnemyName.text = StepEnemyName.text;
     }
 

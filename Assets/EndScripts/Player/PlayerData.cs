@@ -10,7 +10,9 @@ public class PlayerData
     {
         damage = data.damage;
         autoNum = data.autoNum;
-        stage = 1;
+        stage = 0;
+        step = 0;
+        enemyIndex = 0;
         statPoint = data.statPoint;
         weaponPoint = data.weaponPoint;
         criticalDamageLevel = 0;
@@ -22,14 +24,19 @@ public class PlayerData
         weaponList = new List<Weapon>();
     }
 
+    
     public float damage;
     public float criticalRate;
-    public int stage;
     public int statPoint;
     public float coinGet;
     public float criDamage;
 
     public float autoNum;
+
+    //스테이지 정보
+    public int enemyIndex;
+    public int step;
+    public int stage;
 
     //스탯 업그레이드 레벨
     public int criticalDamageLevel;
