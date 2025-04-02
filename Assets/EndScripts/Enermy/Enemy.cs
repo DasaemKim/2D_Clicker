@@ -54,6 +54,8 @@ public class Enemy : MonoBehaviour, IPoolable
 
     void Die()
     {
+        // 골드 획득량 추가
+        
         float dropStatPoint = EnemyManager.Instance.Step > 0 ? EnemyManager.Instance.Step * 1.2f  : 1;
 
         GameManager.Instance.player.playerData.statPoint += (int)(EnemyData.FallStatPoint * (dropStatPoint));
