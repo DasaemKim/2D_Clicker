@@ -36,11 +36,16 @@ public class GameManager : MonoBehaviour
         string json = File.ReadAllText(savePath);
         player.playerData = JsonUtility.FromJson<PlayerData>(json);
         UIBtnManager.Instance.uiBtnController.RefreshUI();
+
     }
     
     //현재 게임상태 저장
     public void SaveGame()
     {
+
+        // 현재 자동 공격이 실행 중인지 여부 저장
+        player.playerData.isAutoAttack = player.playerData.autoUpLevel > 0;
+
         string json = JsonUtility.ToJson(player.playerData,true);
         File.WriteAllText(savePath, json);
     }
@@ -64,5 +69,15 @@ public class GameManager : MonoBehaviour
     public int GetEquippedWeaponLevel()
     {
         return player.playerData.equippedWeaponLevel;
+    }
+
+    public void StartAutoAttack()
+    {
+        // 자동 공격 상태 복원
+        if (player.playerData.isAutoAttack)
+        {
+            FindObjectOfType<AttackSystem>().StartAutoAttack();
+            Debug.Log("자동 공격 재시작!");
+        }
     }
 }

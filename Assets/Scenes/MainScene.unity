@@ -9255,7 +9255,7 @@ MonoBehaviour:
     weaponPoint: 0
     selectedCharacter: 
     baseGoldBonus: 0
-  attackSystem: {fileID: 1001657214}
+    isAutoAttack: 0
 --- !u!4 &2082643986
 Transform:
   m_ObjectHideFlags: 0

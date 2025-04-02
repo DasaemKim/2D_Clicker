@@ -47,14 +47,14 @@ public class StatUpgrade : MonoBehaviour
             // 텍스트 활성화
             UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
             UIBtnManager.Instance.uiBtnController.criInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
+
+            GameManager.Instance.SaveGame();
         }
         else
         {
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
         }
-
-        GameManager.Instance.SaveGame();
     }
 
     // 자동 공격 횟수 증가
@@ -67,7 +67,7 @@ public class StatUpgrade : MonoBehaviour
             GameManager.Instance.player.playerData.autoNum *= 0.9f; // 0.9배씩 감소
             autoUpgradePoint = (int)(autoUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.autoUpgradeCost = autoUpgradePoint;
-
+            
             // 구매했을때 +1 되도록 설정
             GameManager.Instance.player.playerData.autoUpLevel += 1;
 
@@ -77,14 +77,14 @@ public class StatUpgrade : MonoBehaviour
             // 텍스트 활성화
             UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
             UIBtnManager.Instance.uiBtnController.autoInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
+
+            GameManager.Instance.SaveGame();
         }
         else
         {
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
         }
-
-        GameManager.Instance.SaveGame();
     }
 
     // 코인 획득량 증가
@@ -98,6 +98,7 @@ public class StatUpgrade : MonoBehaviour
             coinUpgradePoint = (int)(coinUpgradePoint * 1.5f); // 강화 포인트 사용 시 다음 사용할 때 1.5배 추가 증가
             GameManager.Instance.player.playerData.coinUpgradeCost = coinUpgradePoint;
 
+            // 구매했을때 +1 되도록 설정
             GameManager.Instance.player.playerData.coinGetUpLevel += 1;
 
             UIBtnManager.Instance.uiBtnController.RefreshUI(); // 업그레이드 수치 변경 시 최신화
@@ -105,14 +106,14 @@ public class StatUpgrade : MonoBehaviour
             // 텍스트 활성화
             UIBtnManager.Instance.uiBtnController.isInfoVisible = true;
             UIBtnManager.Instance.uiBtnController.coinInfoText.gameObject.SetActive(UIBtnManager.Instance.uiBtnController.isInfoVisible);
+
+            GameManager.Instance.SaveGame();
         }
         else
         {
             UIBtnManager.Instance.uiBtnController.ErrorPanel(); // 에러 발생 시 에러 패널 생성
             StartCoroutine(UIBtnManager.Instance.uiBtnController.CloseErrorPanel()); // 코루틴을 이용하여 3초뒤 사라짐
         }
-
-        GameManager.Instance.SaveGame();
     }
 
     // 키 다운 시

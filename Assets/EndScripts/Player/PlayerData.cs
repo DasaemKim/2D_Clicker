@@ -15,16 +15,15 @@ public class PlayerData
         enemyIndex = 0;
         statPoint = data.statPoint;
         weaponPoint = data.weaponPoint;
-        criticalDamageLevel = 0;
-        autoAttackLevel = 0; 
-        goldBonusLevel = 0;
-        criUpgradeCost = 10;
-        autoUpgradeCost = 10;
-        coinUpgradeCost = 10;
+        criUpgradeCost = 10f;
+        autoUpgradeCost = 10f;
+        coinUpgradeCost = 10f;
         equippedWeaponLevel = 0;
         selectedCharacter = "";
         equippedWeaponName = "";
         weaponList = new List<Weapon>();
+
+        isAutoAttack = false;
     }
 
     //스탯관련
@@ -46,11 +45,6 @@ public class PlayerData
     public int autoUpgradeCost;
     public int coinUpgradeCost;
 
-    //스탯 업그레이드 레벨
-    public int criticalDamageLevel;
-    public int autoAttackLevel;
-    public int goldBonusLevel;
-
     //Stage UI연동용 레벨
     public int criUpLevel;
     public int autoUpLevel;
@@ -67,5 +61,7 @@ public class PlayerData
     public string selectedCharacter;
     public int baseGoldBonus;
 
-    
+    // 자동 공격 상태 
+    public bool isAutoAttack;
+
 }
