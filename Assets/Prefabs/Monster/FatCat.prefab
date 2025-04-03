@@ -75,7 +75,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: 78fca856396aecb4281d48f0d4de782f, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -103,7 +103,6 @@ MonoBehaviour:
   MaxHealth: 0
   CurrentHealth: 0
   MonsterDieParticle: {fileID: 6061365415782975082, guid: c2f25239e5222784e8fc7728ef1aae8d, type: 3}
-  anim: {fileID: 0}
 --- !u!50 &-4655163816395332922
 Rigidbody2D:
   serializedVersion: 4
